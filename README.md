@@ -7,6 +7,7 @@ L'application POS (Point of Sale) pour le restaurant mexicain Poco est un systè
 -   Saisie des commandes
 -   Gestion des paiements
 -   Gestion des entrées et sorties des employés
+-   Gestion des employés (Ajout et Suppression)
 
 L'interface conviviale et intuitive facilite la formation des employés et le traitement des transactions quotidiennes pour améliorer l'expérience des clients et la rentabilité du restaurant.
 
