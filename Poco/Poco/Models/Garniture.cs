@@ -14,19 +14,30 @@ namespace Poco.Models
         #endregion
 
         #region ATTRIBUTS
+        private string _nom;
 
         #endregion
-
+        
         #region PROPRIÉTÉS
-
+        public string Nom
+        {
+            get { return _nom; }
+            set { _nom = value; }
+        }
         #endregion
 
         #region CONSTRUCTEURS
-
+        public Garniture(string pNom)
+        {
+            Nom = pNom;
+        }
         #endregion
 
         #region MÉTHODES
-
+        public override string ToString()
+        {
+            return Nom;
+        }
         #endregion
 
     }

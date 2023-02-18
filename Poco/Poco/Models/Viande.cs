@@ -14,15 +14,23 @@ namespace Poco.Models
         #endregion
 
         #region ATTRIBUTS
+        private decimal _prix;
 
         #endregion
 
         #region PROPRIÉTÉS
-
+        public decimal Prix
+        {
+            get { return _prix; }
+            set { _prix = value; }
+        }
         #endregion
 
         #region CONSTRUCTEURS
-
+        public Viande(string pNom, decimal pPrix) : base(pNom)
+        {
+            Prix = pPrix;
+        }
         #endregion
 
         #region MÉTHODES

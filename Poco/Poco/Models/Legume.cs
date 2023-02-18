@@ -22,7 +22,7 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-
+        public Legume(string pNom) : base(pNom) {}
         #endregion
 
         #region MÉTHODES
