@@ -8,5 +8,26 @@ namespace Poco.Models
 {
     public abstract class Garniture
     {
+
+        #region CONSTANTES
+
+        #endregion
+
+        #region ATTRIBUTS
+
+        #endregion
+
+        #region PROPRIÉTÉS
+
+        #endregion
+
+        #region CONSTRUCTEURS
+
+        #endregion
+
+        #region MÉTHODES
+
+        #endregion
+
     }
 }

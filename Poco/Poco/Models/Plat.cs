@@ -17,5 +17,26 @@ namespace Poco.Models
 
     public class Plat
     {
+
+        #region CONSTANTES
+
+        #endregion
+
+        #region ATTRIBUTS
+
+        #endregion
+
+        #region PROPRIÉTÉS
+
+        #endregion
+
+        #region CONSTRUCTEURS
+
+        #endregion
+
+        #region MÉTHODES
+
+        #endregion
+
     }
 }

@@ -6,7 +6,28 @@ using System.Threading.Tasks;
 
 namespace Poco.Models
 {
-    internal class Employe
+    public class Employe
     {
+
+        #region CONSTANTES
+
+        #endregion
+
+        #region ATTRIBUTS
+
+        #endregion
+
+        #region PROPRIÉTÉS
+
+        #endregion
+
+        #region CONSTRUCTEURS
+
+        #endregion
+
+        #region MÉTHODES
+
+        #endregion
+
     }
 }
