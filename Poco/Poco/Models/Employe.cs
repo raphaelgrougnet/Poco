@@ -81,6 +81,10 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Override de la méthode ToString
+        /// </summary>
+        /// <returns>Nom et Prénom de l'employé</returns>
         public override string ToString()
         {
             return Nom + " " + Prenom;

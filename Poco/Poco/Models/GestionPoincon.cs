@@ -30,11 +30,19 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Poinçonne un employé
+        /// </summary>
+        /// <param name="pEmploye">Employé à poinconner</param>
         public void PoinconnerEmploye(Employe pEmploye)
         {
             pEmploye.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
         }
 
+        /// <summary>
+        /// Dépoinçonne un employé
+        /// </summary>
+        /// <param name="pEmploye">Employé à dépoinconner</param>
         public void DepoinconnerEmploye(Employe pEmploye)
         {
             pEmploye.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));

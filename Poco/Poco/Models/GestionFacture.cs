@@ -37,11 +37,19 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Ajoute une facture à la liste de factures
+        /// </summary>
+        /// <param name="pFacture">Facture à ajouter</param>
         public void AjouterFacture(Facture pFacture)
         {
             ListeFactures.Add(pFacture);
         }
 
+        /// <summary>
+        /// Calcule le total de toutes les factures
+        /// </summary>
+        /// <returns>Le total de toutes les factures avec les taxes</returns>
         public decimal CalculerTotalFactures()
         {
             decimal total = 0;

@@ -78,6 +78,11 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Ajoute une garniture au plat
+        /// </summary>
+        /// <param name="pGarniture">Garniture à ajouter</param>
+        /// <returns></returns>
         public bool AjouterGarniture(Garniture pGarniture)
         {
             if (pGarniture is Garniture)
@@ -88,6 +93,10 @@ namespace Poco.Models
             return false;
         }
 
+        /// <summary>
+        /// Override de la méthode ToString
+        /// </summary>
+        /// <returns>Nom du plat</returns>
         public override string ToString()
         {
             return Nom;

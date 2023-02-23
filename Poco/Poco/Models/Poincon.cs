@@ -50,6 +50,10 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Override de la méthode ToString
+        /// </summary>
+        /// <returns>L'heure du poincon</returns>
         public override string ToString()
         {
             return Heure.ToString();

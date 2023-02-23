@@ -34,6 +34,10 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Override de la méthode ToString
+        /// </summary>
+        /// <returns>Nom de la garniture</returns>
         public override string ToString()
         {
             return Nom;

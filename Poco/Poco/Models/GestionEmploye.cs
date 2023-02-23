@@ -36,16 +36,32 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+        /// <summary>
+        /// Ajoute un employé à la liste
+        /// </summary>
+        /// <param name="employe">Employé à ajouter</param>
         public void AjouterEmploye(Employe employe)
         {
             ListeEmployes.Add(employe);
         }
 
+        /// <summary>
+        /// Supprime un employé de la liste
+        /// </summary>
+        /// <param name="employe">Employé à supprimer</param>
         public void SupprimerEmploye(Employe employe)
         {
             ListeEmployes.Remove(employe);
         }
-        
+
+        /// <summary>
+        /// Valide les données d'un employé
+        /// </summary>
+        /// <param name="pCode">Code de l'employé</param>
+        /// <param name="pNom">Nom de l'employé</param>
+        /// <param name="pPrenom">Prénom de l'employé</param>
+        /// <param name="pDateNaissance">Date de naissance de l'employé</param>
+        /// <returns></returns>
         public string ValiderEmploye(string pCode, string pNom, string pPrenom, DateTime pDateNaissance)
         {
             string message = "";

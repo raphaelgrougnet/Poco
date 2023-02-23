@@ -84,6 +84,11 @@ namespace Poco.Models
         #endregion
 
         #region MÉTHODES
+
+        /// <summary>
+        /// Calcule le sous-total de la facture
+        /// </summary>
+        /// <returns>Sous total sans les taxes</returns>
         private decimal CalculerSousTotal()
         {
             decimal sousTotal = 0;
@@ -94,6 +99,10 @@ namespace Poco.Models
             return sousTotal;
         }
 
+        /// <summary>
+        /// Calcule le prix total de la facture
+        /// </summary>
+        /// <returns>Total avec les taxes</returns>
         private decimal CalculerPrixTotal()
         {
             decimal prixTotal = SousTotal + (SousTotal * 0.15m);
