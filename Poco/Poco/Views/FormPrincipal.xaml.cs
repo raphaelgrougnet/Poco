@@ -25,5 +25,21 @@ namespace Poco
         {
             InitializeComponent();
         }
+
+        private void btnAjtEmploye_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAide_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void btnPoincon_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
