@@ -8,8 +8,14 @@ namespace Poco.Models
 {
     public class Employe
     {
-        
+
         #region CONSTANTES
+
+        public const int LONGUEUR_MIN_NOM = 2;
+        public const int LONGUEUR_MAX_NOM = 20;
+        public const int LONGUEUR_MIN_PRENOM = 2;
+        public const int LONGUEUR_MAX_PRENOM = 20;
+        
 
         #endregion
 
@@ -32,18 +38,39 @@ namespace Poco.Models
         public string Code
         {
             get { return _code; }
-            set { _code = value; }
+            set
+            {
+                if (value.Length != 4)
+                {
+                    throw new ArgumentOutOfRangeException("Le code ne doit comprendre 4 chiffres");
+                }
+                _code = value;
+            }
         }
         public string Nom
         {
             get { return _nom; }
-            set { _nom = value; }
+            set 
+            {
+                if (value.Length < LONGUEUR_MIN_NOM || value.Length > LONGUEUR_MAX_NOM)
+                {
+                    throw new ArgumentOutOfRangeException("Le nom doit comprendre entre " + LONGUEUR_MIN_NOM + " et " + LONGUEUR_MAX_NOM + " caractères");
+                }
+                _nom = value; 
+            }
         }
 
         public string Prenom
         {
             get { return _prenom; }
-            set { _prenom = value; }
+            set
+            {
+                if (value.Length < LONGUEUR_MIN_PRENOM || value.Length > LONGUEUR_MAX_PRENOM)
+                {
+                    throw new ArgumentOutOfRangeException("Le nom doit comprendre entre " + LONGUEUR_MIN_PRENOM + " et " + LONGUEUR_MAX_PRENOM + " caractères");
+                }
+                _prenom = value;
+            }
         }
 
         public DateTime DateNaissance
@@ -68,14 +95,14 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public Employe(string code, string nom, string prenom, DateTime dateNaissance, TimeSpan heuresTravailles, List<Poincon> mesPoincons)
+        public Employe(string code, string nom, string prenom, DateTime dateNaissance)
         {
             Code = code;
             Nom = nom;
             Prenom = prenom;
             DateNaissance = dateNaissance;
-            HeuresTravailles = heuresTravailles;
-            MesPoincons = mesPoincons;
+            HeuresTravailles = new TimeSpan(0, 0, 0);
+            MesPoincons = new List<Poincon>();
         }
 
         #endregion
@@ -87,7 +114,7 @@ namespace Poco.Models
         /// <returns>Nom et Prénom de l'employé</returns>
         public override string ToString()
         {
-            return Nom + " " + Prenom;
+            return Prenom + " " + Nom;
         }
         #endregion
 

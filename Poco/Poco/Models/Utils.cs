@@ -52,7 +52,7 @@ namespace Poco.Models
 
 
 
-        static public List<string[]>? ChargerDonnees(String pCheminFichier)
+        static public List<string[]> ChargerDonnees(String pCheminFichier)
         {
             if (File.Exists(pCheminFichier))
             {
@@ -94,7 +94,7 @@ namespace Poco.Models
             return null;
         }
 
-        public static void EnregistrerDonnees(String pCheminFichier, string pDonneesSerialises)
+        public static void EnregistrerDonneesAppend(String pCheminFichier, string pDonneesSerialises)
         {
 
             StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, true);
@@ -102,6 +102,16 @@ namespace Poco.Models
             fluxEcriture.Close();
 
         }
+
+        public static void EnregistrerDonneesCrush(String pCheminFichier, string pDonneesSerialises)
+        {
+
+            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
+            fluxEcriture.Write(pDonneesSerialises);
+            fluxEcriture.Close();
+
+        }
+
         #endregion
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Poco.Models
     {
 
         #region CONSTANTES
-
+        static public string PATH_FILES = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Files\\";
         #endregion
 
         #region ATTRIBUTS
@@ -29,9 +30,9 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public GestionEmploye(List<Employe> listeEmployes)
+        public GestionEmploye()
         {
-            ListeEmployes = listeEmployes;
+            ListeEmployes = new List<Employe>();
         }
         #endregion
 
@@ -66,21 +67,21 @@ namespace Poco.Models
         {
             string message = "";
 
-            if (pCode == null || pCode == "")
+            if (pCode == null || pCode == "" || pCode.Length != 4)
             {
-                message += "Le code ne peut pas être nul\n";
+                message += "Le code doit contenir 4 chiffres\n";
             }
-            else if (pNom == null || pNom == "")
+            if (pNom == null || pNom == "")
             {
-                message += "Le nom de famille ne peut pas être nul\n";
+                message += "Le nom de famille ne peut pas être vide\n";
             }
-            else if (pPrenom == null || pPrenom == "")
+            if (pPrenom == null || pPrenom == "")
             {
-                message = "Le prénom ne peut pas être nul\n";
+                message += "Le prénom ne peut pas être vide\n";
             }
-            else if (pDateNaissance < DateTime.Now.AddYears(-100))
+            if (pDateNaissance < DateTime.Now.AddYears(-100))
             {
-                message = "La date de naissance est invalide";
+                message += "La date de naissance est invalide";
             }
 
             return message;
