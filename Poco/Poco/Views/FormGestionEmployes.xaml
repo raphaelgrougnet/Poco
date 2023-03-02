@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Poco.Views"
         mc:Ignorable="d"
-        Title="FormGestionEmployes" Height="1000" Width="1270"
-        WindowStyle="None"
+        Title="FormGestionEmployes" Height="800" Width="1270"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="ThreeDBorderWindow"
+        WindowState="Maximized"
         
         >
     <Grid Margin="15">
@@ -16,15 +17,15 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10">
-            <Label Content="Informations" FontSize="64" HorizontalContentAlignment="Center" />
-            <Label Content="Nom" FontSize="25" HorizontalContentAlignment="Left" Margin="0,0,0,-5"/>
-            <TextBox Text="" Name="txtNom" Margin="5,0,5,0" Height="50" FontSize="30"/>
-            <Label Content="Prénom" FontSize="25" HorizontalContentAlignment="Left" Margin="0,0,0,-5"/>
-            <TextBox Text="" Name="txtPrenom" Margin="5,0,5,0" Height="50" FontSize="30"/>
-            <Label Content="Date de naissance" FontSize="25" HorizontalContentAlignment="Left" Margin="0,0,0,-5"/>
-            <DatePicker Name="dateDOB" Height="50" Margin="5,0,5,0" FontSize="30"/>
+            <Label Content="Informations" FontSize="50" HorizontalContentAlignment="Center" />
+            <Label Content="Nom" FontSize="23" HorizontalContentAlignment="Left" Margin="0,0,0,-5"/>
+            <TextBox Text="" Name="txtNom" Margin="5,0,5,0" Height="40" FontSize="23"/>
+            <Label Content="Prénom" FontSize="23" HorizontalContentAlignment="Left" Margin="0,0,0,-5"/>
+            <TextBox Text="" Name="txtPrenom" Margin="5,0,5,0" Height="40" FontSize="23"/>
+            <Label Content="Date de naissance" FontSize="23" HorizontalContentAlignment="Left" Margin="0,0,0,-5"/>
+            <DatePicker Name="dateDOB" Height="40" Margin="5,0,5,0" FontSize="23"/>
 
-            <Grid Grid.Column="0"  Margin="0,30,0,60">
+            <Grid Grid.Column="0"  Margin="0,-5,0,60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -41,7 +42,7 @@
                     <RowDefinition Height="94*"/>
                     <RowDefinition Height="94*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Code" Grid.Column="2" Grid.Row="0" FontSize="40" HorizontalContentAlignment="Center"/>
+                <Label Content="Code" Grid.Column="2" Grid.Row="0" FontSize="30" HorizontalContentAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center">
 
                     <Grid Width="50" Height="50" Background="#dddddd" Margin="5">
@@ -61,17 +62,17 @@
                     
                 </StackPanel>
 
-                <Button Grid.Column="1" Grid.Row="3" x:Name="btn1" Content="1" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="2" Grid.Row="3" x:Name="btn2" Content="2" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="3" Grid.Row="3" x:Name="btn3" Content="3" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="1" Grid.Row="4" x:Name="btn4" Content="4" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="2" Grid.Row="4" x:Name="btn5" Content="5" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="3" Grid.Row="4" x:Name="btn6" Content="6" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="1" Grid.Row="5" x:Name="btn7" Content="7" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="2" Grid.Row="5" x:Name="btn8" Content="8" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="3" Grid.Row="5" x:Name="btn9" Content="9" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="2" Grid.Row="6" x:Name="btn0" Content="0" FontSize="50" Height="90" Margin="5" Click="Keypad_Click"/>
-                <Button Grid.Column="3" Grid.Row="6" x:Name="btnC" Content="C" FontSize="50" Height="90" Margin="5" Click="Keypad_Clear"/>
+                <Button Grid.Column="1" Grid.Row="3" x:Name="btn1" Content="1" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click" HorizontalAlignment="Right"/>
+                <Button Grid.Column="2" Grid.Row="3" x:Name="btn2" Content="2" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click"/>
+                <Button Grid.Column="3" Grid.Row="3" x:Name="btn3" Content="3" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click" HorizontalAlignment="Left"/>
+                <Button Grid.Column="1" Grid.Row="4" x:Name="btn4" Content="4" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click" HorizontalAlignment="Right"/>
+                <Button Grid.Column="2" Grid.Row="4" x:Name="btn5" Content="5" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click"/>
+                <Button Grid.Column="3" Grid.Row="4" x:Name="btn6" Content="6" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click" HorizontalAlignment="Left"/>
+                <Button Grid.Column="1" Grid.Row="5" x:Name="btn7" Content="7" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click" HorizontalAlignment="Right"/>
+                <Button Grid.Column="2" Grid.Row="5" x:Name="btn8" Content="8" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click"/>
+                <Button Grid.Column="3" Grid.Row="5" x:Name="btn9" Content="9" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click" HorizontalAlignment="Left"/>
+                <Button Grid.Column="2" Grid.Row="6" x:Name="btn0" Content="0" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Click"/>
+                <Button Grid.Column="3" Grid.Row="6" x:Name="btnC" Content="C" FontSize="50" Height="70" Width="70" Margin="5" Click="Keypad_Clear" HorizontalAlignment="Left"/>
                 
 
 
@@ -84,8 +85,8 @@
         </StackPanel>
         <Border Grid.Column="1" BorderThickness="2" BorderBrush="Black" CornerRadius="15" Margin="10">
             <StackPanel Orientation="Vertical">
-                <Label Content="Employés" FontSize="64" HorizontalAlignment="Center"/>
-                <ScrollViewer x:Name="scrlEmployes" VerticalScrollBarVisibility="Hidden" Height="710" >
+                <Label Content="Employés" FontSize="50" HorizontalAlignment="Center"/>
+                <ScrollViewer x:Name="scrlEmployes" VerticalScrollBarVisibility="Hidden" Height="550" >
                     <ListBox x:Name="lstEmployes" BorderThickness="0" HorizontalAlignment="Center">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
