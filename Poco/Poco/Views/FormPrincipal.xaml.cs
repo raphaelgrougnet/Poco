@@ -62,14 +62,14 @@ namespace Poco
 
         private void btnAide_Click(object sender, RoutedEventArgs e)
         {
-            FormPoincon frp = new FormPoincon(_gestionEmploye);
-            frp.Show();
+            
         }
 
 
         private void btnPoincon_Click(object sender, RoutedEventArgs e)
         {
-
+            FormPoincon frp = new FormPoincon(_gestionEmploye);
+            frp.Show();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
