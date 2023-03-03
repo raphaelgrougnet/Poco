@@ -73,10 +73,10 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0,0,70,0">
-                <Label Content="Entrée" FontSize="40" Background="#DDDDDD" Padding="25,15,25,15"/>
+                <Button Name="btnEntree" Content="Entrée" FontSize="40" Background="#DDDDDD" Padding="25,15,25,15"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Sortie" FontSize="40" Background="#DDDDDD" Padding="25,15,25,15"/>
+                <Button Name="btnSortie" Content="Sortie" FontSize="40" Background="#DDDDDD" Padding="25,15,25,15"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
