@@ -67,8 +67,10 @@
                 <Button Grid.Column="3" Grid.Row="6" x:Name="btnC" Content="C" FontSize="50" Height="75" Width="75" Margin="5" Click="Keypad_Clear" HorizontalAlignment="Left"/>
             </Grid>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                <Button Content="Fermer" Name="btnFermer" FontSize="40" Padding="25,15,25,15" Margin="40,0,80,0"/>
+
+                <Button Content="Connexion" Name="btnConnexion" FontSize="40" Padding="25,15,25,15" Margin="20,0,40,0"/>
                 <Button Content="Déconnexion" Name="btnDeconnexion" FontSize="40" Padding="25,15,25,15"/>
+                
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center">
@@ -99,8 +101,9 @@
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Label Name="lblNomEmploye" Content="{Binding}" FontSize="40" Margin="0,0,0,50"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="40">
+            <TextBlock  Name="txtNomEmploye" Text="{Binding}" TextWrapping="Wrap" Width="250" FontSize="40" Margin="0,0,55,0"/>
+            <Button Content="Fermer" Name="btnFermer" FontSize="40" Padding="30,10,30,10"/>
         </StackPanel>
         
     </Grid>
