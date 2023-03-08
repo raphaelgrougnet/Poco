@@ -5,11 +5,11 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Poco rounded.ico</ApplicationIcon>
+    <ApplicationIcon>Poco-icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Poco rounded.ico" />
+    <Content Include="Poco-icon.ico" />
   </ItemGroup>
 
 </Project>
