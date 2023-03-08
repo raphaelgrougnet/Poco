@@ -46,6 +46,7 @@ namespace Poco.Views
 
             btnAjouter.Content = "Ajouter";
             btnSupprimer.IsEnabled = false;
+            borderSupprimer.IsEnabled = false;
 
             txtCode1.Text = "";
             txtCode2.Text = "";
@@ -80,7 +81,7 @@ namespace Poco.Views
             dateDOB.IsEnabled = false;
             btnAjouter.Content = "Nouveau";
             btnSupprimer.IsEnabled = true;
-
+            borderSupprimer.IsEnabled = true;
 
             txtCode1.Text = emp.Code[0].ToString();
             txtCode2.Text = emp.Code[1].ToString();
@@ -100,57 +101,12 @@ namespace Poco.Views
             btnC.IsEnabled = false;
         }
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
-        {
-            if (lstEmployes.SelectedIndex == -1)
-            {
-                DateTime dateSelec = new DateTime(0);
-                if (dateDOB.SelectedDate is not null)
-                {
-                    dateSelec = dateDOB.SelectedDate.Value;
-                }
-
-
-                string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
-                string message = _gestionEmploye.ValiderEmploye(code, txtNom.Text, txtPrenom.Text, dateSelec);
-                if (message != "")
-                {
-                    MessageBox.Show(message, "Ajouter un employé", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-
-                    Employe newE = new Employe(code, txtNom.Text, txtPrenom.Text, dateDOB.SelectedDate.Value);
-                    _gestionEmploye.AjouterEmploye(newE);
-                    InitialiserChamps();
-                }
-            }
-            else
-            {
-                InitialiserChamps();
-            }
-            
-        }
-
-        private void btnSupprimer_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO : FAIRE VALIDER A L'UTILISATEUR LA SUPPRESSION
-            if (lstEmployes.SelectedItem is not null)
-            {
-                _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
-
-            }
-            InitialiserChamps();
-
-
-
-        }
-
-        private void btnRetourAccueil_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
+        
+        /// <summary>
+        /// Click de la souris sur un employé
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Border control = sender as Border;
@@ -160,6 +116,11 @@ namespace Poco.Views
             
         }
 
+        /// <summary>
+        /// Click de la souris sur un boutton du keypad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {
             if (txtCode1.Text == "")
@@ -222,6 +183,54 @@ namespace Poco.Views
                     }
                 }
             }
+        }
+
+        
+        private void btnAjouter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (lstEmployes.SelectedIndex == -1)
+            {
+                DateTime dateSelec = new DateTime(0);
+                if (dateDOB.SelectedDate is not null)
+                {
+                    dateSelec = dateDOB.SelectedDate.Value;
+                }
+
+
+                string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
+                string message = _gestionEmploye.ValiderEmploye(code, txtNom.Text, txtPrenom.Text, dateSelec);
+                if (message != "")
+                {
+                    MessageBox.Show(message, "Ajouter un employé", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+
+                    Employe newE = new Employe(code, txtNom.Text, txtPrenom.Text, dateDOB.SelectedDate.Value);
+                    _gestionEmploye.AjouterEmploye(newE);
+                    InitialiserChamps();
+                }
+            }
+            else
+            {
+                InitialiserChamps();
+            }
+        }
+
+        private void btnSupprimer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //TODO : FAIRE VALIDER A L'UTILISATEUR LA SUPPRESSION
+            if (lstEmployes.SelectedItem is not null)
+            {
+                _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
+
+            }
+            InitialiserChamps();
+        }
+
+        private void btnFermer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
     }
 }
