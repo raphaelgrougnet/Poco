@@ -24,7 +24,7 @@ namespace Poco
     public partial class MainWindow : Window
     {
         public GestionEmploye _gestionEmploye;
-        
+        private Dictionary<string, Employe> _dictEmployesCodes;
 
         public MainWindow()
         {
@@ -33,6 +33,8 @@ namespace Poco
             string path = GestionEmploye.PATH_FILES + "Employes.csv";
             lstStringEmployes = Utils.ChargerDonnees(path);
             _gestionEmploye = new GestionEmploye();
+            _dictEmployesCodes = new Dictionary<string, Employe>();
+
 
             foreach (string[] lstEmploye in lstStringEmployes)
             {
@@ -48,16 +50,27 @@ namespace Poco
                 {
                     Employe e = new Employe(code, nom, prenom, dob);
                     _gestionEmploye.AjouterEmploye(e);
+                    if (_dictEmployesCodes.ContainsKey(code) == false)
+                    {
+                        _dictEmployesCodes.Add(code, e);
+                    }
+                    
                 }
                 
                 
             }
+            _gestionEmploye.ListeEmployesPresent.Add(_gestionEmploye.ListeEmployes[0]);
+
+
+            lstEmployesPresents.ItemsSource = _gestionEmploye.ListeEmployesPresent;
+
         }
 
         private void btnAjtEmploye_Click(object sender, RoutedEventArgs e)
         {
             FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
-            frm.Show();
+            frm.ShowDialog();
+            
         }
 
         private void btnAide_Click(object sender, RoutedEventArgs e)
@@ -68,7 +81,7 @@ namespace Poco
 
         private void btnPoincon_Click(object sender, RoutedEventArgs e)
         {
-
+            lstEmployesPresents.Items.Refresh();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -82,6 +95,87 @@ namespace Poco
             donneesEmployes.TrimEnd();
             string path = GestionEmploye.PATH_FILES + "Employes.csv";
             Utils.EnregistrerDonneesCrush(path, donneesEmployes);
+        }
+
+
+        private void ValiderCode(string pCode)
+        {
+            if (_dictEmployesCodes.ContainsKey(pCode))
+            {
+                MessageBox.Show($"Bienvenue {_dictEmployesCodes[pCode]}");
+            }
+        }
+        
+
+        /// <summary>
+        /// Click de la souris sur un boutton du keypad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Keypad_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtCode1.Text == "")
+            {
+                txtCode1.Text = (sender as Button).Content.ToString();
+            }
+            else
+            {
+                if (txtCode2.Text == "")
+                {
+                    txtCode2.Text = (sender as Button).Content.ToString();
+                }
+                else
+                {
+                    if (txtCode3.Text == "")
+                    {
+                        txtCode3.Text = (sender as Button).Content.ToString();
+                    }
+                    else
+                    {
+                        if (txtCode4.Text == "")
+                        {
+                            txtCode4.Text = (sender as Button).Content.ToString();
+                            string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
+                            ValiderCode(code);
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void Keypad_Clear(object sender, RoutedEventArgs e)
+        {
+            if (txtCode4.Text != "")
+            {
+                txtCode4.Text = "";
+            }
+            else
+            {
+                if (txtCode3.Text != "")
+                {
+                    txtCode3.Text = "";
+                }
+                else
+                {
+                    if (txtCode2.Text != "")
+                    {
+                        txtCode2.Text = "";
+                    }
+                    else
+                    {
+                        if (txtCode1.Text != "")
+                        {
+                            txtCode1.Text = "";
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

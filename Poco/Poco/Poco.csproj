@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\Images\poco-resized.png" />
+    <None Remove="Files\Images\poco.png" />
+    <None Remove="Files\Images\poco.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Files\Images\poco-resized.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Images\poco.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Poco-icon.ico" />
   </ItemGroup>
 

@@ -16,6 +16,7 @@ namespace Poco.Models
 
         #region ATTRIBUTS
         private List<Employe> _listeEmployes;
+        private List<Employe> _listeEmployesPresent;
 
         #endregion
 
@@ -26,6 +27,11 @@ namespace Poco.Models
             set { _listeEmployes = value; }
         }
 
+        public List<Employe> ListeEmployesPresent
+        {
+            get { return _listeEmployesPresent; }
+            set { _listeEmployesPresent = value; }
+        }
 
         #endregion
 
@@ -33,6 +39,7 @@ namespace Poco.Models
         public GestionEmploye()
         {
             ListeEmployes = new List<Employe>();
+            ListeEmployesPresent = new List<Employe>();
         }
         #endregion
 
