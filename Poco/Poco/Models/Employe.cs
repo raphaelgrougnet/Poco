@@ -76,7 +76,14 @@ namespace Poco.Models
         public DateTime DateNaissance
         {
             get { return _dateNaissance; }
-            set { _dateNaissance = value; }
+            set
+            {
+                if (DateNaissance > DateTime.Now || !DateTime.TryParse(value.ToString(), out DateTime resultat))
+                {
+                    throw new ArgumentOutOfRangeException("La date doit être inférieur à la date d'ajourd'hui, et doit respecter le format MM/JJ/AAAA");
+                }
+                _dateNaissance = value;
+            }
         }
 
         public TimeSpan HeuresTravailles
