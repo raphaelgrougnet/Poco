@@ -4,6 +4,31 @@
              xmlns:local="clr-namespace:Poco"
              StartupUri="Views/FormPrincipal.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Montserrat" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Montserrat" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Montserrat" />
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontFamily" Value="Montserrat" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Montserrat" />
+        </Style>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBox x:Name="PART_TextBox"
+     Text="{Binding Path=SelectedDate, StringFormat='dd-MM-yyyy', 
+     RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
