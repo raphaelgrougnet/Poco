@@ -71,8 +71,8 @@
 
             <Image Source="/Files/Images/poco-resized.png" Width="300" Margin="20"/>
 
-            <Border BorderBrush="#FFC5B718" BorderThickness="3" CornerRadius="15" Background="#FFE4EBC3">
-                <Label Content="Erreur" Height="70" FontSize="40" Name="btnErreurs" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
+            <Border BorderBrush="#FFC5B718" BorderThickness="3" CornerRadius="15" Background="#FFE4EBC3" Height="70" >
+                <TextBlock x:Name="txtErreur" Text=""  FontSize="20" Foreground="Red" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" />
             </Border>
 
 

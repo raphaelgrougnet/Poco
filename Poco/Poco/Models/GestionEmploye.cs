@@ -17,7 +17,7 @@ namespace Poco.Models
         #region ATTRIBUTS
         private List<Employe> _listeEmployes;
         private List<Employe> _listeEmployesPresent;
-
+        private Dictionary<string, Employe> _dictEmployesCodes;
         #endregion
 
         #region PROPRIÉTÉS
@@ -33,6 +33,12 @@ namespace Poco.Models
             set { _listeEmployesPresent = value; }
         }
 
+        public Dictionary<string, Employe> DictEmployesCodes
+        {
+            get { return _dictEmployesCodes; }
+            set { _dictEmployesCodes = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTEURS
@@ -40,6 +46,7 @@ namespace Poco.Models
         {
             ListeEmployes = new List<Employe>();
             ListeEmployesPresent = new List<Employe>();
+            DictEmployesCodes = new Dictionary<string, Employe>();
         }
         #endregion
 
@@ -51,6 +58,7 @@ namespace Poco.Models
         public void AjouterEmploye(Employe employe)
         {
             ListeEmployes.Add(employe);
+            
         }
 
         /// <summary>

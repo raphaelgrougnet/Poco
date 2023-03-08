@@ -24,7 +24,7 @@ namespace Poco
     public partial class MainWindow : Window
     {
         public GestionEmploye _gestionEmploye;
-        private Dictionary<string, Employe> _dictEmployesCodes;
+        
 
         public MainWindow()
         {
@@ -33,7 +33,6 @@ namespace Poco
             string path = GestionEmploye.PATH_FILES + "Employes.csv";
             lstStringEmployes = Utils.ChargerDonnees(path);
             _gestionEmploye = new GestionEmploye();
-            _dictEmployesCodes = new Dictionary<string, Employe>();
 
 
             foreach (string[] lstEmploye in lstStringEmployes)
@@ -50,16 +49,16 @@ namespace Poco
                 {
                     Employe e = new Employe(code, nom, prenom, dob);
                     _gestionEmploye.AjouterEmploye(e);
-                    if (_dictEmployesCodes.ContainsKey(code) == false)
+                    if (_gestionEmploye.DictEmployesCodes.ContainsKey(code) == false)
                     {
-                        _dictEmployesCodes.Add(code, e);
+                        _gestionEmploye.DictEmployesCodes.Add(code, e);
                     }
                     
                 }
                 
                 
             }
-            _gestionEmploye.ListeEmployesPresent.Add(_gestionEmploye.ListeEmployes[0]);
+            
 
 
             lstEmployesPresents.ItemsSource = _gestionEmploye.ListeEmployesPresent;
@@ -100,9 +99,23 @@ namespace Poco
 
         private void ValiderCode(string pCode)
         {
-            if (_dictEmployesCodes.ContainsKey(pCode))
+            if (_gestionEmploye.DictEmployesCodes.ContainsKey(pCode))
             {
-                MessageBox.Show($"Bienvenue {_dictEmployesCodes[pCode]}");
+                txtErreur.Text = "";
+                MessageBox.Show($"Bienvenue {_gestionEmploye.DictEmployesCodes[pCode]}");
+                
+                txtCode1.Text = "";
+                txtCode2.Text = "";
+                txtCode3.Text = "";
+                txtCode4.Text = "";
+            }
+            else
+            {
+                txtErreur.Text = "Code invalide, aucun employé trouvé.";
+                txtCode1.Text = "";
+                txtCode2.Text = "";
+                txtCode3.Text = "";
+                txtCode4.Text = "";
             }
         }
         
