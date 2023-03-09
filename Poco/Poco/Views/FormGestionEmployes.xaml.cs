@@ -109,9 +109,18 @@ namespace Poco.Views
         /// <param name="e"></param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Border control = sender as Border;
-            Employe employe = (Employe) control.DataContext;
-            SelectionEmploye(employe);
+            try
+            {
+                Border control = sender as Border;
+                Employe employe = (Employe)control.DataContext;
+                SelectionEmploye(employe);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur lors de la sélection de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
 
             
         }
@@ -123,115 +132,163 @@ namespace Poco.Views
         /// <param name="e"></param>
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {
-            if (txtCode1.Text == "")
+            try
             {
-                txtCode1.Text = (sender as Button).Content.ToString();
-            }
-            else
-            {
-                if (txtCode2.Text == "")
+                if (txtCode1.Text == "")
                 {
-                    txtCode2.Text = (sender as Button).Content.ToString();
+                    txtCode1.Text = (sender as Button).Content.ToString();
                 }
                 else
                 {
-                    if (txtCode3.Text == "")
+                    if (txtCode2.Text == "")
                     {
-                        txtCode3.Text = (sender as Button).Content.ToString();
+                        txtCode2.Text = (sender as Button).Content.ToString();
                     }
                     else
                     {
-                        if (txtCode4.Text == "")
+                        if (txtCode3.Text == "")
                         {
-                            txtCode4.Text = (sender as Button).Content.ToString();
+                            txtCode3.Text = (sender as Button).Content.ToString();
                         }
-                        
+                        else
+                        {
+                            if (txtCode4.Text == "")
+                            {
+                                txtCode4.Text = (sender as Button).Content.ToString();
+                            }
+
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur lors de l'entrée du code\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
 
         }
 
         private void Keypad_Clear(object sender, RoutedEventArgs e)
         {
-            if (txtCode4.Text != "")
+            try
             {
-                txtCode4.Text = "";
-            }
-            else
-            {
-                if (txtCode3.Text != "")
+                if (txtCode4.Text != "")
                 {
-                    txtCode3.Text = "";
+                    txtCode4.Text = "";
                 }
                 else
                 {
-                    if (txtCode2.Text != "")
+                    if (txtCode3.Text != "")
                     {
-                        txtCode2.Text = "";
+                        txtCode3.Text = "";
                     }
                     else
                     {
-                        if (txtCode1.Text != "")
+                        if (txtCode2.Text != "")
                         {
-                            txtCode1.Text = "";
+                            txtCode2.Text = "";
                         }
                         else
                         {
+                            if (txtCode1.Text != "")
+                            {
+                                txtCode1.Text = "";
+                            }
+                            else
+                            {
 
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur lors de l'entrée du code\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         
         private void btnAjouter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (lstEmployes.SelectedIndex == -1)
+            try
             {
-                DateTime dateSelec = new DateTime(0);
-                if (dateDOB.SelectedDate is not null)
+                if (lstEmployes.SelectedIndex == -1)
                 {
-                    dateSelec = dateDOB.SelectedDate.Value;
-                }
+                    DateTime dateSelec = new DateTime(0);
+                    if (dateDOB.SelectedDate is not null)
+                    {
+                        dateSelec = dateDOB.SelectedDate.Value;
+                    }
 
 
-                string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
-                string message = _gestionEmploye.ValiderEmploye(code, txtNom.Text, txtPrenom.Text, dateSelec);
-                if (message != "")
-                {
-                    MessageBox.Show(message, "Ajouter un employé", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
+                    string message = _gestionEmploye.ValiderEmploye(code, txtNom.Text, txtPrenom.Text, dateSelec);
+                    if (message != "")
+                    {
+                        MessageBox.Show(message, "Ajouter un employé", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+
+                        Employe newE = new Employe(code, txtNom.Text, txtPrenom.Text, dateDOB.SelectedDate.Value);
+                        _gestionEmploye.AjouterEmploye(newE);
+                        _gestionEmploye.DictEmployesCodes.Add(code, newE);
+                        InitialiserChamps();
+                    }
                 }
                 else
                 {
-
-                    Employe newE = new Employe(code, txtNom.Text, txtPrenom.Text, dateDOB.SelectedDate.Value);
-                    _gestionEmploye.AjouterEmploye(newE);
-                    _gestionEmploye.DictEmployesCodes.Add(code, newE);
                     InitialiserChamps();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                InitialiserChamps();
+                MessageBox.Show("Erreur lors de l'ajout de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
         }
 
         private void btnSupprimer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //TODO : FAIRE VALIDER A L'UTILISATEUR LA SUPPRESSION
-            if (lstEmployes.SelectedItem is not null)
+            try
             {
-                _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
+                if (lstEmployes.SelectedItem is not null)
+                {
+                    if (MessageBox.Show($"Voulez-vous vraiment supprimer l'employé {(Employe)lstEmployes.SelectedItem} ?", "Suppression d'un employé", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
+                        InitialiserChamps();
+                    }
 
+
+                }
             }
-            InitialiserChamps();
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur lors de la suppression de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+            
         }
 
         private void btnFermer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur lors de la fermeture de la fenêtre\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }
