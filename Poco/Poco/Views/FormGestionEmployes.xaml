@@ -60,9 +60,9 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="Code" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" FontSize="50" HorizontalContentAlignment="Center"/>
-                            
 
-                    <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3"  Background="#FFE4EBC3" Panel.ZIndex="-1" CornerRadius="10" BorderBrush="LightGray" BorderThickness="2" Padding="15">
+
+                    <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3"  Background="#FFE4EBC3" Panel.ZIndex="-1" CornerRadius="10" BorderBrush="#FFC5B718" BorderThickness="2" Padding="15">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center">
 

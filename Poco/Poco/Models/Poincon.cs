@@ -56,7 +56,7 @@ namespace Poco.Models
         /// <returns>L'heure du poincon</returns>
         public override string ToString()
         {
-            return Heure.ToString();
+            return Heure.ToString("hh\\:mm");
         }
         #endregion
 

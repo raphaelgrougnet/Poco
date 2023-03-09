@@ -79,9 +79,10 @@ namespace Poco
 
         private void btnPoincon_Click(object sender, RoutedEventArgs e)
         {
-            lstEmployesPresents.Items.Refresh();
+            
             FormPoincon frp = new FormPoincon(_gestionEmploye);
-            frp.Show();
+            frp.ShowDialog();
+            lstEmployesPresents.Items.Refresh();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -79,20 +79,11 @@ namespace Poco.Views
         /// </summary>
         private void AfficherListePoincon()
         {
-            ClearListe();
 
-            foreach(Poincon poincon in _employeConnecter.MesPoincons) 
-            {
-                if(poincon.TypePoincon == eTypePoincon.Entree)
-                {
-                    lstEntree.Items.Add(poincon);
-                    
-                }
-                else
-                {
-                    lstSortie.Items.Add(poincon);
-                }
-            }
+            lstEntree.ItemsSource = _employeConnecter.MesPoincons.Where(p => p.TypePoincon == eTypePoincon.Entree);
+            lstSortie.ItemsSource = _employeConnecter.MesPoincons.Where(p => p.TypePoincon == eTypePoincon.Sortie);
+            lstEntree.Items.Refresh();
+            lstSortie.Items.Refresh();
 
             GestionBtnEntreeSortie();
         }
@@ -102,8 +93,11 @@ namespace Poco.Views
         /// </summary>
         private void ClearListe()
         {
-            lstEntree.Items.Clear();
-            lstSortie.Items.Clear();
+            lstEntree.ItemsSource = null;
+            lstSortie.ItemsSource = null;
+            lstEntree.Items.Refresh();
+            lstSortie.Items.Refresh();
+            lblNomEmploye.Content = "";
         }
 
         /// <summary>
@@ -127,13 +121,11 @@ namespace Poco.Views
                 return null;
             }
 
-            foreach (Employe employe in _gestionEmploye.ListeEmployes)
+            if (_gestionEmploye.DictEmployesCodes.ContainsKey(code))
             {
-                if (employe.Code == code) 
-                {
-                    return employe;
-                }
+                return _gestionEmploye.DictEmployesCodes[code];
             }
+           
 
             return null;
         }
@@ -163,6 +155,7 @@ namespace Poco.Views
                         {
                             txtCode4.Text = (sender as Button).Content.ToString();
                             _employeConnecter = ConnexionEmploye();
+                            lblNomEmploye.Content = _employeConnecter;
                             AfficherListePoincon();
 
                         }
@@ -221,7 +214,7 @@ namespace Poco.Views
             if(_employeConnecter != null)
             {
                 _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
-
+                _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
                 AfficherListePoincon();
             }
         }
@@ -231,7 +224,7 @@ namespace Poco.Views
             if(_employeConnecter != null)
             {
                 _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
-
+                _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
                 AfficherListePoincon();
             }
         }
