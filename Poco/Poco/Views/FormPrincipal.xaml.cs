@@ -58,9 +58,8 @@ namespace Poco
                 
                 
             }
+
             
-
-
             lstEmployesPresents.ItemsSource = _gestionEmploye.ListeEmployesPresent;
 
         }
