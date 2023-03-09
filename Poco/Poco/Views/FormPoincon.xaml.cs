@@ -48,8 +48,8 @@ namespace Poco.Views
         {
             if (!string.IsNullOrEmpty(txtCode1.Text) && !string.IsNullOrEmpty(txtCode2.Text) && !string.IsNullOrEmpty(txtCode3.Text) && !string.IsNullOrEmpty(txtCode4.Text))
                 return true;
-            else 
-                return false;
+            
+            return false;
         }
 
         /// <summary>
