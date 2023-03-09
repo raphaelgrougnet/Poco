@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.WebRequestMethods;
 
 namespace Poco.Views
 {
@@ -36,6 +37,17 @@ namespace Poco.Views
             btnSortie.IsEnabled = false;
             btnEntree.IsEnabled = false;
             
+        }
+
+        public void LoginParAutreForm(string pCode)
+        {
+            txtCode1.Text = pCode.Substring(0, 1);
+            txtCode2.Text = pCode.Substring(1, 1);
+            txtCode3.Text = pCode.Substring(2, 1);
+            txtCode4.Text = pCode.Substring(3, 1);
+            _employeConnecter = ConnexionEmploye();
+            lblNomEmploye.Content = _employeConnecter;
+            AfficherListePoincon();
         }
 
         /// <summary>

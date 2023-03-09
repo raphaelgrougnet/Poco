@@ -103,16 +103,34 @@ namespace Poco
         {
             if (_gestionEmploye.DictEmployesCodes.ContainsKey(pCode))
             {
-                txtErreur.Text = "";
-                MessageBox.Show($"Bienvenue {_gestionEmploye.DictEmployesCodes[pCode]}");
+                if (!_gestionEmploye.ListeEmployesPresent.Contains(_gestionEmploye.DictEmployesCodes[pCode]))
+                {
+                    MessageBoxResult resultat = MessageBox.Show($"L'employé {_gestionEmploye.DictEmployesCodes[pCode]} n'est pas poinçonné.\nVoulez-vous le poinçonner?", "Connexion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (resultat == MessageBoxResult.Yes)
+                    {
+                        FormPoincon frp = new FormPoincon(_gestionEmploye);
+                        frp.LoginParAutreForm(pCode);
+                        frp.ShowDialog();
+                        
+                        lstEmployesPresents.Items.Refresh();
+                    }
+                    txtCode1.Text = "";
+                    txtCode2.Text = "";
+                    txtCode3.Text = "";
+                    txtCode4.Text = "";
+                }
+                else
+                {
+                    txtErreur.Text = "";
+                    MessageBox.Show($"Bienvenue {_gestionEmploye.DictEmployesCodes[pCode]}");
+
+                    
+                }
                 
-                txtCode1.Text = "";
-                txtCode2.Text = "";
-                txtCode3.Text = "";
-                txtCode4.Text = "";
             }
             else
             {
+                
                 txtErreur.Text = "Code invalide, aucun employé trouvé.";
                 txtCode1.Text = "";
                 txtCode2.Text = "";
