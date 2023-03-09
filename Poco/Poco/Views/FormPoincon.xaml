@@ -108,21 +108,21 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ScrollViewer Name="scrlPoincon" Margin="0,0,0,55" VerticalScrollBarVisibility="Hidden" Background="#FFC5B718">
                 <StackPanel Orientation="Horizontal">
-                    <ListBox Name="lstEntree" Width="225" Height="325" Padding="10" Background="#f0f2e7" VerticalAlignment="Center">
-                        <ListBox.ItemTemplate>
+                    <ItemsControl Name="lstEntree" Width="225" Height="325" Padding="10" Background="#f0f2e7" HorizontalAlignment="Center">
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Center" Foreground="#FF404A28" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                                <TextBlock Text="{Binding}" FontSize="30"  Foreground="#FF404A28" Margin="10,0,10,0" TextAlignment="Center"/>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
+                        </ItemsControl.ItemTemplate>
                         
-                    </ListBox>
-                    <ListBox x:Name="lstSortie" Width="225" Height="325" Padding="10" Background="#f0f2e7">
-                        <ListBox.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl x:Name="lstSortie" Width="225" Height="325" Padding="10" Background="#f0f2e7">
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Center"/>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>

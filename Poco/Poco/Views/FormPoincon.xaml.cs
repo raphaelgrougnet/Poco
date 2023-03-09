@@ -35,21 +35,7 @@ namespace Poco.Views
 
             btnSortie.IsEnabled = false;
             btnEntree.IsEnabled = false;
-
             
-            
-        }
-
-        /// <summary>
-        /// Valide la connexion de l'employé
-        /// </summary>
-        /// <returns>True si le code est complet sinon retourne faux</returns>
-        private bool ValidationConnexion()
-        {
-            if (!string.IsNullOrEmpty(txtCode1.Text) && !string.IsNullOrEmpty(txtCode2.Text) && !string.IsNullOrEmpty(txtCode3.Text) && !string.IsNullOrEmpty(txtCode4.Text))
-                return true;
-            
-            return false;
         }
 
         /// <summary>
@@ -79,13 +65,16 @@ namespace Poco.Views
         /// </summary>
         private void AfficherListePoincon()
         {
+            if(_employeConnecter != null)
+            {
+                lstEntree.ItemsSource = _employeConnecter.MesPoincons.Where(p => p.TypePoincon == eTypePoincon.Entree);
+                lstSortie.ItemsSource = _employeConnecter.MesPoincons.Where(p => p.TypePoincon == eTypePoincon.Sortie);
+                lstEntree.Items.Refresh();
+                lstSortie.Items.Refresh();
 
-            lstEntree.ItemsSource = _employeConnecter.MesPoincons.Where(p => p.TypePoincon == eTypePoincon.Entree);
-            lstSortie.ItemsSource = _employeConnecter.MesPoincons.Where(p => p.TypePoincon == eTypePoincon.Sortie);
-            lstEntree.Items.Refresh();
-            lstSortie.Items.Refresh();
-
-            GestionBtnEntreeSortie();
+                GestionBtnEntreeSortie();
+            }
+            
         }
 
         /// <summary>
@@ -106,29 +95,23 @@ namespace Poco.Views
         /// <returns></returns>
         private Employe ConnexionEmploye()
         {
-            string code;
-            if (ValidationConnexion())
-            {
-                code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
-            }
-            else
-            {
-                txtCode1.Text = "";
-                txtCode2.Text = "";
-                txtCode3.Text = "";
-                txtCode4.Text = "";
-                MessageBox.Show("Ce code est invalide", "Connexion", MessageBoxButton.OK, MessageBoxImage.Information);
-                return null;
-            }
+            string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
 
             if (_gestionEmploye.DictEmployesCodes.ContainsKey(code))
             {
                 return _gestionEmploye.DictEmployesCodes[code];
             }
-           
 
+            MessageBox.Show($"Il n'y a pas d'employé avec ce code : {code}", "Connexion", MessageBoxButton.OK, MessageBoxImage.Information);
+            txtCode1.Text = "";
+            txtCode2.Text = "";
+            txtCode3.Text = "";
+            txtCode4.Text = "";
+            
             return null;
         }
+
+       
 
 
         private void Keypad_Click(object sender, RoutedEventArgs e)
