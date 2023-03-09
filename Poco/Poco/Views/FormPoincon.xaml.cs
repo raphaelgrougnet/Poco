@@ -36,7 +36,7 @@ namespace Poco.Views
 
             btnSortie.IsEnabled = false;
             btnEntree.IsEnabled = false;
-            
+            GererBtnIsEnable();
         }
 
         public void LoginParAutreForm(string pCode)
@@ -70,6 +70,7 @@ namespace Poco.Views
                 btnEntree.IsEnabled = true;
                 btnSortie.IsEnabled = false;
             }
+            GererBtnIsEnable();
         }
 
         /// <summary>
@@ -87,6 +88,32 @@ namespace Poco.Views
                 GestionBtnEntreeSortie();
             }
             
+        }
+
+        private void GererBtnIsEnable()
+        {
+            
+            if(btnEntree.IsEnabled == false)
+            {
+                btnEntree.Background = new SolidColorBrush(Color.FromRgb(244, 244, 244));
+                (btnEntree.Child as TextBlock).Foreground = new SolidColorBrush(Color.FromRgb(132, 131, 131));
+            }
+            else
+            {
+                btnEntree.Background = new SolidColorBrush(Color.FromRgb(228, 235, 195));
+                (btnEntree.Child as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+            }
+
+            if(btnSortie.IsEnabled == false)
+            {
+                btnSortie.Background = new SolidColorBrush(Color.FromRgb(244, 244, 244));
+                (btnSortie.Child as TextBlock).Foreground = new SolidColorBrush(Color.FromRgb(132, 131, 131));
+            }
+            else
+            {
+                btnSortie.Background = new SolidColorBrush(Color.FromRgb(254, 225, 111));
+                (btnSortie.Child as TextBlock).Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
 
         /// <summary>
@@ -170,7 +197,7 @@ namespace Poco.Views
                 btnEntree.IsEnabled = false;
                 ClearListe();
                 _employeConnecter = null;
-
+                GererBtnIsEnable();
             }
             else
             {
@@ -201,27 +228,78 @@ namespace Poco.Views
 
         private void btnFermer_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la fermeture \n {ex.Message}", "Fermeture", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnEntree_Click(object sender, RoutedEventArgs e)
         {
-            if(_employeConnecter != null)
+            try
             {
-                _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
-                _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
-                AfficherListePoincon();
+                if (_employeConnecter != null)
+                {
+                    if (_employeConnecter.MesPoincons.Count > 0)
+                    {
+                        if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Minutes < DateTime.UtcNow.TimeOfDay.Minutes)
+                        {
+                            _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
+                            _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
+                            AfficherListePoincon();
+
+                        }
+                        else
+                            MessageBox.Show("Vous devez attendre au moins 1 minute pour poinçonner.", "Poiçon", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
+                        _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
+                        AfficherListePoincon();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Erreur de poinçon \n {ex.Message}", "Poinçon Entrer", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void btnSortie_Click(object sender, RoutedEventArgs e)
         {
-            if(_employeConnecter != null)
+            try
             {
-                _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
-                _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
-                AfficherListePoincon();
+                if (_employeConnecter != null)
+                {
+                    if (_employeConnecter.MesPoincons.Count > 0)
+                    {
+                        if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Minutes < DateTime.UtcNow.TimeOfDay.Minutes)
+                        {
+                            _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                            _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
+                            AfficherListePoincon();
+                        }
+                        else
+                            MessageBox.Show("Vous devez attendre au moins 1 minute pour poinçonner.", "Poiçon", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                        _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
+                        AfficherListePoincon();
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Erreur de poinçon \n {ex.Message}", "Poinçon Sortir", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+                
         }
     }
 }
