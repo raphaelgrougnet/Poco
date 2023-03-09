@@ -123,8 +123,11 @@ namespace Poco
                 {
                     txtErreur.Text = "";
                     MessageBox.Show($"Bienvenue {_gestionEmploye.DictEmployesCodes[pCode]}");
+                    txtCode1.Text = "";
+                    txtCode2.Text = "";
+                    txtCode3.Text = "";
+                    txtCode4.Text = "";
 
-                    
                 }
                 
             }
