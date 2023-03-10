@@ -9,12 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\Employes.csv" />
+    <None Remove="Files\Factures.csv" />
     <None Remove="Files\Images\poco-resized.png" />
     <None Remove="Files\Images\poco.png" />
     <None Remove="Files\Images\poco.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Files\Employes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Factures.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\Images\poco-resized.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
