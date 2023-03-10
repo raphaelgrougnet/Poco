@@ -57,9 +57,8 @@ namespace Poco.Models
         /// <param name="employe">Employé à ajouter</param>
         public void AjouterEmploye(Employe employe)
         {
-            ListeEmployes.Add(employe);
             DictEmployesCodes.Add(employe.Code, employe);
-
+            ListeEmployes.Add(employe);
         }
 
         /// <summary>
