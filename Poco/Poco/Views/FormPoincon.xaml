@@ -87,20 +87,20 @@
 
                 </Grid>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
-                    <Border CornerRadius="10" Background="#FDC903" Height="100" Width="300" MouseDown="btnFermer_Click">
+                    <Border CornerRadius="10" Background="#FDC903" Height="100" Width="300" MouseDown="btnFermer_Click" BorderThickness="2" BorderBrush="#FFC5B718">
                         <TextBlock Text="Fermer" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
                     </Border>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <Border x:Name="btnEntree" CornerRadius="10" Background="#FFE4EBC3" Height="100" Width="200" MouseDown="btnEntree_Click">
+                    <Border x:Name="btnEntree" CornerRadius="10" Background="#FFE4EBC3" Height="100" Width="200" MouseDown="btnEntree_Click" BorderThickness="2" BorderBrush="#FFC5B718">
                         <TextBlock Text="Entrer" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
                     </Border>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <Border x:Name="btnSortie" CornerRadius="10" Background="#FEE16F" Height="100" Width="200" MouseDown="btnSortie_Click">
+                    <Border x:Name="btnSortie" CornerRadius="10" Background="#FEE16F" Height="100" Width="200" MouseDown="btnSortie_Click" BorderThickness="2" BorderBrush="#FFC5B718">
                         <TextBlock Text="Sortir" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
                     </Border>
                 </StackPanel>
