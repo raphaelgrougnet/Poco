@@ -138,6 +138,11 @@ namespace Poco.Models
                    Code == employe.Code;
             
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         #endregion
 
     }
