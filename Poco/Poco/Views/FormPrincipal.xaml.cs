@@ -96,6 +96,26 @@ namespace Poco
             donneesEmployes.TrimEnd();
             string path = GestionEmploye.PATH_FILES + "Employes.csv";
             Utils.EnregistrerDonneesCrush(path, donneesEmployes);
+
+            if (MessageBoxResult.Yes ==  MessageBox.Show("Voulez-vous quitter l'application ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                if (_gestionEmploye.ListeEmployesPresent.Count > 0)
+                {
+                    if (MessageBoxResult.Yes == MessageBox.Show("Vous devez poinçonner les employés encore présents.\nVoulez-vous les poinçonner ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                    {
+                        foreach (Employe emp in _gestionEmploye.ListeEmployesPresent)
+                        {
+                            emp.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                        }
+                    }
+                    else
+                        e.Cancel = true;
+                }
+            }
+            else
+                e.Cancel = true;
+            
+            
         }
 
 
