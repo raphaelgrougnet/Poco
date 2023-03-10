@@ -106,11 +106,13 @@ namespace Poco
                         foreach (Employe emp in _gestionEmploye.ListeEmployesPresent)
                         {
                             emp.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+
                         }
                     }
                     else
                         e.Cancel = true;
                 }
+                MessageBox.Show("Enregistrement terminé", "Fermeture de l'application", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
                 e.Cancel = true;
