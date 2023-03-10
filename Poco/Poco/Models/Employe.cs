@@ -123,6 +123,21 @@ namespace Poco.Models
         {
             return Prenom + " " + Nom;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+            {
+                return false;
+            }
+            if (obj is not Employe)
+            {
+                return false;
+            }
+            return obj is Employe employe &&
+                   Code == employe.Code;
+            
+        }
         #endregion
 
     }

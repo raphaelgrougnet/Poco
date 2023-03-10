@@ -68,7 +68,8 @@ namespace Poco
         {
             FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
             frm.ShowDialog();
-            
+            lstEmployesPresents.Items.Refresh();
+
         }
 
         private void btnAide_Click(object sender, RoutedEventArgs e)

@@ -234,10 +234,8 @@ namespace Poco.Views
                     }
                     else
                     {
-
                         Employe newE = new Employe(code, txtNom.Text, txtPrenom.Text, dateDOB.SelectedDate.Value);
                         _gestionEmploye.AjouterEmploye(newE);
-                        _gestionEmploye.DictEmployesCodes.Add(code, newE);
                         InitialiserChamps();
                     }
                 }
