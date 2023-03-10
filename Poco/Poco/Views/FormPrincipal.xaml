@@ -19,17 +19,17 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" VerticalAlignment="Center" >
-            <Border CornerRadius="10" Background="#7E934F" Margin="5,0,5,10" MouseDown="btnPoincon_Click" Height="150">
+            <Border CornerRadius="10" Background="#7E934F" Margin="5,0,5,10" MouseDown="btnPoincon_Click" Height="150" BorderThickness="2" BorderBrush="#FFC5B718">
                 <TextBlock Text="Poincon" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
             </Border>
-            <Border CornerRadius="10" Background="#FFF4F4F4" Margin="5,10,5,10" Height="150">
+            <Border CornerRadius="10" Background="#FFF4F4F4" Margin="5,10,5,10" Height="150" BorderThickness="2" BorderBrush="Gray">
                 <TextBlock Text="Sommaire" FontSize="40" Foreground="#FF848383" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
             </Border>
-            <Border CornerRadius="10" Background="#E4D321" Margin="5,10,5,10" Height="150"  MouseDown="btnAjtEmploye_Click">
+            <Border CornerRadius="10" Background="#E4D321" Margin="5,10,5,10" Height="150"  MouseDown="btnAjtEmploye_Click" BorderThickness="2" BorderBrush="#FFC5B718">
                 <TextBlock Text="Ajout Empl." FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
             </Border>
 
-            <Border CornerRadius="10" Background="#FDC903" Margin="5,10,5,0" Height="150" MouseDown="btnAide_Click">
+            <Border CornerRadius="10" Background="#FDC903" Margin="5,10,5,0" Height="150" MouseDown="btnAide_Click" BorderThickness="2" BorderBrush="#FFC5B718">
                 <TextBlock Text="Aide" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
             </Border>
         </StackPanel>
