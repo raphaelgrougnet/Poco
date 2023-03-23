@@ -20,7 +20,34 @@
                     <Label Name="lblNoFacture" DockPanel.Dock="Top" Content="Facture #0001" FontSize="30"/>
 
                     <ScrollViewer>
-                        <ListBox Name="lstFacture"/>
+                        <!--Ici il faut binder la facture car elle contient une liste de plat-->
+                        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture"> 
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="black" DataContext="{Binding}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Left" TextWrapping="Wrap" Foreground="Black"/>
+                                            <ItemsControl ItemsSource="{Binding ListeGarniture}" d:ItemsSource="{d:SampleData ItemCount=2}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border>
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding}" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" Margin="0 0 2 0"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </ScrollViewer>
                 </DockPanel>
 
@@ -44,24 +71,24 @@
                 <StackPanel Orientation="Vertical" >
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Garniture"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Avocat" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
-                        <Button Content="Jalapeño" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Avocat" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Jalapeno" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Maïs" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
-                        <Button Content="Oignon" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Mais" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Oignon" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Oignon F" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
-                        <Button Content="Olive" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Oignon F" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Olive" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Poivron" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
-                        <Button Content="Riz" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Poivron" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Riz" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Salade" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
-                        <Button Content="Tomate" FontSize="40" Width="200" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Salade" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
+                        <Button Content="Tomate" FontSize="40" Width="210" Height="100" Margin="5,5,5,5"/>
                     </StackPanel>
                     
                     
@@ -72,21 +99,23 @@
             <Border BorderThickness="0,0,2,0" BorderBrush="Black" Grid.Column="1">
                 <StackPanel Orientation="Vertical" >
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Viandes"/>
-                    <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                    <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                    <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                    <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                    <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                    <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                    <Button Content="Boeuf" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                    <Button Content="Dinde" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                    <Button Content="Poisson" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                    <Button Content="Porc" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                    <Button Content="Poulet" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                    <Button Content="Végé" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
                 </StackPanel>
             </Border>
             <StackPanel Orientation="Vertical" Grid.Column="2">
                 <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
-                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click"/>
-                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
-                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                <Button Content="Burritos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                <Button Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                <Button Content="Nachos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                <Button Content="Tacos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                <Border BorderThickness="0 2 0 0" BorderBrush="Black" Margin="0 20 0 0" Padding="0 20 0 0">
+                    <Button Content="Ajouter" FontWeight="Bold" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" VerticalAlignment="Bottom"/>
+                </Border>
             </StackPanel>
         </Grid>
     </Grid>

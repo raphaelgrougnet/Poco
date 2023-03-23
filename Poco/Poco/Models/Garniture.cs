@@ -40,7 +40,7 @@ namespace Poco.Models
         /// <returns>Nom de la garniture</returns>
         public override string ToString()
         {
-            return Nom;
+            return Nom[0].ToString();
         }
         #endregion
 
