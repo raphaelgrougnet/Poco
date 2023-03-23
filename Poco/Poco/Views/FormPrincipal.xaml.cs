@@ -68,7 +68,8 @@ namespace Poco
         {
             FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
             frm.ShowDialog();
-            
+            lstEmployesPresents.Items.Refresh();
+
         }
 
         private void btnAide_Click(object sender, RoutedEventArgs e)
@@ -144,11 +145,14 @@ namespace Poco
                 else
                 {
                     txtErreur.Text = "";
-                    MessageBox.Show($"Bienvenue {_gestionEmploye.DictEmployesCodes[pCode]}");
+                    
                     txtCode1.Text = "";
                     txtCode2.Text = "";
                     txtCode3.Text = "";
                     txtCode4.Text = "";
+
+                    FormFacture frf = new FormFacture();
+                    frf.ShowDialog();
 
                 }
                 

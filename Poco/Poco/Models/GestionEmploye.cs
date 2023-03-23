@@ -57,8 +57,8 @@ namespace Poco.Models
         /// <param name="employe">Employé à ajouter</param>
         public void AjouterEmploye(Employe employe)
         {
+            DictEmployesCodes.Add(employe.Code, employe);
             ListeEmployes.Add(employe);
-            
         }
 
         /// <summary>
@@ -68,6 +68,11 @@ namespace Poco.Models
         public void SupprimerEmploye(Employe employe)
         {
             ListeEmployes.Remove(employe);
+            if (ListeEmployesPresent.Contains(employe))
+            {
+                ListeEmployesPresent.Remove(employe);
+            }
+            DictEmployesCodes.Remove(employe.Code);
         }
 
         /// <summary>
@@ -84,19 +89,23 @@ namespace Poco.Models
 
             if (pCode == null || pCode == "" || pCode.Length != 4)
             {
-                message += "Le code doit contenir 4 chiffres\n";
+                message += "Le code doit contenir 4 chiffres.\n";
             }
             if (pNom == null || pNom == "")
             {
-                message += "Le nom de famille ne peut pas être vide\n";
+                message += $"Le nom de famille ne peut pas être vide et doit contenir entre {Employe.LONGUEUR_MIN_NOM} et {Employe.LONGUEUR_MAX_NOM} caractères.\n";
             }
-            if (pPrenom == null || pPrenom == "")
+            if (pPrenom == null || pPrenom == "" || pPrenom.Length < Employe.LONGUEUR_MIN_PRENOM || pPrenom.Length > Employe.LONGUEUR_MAX_PRENOM)
             {
-                message += "Le prénom ne peut pas être vide\n";
+                message += $"Le prénom ne peut pas être vide et doit contenir entre {Employe.LONGUEUR_MIN_PRENOM} et {Employe.LONGUEUR_MAX_PRENOM} caractères.\n";
             }
-            if (pDateNaissance < DateTime.Now.AddYears(-100))
+            if (pDateNaissance < DateTime.Now.AddYears(-100) || pDateNaissance > DateTime.Now)
             {
-                message += "La date de naissance est invalide";
+                message += "La date de naissance est invalide.";
+            }
+            if (_dictEmployesCodes.ContainsKey(pCode))
+            {
+                message += "Le code de l'employé existe déjà.";
             }
 
             return message;
