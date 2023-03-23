@@ -82,7 +82,7 @@
             </Border>
             <StackPanel Orientation="Vertical" Grid.Column="2">
                 <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
-                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
+                <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click"/>
                 <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
                 <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
                 <Button Content="Avocat" FontSize="40" Width="250" Height="100" Margin="5,5,5,5"/>
