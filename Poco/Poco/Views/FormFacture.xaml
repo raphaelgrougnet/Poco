@@ -20,7 +20,7 @@
                     <Label Name="lblNoFacture" DockPanel.Dock="Top" Content="Facture #0001" FontSize="30"/>
 
                     <ScrollViewer>
-                        <ListBox/>
+                        <ListBox Name="lstFacture"/>
                     </ScrollViewer>
                 </DockPanel>
 
