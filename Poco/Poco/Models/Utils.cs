@@ -50,7 +50,57 @@ namespace Poco.Models
             Trace.WriteLine($"{DateTime.Now.Hour}:{DateTime.Now.Minute}> {pMsg}");
         }
 
+        static public List<Facture> ChargerListeFacture(String pCheminFichier)
+        {
+            if (File.Exists(pCheminFichier))
+            {
+                StreamReader fluxLecture = new StreamReader(pCheminFichier);
+                String fichierTexte = fluxLecture.ReadToEnd();
+                fluxLecture.Close();
+                fichierTexte = fichierTexte.Replace("\r", "");
 
+                // Création d'un vecteur de chaînes de caractères contenant chaque ligne individuellement.
+                String[] vectLignes = fichierTexte.Split('\n');
+
+
+                // Nombre de lignes non vides dans le fichier.
+                int nbLignes;
+
+                if (vectLignes[vectLignes.Length - 1] == "")
+                    nbLignes = vectLignes.Length - 1; // On ne considère pas la dernière ligne si elle est vide.
+                else
+                    nbLignes = vectLignes.Length;
+
+                if (nbLignes > 0)
+                {
+                    // Création du vecteur contenant les données du fichier; la taille est déterminée par le nombre de lignes (non vides) du fichier.
+                    List<string[]> ListLignes = new List<string[]>();
+
+                    for (int i = 0; i < nbLignes; i++)
+                    {
+                        ListLignes.Add(vectLignes[i].Split(";"));
+                    }
+
+                    // On retourne le vecteur contenant les données créé.
+                    ListLignes.RemoveAt(0);
+
+                    List<Facture> ListFactures = new List<Facture>();
+
+                    foreach (string[] ligne in ListLignes)
+                    {
+                        uint noFacture = uint.Parse(ligne[0]);
+                        decimal stt = decimal.Parse(ligne[1]);
+                        decimal tt = decimal.Parse(ligne[2]);
+                        ListFactures.Add(new Facture(noFacture, DateTime.Today, stt, tt ));
+                    }
+
+                    return ListFactures;
+                }
+
+               
+            }
+            return null;
+        }
 
         static public List<string[]> ChargerDonnees(String pCheminFichier)
         {

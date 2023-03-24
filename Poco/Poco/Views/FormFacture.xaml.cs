@@ -24,71 +24,31 @@ namespace Poco.Views
 
         private Plat _platCourant;
 
+        private GestionFacture _gestionFacture = new GestionFacture(Utils.ChargerListeFacture(GestionEmploye.PATH_FILES + "Factures.csv"));
+
+        
+
+
         public FormFacture()
         {
             InitializeComponent();
 
-            
 
-            lstFacture.ItemsSource = _factureCourante.ListePlats;
             
+            InitialiserVente();
         }
 
-        //private decimal CalculerPrixPlat(TypePlat pPlat)
-        //{
-        //    decimal prix;
-        //    switch (pViande)
-        //    {
-        //        case "Burritos":
-        //            prix = 4M;
-        //            break;
-        //        case "Fajitas":
-        //            prix = 3M;
-        //            break;
-        //        case "Nachos":
-        //            prix = 2.5M;
-        //            break;
-        //        case "Tacos":
-        //            prix = 2.75M;
-        //            break;
-        //        default:
-        //            prix = 0M;
-        //            break;
-
-        //    }
-        //    return prix;
-        //}
-
-        private decimal CalculerPrixViande(string pViande)
+        private void InitialiserVente()
         {
-            decimal prix;
-            switch (pViande)
-            {
-                case "Boeuf":
-                    prix = 2M;
-                    break;
-                case "Dinde":
-                    prix = 2.5M;
-                    break;
-                case "Poisson":
-                    prix = 2M;
-                    break;
-                case "Porc":
-                    prix = 2.25M;
-                    break;
-                case "Poulet":
-                    prix = 1.50M;
-                    break;
-                case "Végé":
-                    prix = 1M;
-                    break;
-                default:
-                    prix = 0M;
-                    break;
-
-            }
-            return prix;
+            spGarniture.IsEnabled = false;
+            spViandes.IsEnabled = false;
+            _factureCourante = _gestionFacture.CreerFacture();
+            lstFacture.ItemsSource = _factureCourante.ListePlats;
+            lblNoFacture.DataContext = _factureCourante;
         }
+
+
+        
 
         private void Button_Click_Plat(object sender, RoutedEventArgs e)
         {
@@ -103,7 +63,7 @@ namespace Poco.Views
         {
             Button btn = sender as Button;
 
-            _platCourant.ListeGarniture.Add(new Viande(btn.Content.ToString(),CalculerPrixViande(btn.Content.ToString())));
+            _platCourant.ListeGarniture.Add(new Viande(btn.Content.ToString()));
         }
 
         private void Button_Click_Garniture(object sender, RoutedEventArgs e)
@@ -111,6 +71,11 @@ namespace Poco.Views
             Button btn = sender as Button;
 
             _platCourant.ListeGarniture.Add(new Legume(btn.Content.ToString()));
+        }
+
+        private void btnPayer_Click(object sender, RoutedEventArgs e)
+        {
+            InitialiserVente();
         }
     }
 }

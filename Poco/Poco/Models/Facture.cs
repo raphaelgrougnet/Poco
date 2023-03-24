@@ -73,14 +73,23 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public Facture(uint noFacture, DateTime date, List<Plat> listePlats, decimal sousTotal, decimal prixTotal)
+        public Facture(uint noFacture, DateTime date, decimal sousTotal, decimal prixTotal)
         {
             NoFacture = noFacture;
             Date = date;
-            ListePlats = listePlats;
+            ListePlats = new List<Plat>();
             SousTotal = sousTotal;
             PrixTotal = prixTotal;
         }
+        public Facture(uint noFacture)
+        {
+            NoFacture = noFacture;
+            Date = DateTime.Today;
+            ListePlats = new List<Plat>();
+            SousTotal = 0;
+            PrixTotal = 0;
+        }
+
         #endregion
 
         #region MÉTHODES
@@ -108,9 +117,19 @@ namespace Poco.Models
             decimal prixTotal = SousTotal + (SousTotal * 0.15m);
             return prixTotal;
         }
+
+        public override string ToString()
+        {
+            string z = "";
+            for (int i = 0; i < (4 - NoFacture.ToString().Length); i++)
+            {
+                z += "0";
+            }
+            return "Facture #" + z + NoFacture;
+        }
         #endregion
 
 
-        
+
     }
 }

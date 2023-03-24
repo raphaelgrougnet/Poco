@@ -38,12 +38,22 @@ namespace Poco.Models
 
         #region MÉTHODES
         /// <summary>
-        /// Ajoute une facture à la liste de factures
+        /// Créé une facture à la liste de factures
         /// </summary>
-        /// <param name="pFacture">Facture à ajouter</param>
-        public void AjouterFacture(Facture pFacture)
+        public Facture CreerFacture()
         {
-            ListeFactures.Add(pFacture);
+            Facture f;
+            if (ListeFactures.Count < 1)
+            {
+               f = new Facture(1);
+            }
+            else
+            {
+                f = new Facture(ListeFactures[ListeFactures.Count - 1].NoFacture + 1);
+            }
+            
+            ListeFactures.Add(f);
+            return f;
         }
 
         /// <summary>
