@@ -14,13 +14,66 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <DockPanel LastChildFill="True" Grid.Column="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Name="lblNoFacture" Content="{Binding}" FontSize="30" Grid.Row="0" Background="Gray"/>
+            <ScrollViewer Grid.Row="1">
+                <!--Ici il faut binder la facture car elle contient une liste de plat-->
+                <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2" BorderBrush="black" DataContext="{Binding}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Left" TextWrapping="Wrap" Foreground="Black"/>
+                                    <ItemsControl ItemsSource="{Binding ListeGarniture}" d:ItemsSource="{d:SampleData ItemCount=2}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding}" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" Margin="0 0 2 0"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnPayer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Content="PAYER" FontSize="45" BorderBrush="Black" BorderThickness="2" Click="btnPayer_Click"/>
+                <Button x:Name="btnAccueil" Grid.Column="0" Grid.Row="1" Content="ACCUEIL" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
+                <Button x:Name="btnRetirer" Grid.Column="1" Grid.Row="1" Content="RETIRER" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
+            </Grid>
+        </Grid>
+        <!--<DockPanel LastChildFill="True" Grid.Column="0">
             <Border BorderBrush="Black" BorderThickness="2" DockPanel.Dock="Top" Background="Gray">
-                <DockPanel LastChildFill="True">
-                    <Label Name="lblNoFacture" DockPanel.Dock="Top" Content="{Binding}" FontSize="30"/>
+                <StackPanel>
+                    <Label Name="lblNoFacture1" Content="{Binding}" FontSize="30" Grid.Row="0"/>
+
 
                     <ScrollViewer>
-                        <!--Ici il faut binder la facture car elle contient une liste de plat-->
+                        --><!--Ici il faut binder la facture car elle contient une liste de plat--><!--
                         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture"> 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -49,18 +102,28 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </ScrollViewer>
-                </DockPanel>
+                </StackPanel>
 
 
             </Border>
             <StackPanel>
-                <Button x:Name="btnPayer" Content="PAYER" FontSize="45" BorderBrush="Black" BorderThickness="2" Click="btnPayer_Click"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button  x:Name="btnAccueil" Content="ACCUEIL" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
-                    <Button x:Name="btnRetirer" Content="RETIRER" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
-                </StackPanel>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnPayer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Content="PAYER" FontSize="45" BorderBrush="Black" BorderThickness="2" Click="btnPayer_Click"/>
+                    <Button x:Name="btnAccueil" Grid.Column="0" Grid.Row="1" Content="ACCUEIL" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
+                    <Button x:Name="btnRetirer" Grid.Column="1" Grid.Row="1" Content="RETIRER" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
+                </Grid>
             </StackPanel>
-        </DockPanel>
+        </DockPanel>-->
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
