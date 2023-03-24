@@ -176,7 +176,7 @@
                     
                 </StackPanel>
             </Border>
-            <StackPanel Orientation="Vertical" Grid.Column="2">
+            <StackPanel Name="spPlats" Orientation="Vertical" Grid.Column="2">
                 <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
                 <Button Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
                 <Button Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
