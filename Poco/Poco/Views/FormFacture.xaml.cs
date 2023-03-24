@@ -20,27 +20,97 @@ namespace Poco.Views
     /// </summary>
     public partial class FormFacture : Window
     {
+        private Facture _factureCourante;
+
+        private Plat _platCourant;
+
         public FormFacture()
         {
             InitializeComponent();
-            Plat plat = new Plat(TypePlat.Nachos);
-            plat.AjouterGarniture(new Legume("Mais"));
-            plat.AjouterGarniture(new Legume("Oignon"));
-            plat.AjouterGarniture(new Legume("Poivron"));
-            plat.AjouterGarniture(new Legume("Tomate"));
 
-            Facture f = new Facture(1, DateTime.Today, new List<Plat>() { plat, plat }, 25.0m, 25.3m);
             
-            
-            lstFacture.ItemsSource = f.ListePlats;
+
+            lstFacture.ItemsSource = _factureCourante.ListePlats;
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        //private decimal CalculerPrixPlat(TypePlat pPlat)
+        //{
+        //    decimal prix;
+        //    switch (pViande)
+        //    {
+        //        case "Burritos":
+        //            prix = 4M;
+        //            break;
+        //        case "Fajitas":
+        //            prix = 3M;
+        //            break;
+        //        case "Nachos":
+        //            prix = 2.5M;
+        //            break;
+        //        case "Tacos":
+        //            prix = 2.75M;
+        //            break;
+        //        default:
+        //            prix = 0M;
+        //            break;
+
+        //    }
+        //    return prix;
+        //}
+
+        private decimal CalculerPrixViande(string pViande)
+        {
+            decimal prix;
+            switch (pViande)
+            {
+                case "Boeuf":
+                    prix = 2M;
+                    break;
+                case "Dinde":
+                    prix = 2.5M;
+                    break;
+                case "Poisson":
+                    prix = 2M;
+                    break;
+                case "Porc":
+                    prix = 2.25M;
+                    break;
+                case "Poulet":
+                    prix = 1.50M;
+                    break;
+                case "Végé":
+                    prix = 1M;
+                    break;
+                default:
+                    prix = 0M;
+                    break;
+
+            }
+            return prix;
+        }
+
+        private void Button_Click_Plat(object sender, RoutedEventArgs e)
         {
             
+            Button btn = sender as Button;
 
+            _platCourant.TPlat = (TypePlat)Enum.Parse(typeof(TypePlat), btn.Content.ToString());
 
+        }
+
+        private void Button_Click_Viande(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+
+            _platCourant.ListeGarniture.Add(new Viande(btn.Content.ToString(),CalculerPrixViande(btn.Content.ToString())));
+        }
+
+        private void Button_Click_Garniture(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+
+            _platCourant.ListeGarniture.Add(new Legume(btn.Content.ToString()));
         }
     }
 }
