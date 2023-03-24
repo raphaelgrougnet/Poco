@@ -57,6 +57,8 @@ namespace Poco.Views
             Button btn = sender as Button;
 
             _platCourant.TPlat = (TypePlat)Enum.Parse(typeof(TypePlat), btn.Content.ToString());
+            spViandes.IsEnabled = true;
+            spPlats.IsEnabled = false;
 
         }
 
@@ -64,7 +66,8 @@ namespace Poco.Views
         {
             Button btn = sender as Button;
             _platCourant.AjouterGarniture(new Viande(btn.Content.ToString()));
-            
+            spViandes.IsEnabled = false;
+            spGarniture.IsEnabled = true;
         }
 
         private void Button_Click_Garniture(object sender, RoutedEventArgs e)
