@@ -45,6 +45,7 @@ namespace Poco.Views
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
+            lstFacture.Items.Refresh();
         }
 
 
@@ -62,15 +63,14 @@ namespace Poco.Views
         private void Button_Click_Viande(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-
-            _platCourant.ListeGarniture.Add(new Viande(btn.Content.ToString()));
+            _platCourant.AjouterGarniture(new Viande(btn.Content.ToString()));
+            
         }
 
         private void Button_Click_Garniture(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-
-            _platCourant.ListeGarniture.Add(new Legume(btn.Content.ToString()));
+            _platCourant.AjouterGarniture(new Legume(btn.Content.ToString()));
         }
 
         private void btnPayer_Click(object sender, RoutedEventArgs e)

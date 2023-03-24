@@ -9,7 +9,7 @@ namespace Poco.Models
     public enum TypePlat
     {
         Burrito,
-        Fajita,
+        Fajitas,
         Nachos,
         Quesadilla,
         Tacos
@@ -22,7 +22,7 @@ namespace Poco.Models
         private Dictionary<TypePlat, decimal> DictPlatPrix = new Dictionary<TypePlat, decimal>()
         {
             {TypePlat.Burrito, 5.99m},
-            {TypePlat.Fajita, 6.99m},
+            {TypePlat.Fajitas, 6.99m},
             {TypePlat.Nachos, 4.99m},
             {TypePlat.Quesadilla, 5.99m},
             {TypePlat.Tacos, 5.99m}
