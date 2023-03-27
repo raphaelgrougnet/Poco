@@ -24,7 +24,7 @@ namespace Poco
     public partial class MainWindow : Window
     {
         public GestionEmploye _gestionEmploye;
-        
+        public System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
 
         public MainWindow()
         {
@@ -41,7 +41,7 @@ namespace Poco
                 string code = lstEmploye[0];
                 string nom = lstEmploye[1];
                 string prenom = lstEmploye[2];
-                DateTime dob = DateTime.Parse(lstEmploye[3]);
+                DateTime dob = DateTime.Parse(lstEmploye[3], cultureinfo);
 
                 string validation = _gestionEmploye.ValiderEmploye(code, nom, prenom, dob);
 

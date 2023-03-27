@@ -13,7 +13,8 @@ namespace Poco.Models
 
         #region CONSTANTES
         static public string PATH_FILES = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Files\\";
-        CultureInfo ci = CultureInfo.InstalledUICulture;
+        
+        
         #endregion
 
         #region ATTRIBUTS
