@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Poco.Models
 
         #region CONSTANTES
         static public string PATH_FILES = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Files\\";
+        
+        
         #endregion
 
         #region ATTRIBUTS
