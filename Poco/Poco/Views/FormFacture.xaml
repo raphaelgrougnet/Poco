@@ -135,24 +135,24 @@
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Garniture"/>
                     <StackPanel Name="spGarniture">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Avocat" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
-                            <Button Content="Jalapeno" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
+                            <ToggleButton Content="Avocat" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
+                            <ToggleButton Content="Jalapeno" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Mais" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
-                            <Button Content="Oignon" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
+                            <ToggleButton Content="Mais" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
+                            <ToggleButton Content="Oignon" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Oignon F" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
-                            <Button Content="Olive" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
+                            <ToggleButton Content="Oignon F" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
+                            <ToggleButton Content="Olive" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Poivron" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
-                            <Button Content="Riz" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
+                            <ToggleButton Content="Poivron" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
+                            <ToggleButton Content="Riz" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Salade" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
-                            <Button Content="Tomate" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Click="Button_Click_Garniture"/>
+                            <ToggleButton Content="Salade" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
+                            <ToggleButton Content="Tomate" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture"/>
                         </StackPanel>
                     </StackPanel>
                     
@@ -166,23 +166,23 @@
                 <StackPanel Orientation="Vertical" >
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Viandes"/>
                     <StackPanel Name="spViandes">
-                        <Button Content="Boeuf" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Viande"/>
-                        <Button Content="Dinde" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Viande"/>
-                        <Button Content="Poisson" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Viande"/>
-                        <Button Content="Porc" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Viande"/>
-                        <Button Content="Poulet" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Viande"/>
-                        <Button Content="Végé" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Viande"/>
+                        <ToggleButton Content="Boeuf" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Viande"/>
+                        <ToggleButton Content="Dinde" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Viande"/>
+                        <ToggleButton Content="Poisson" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Viande"/>
+                        <ToggleButton Content="Porc" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Viande"/>
+                        <ToggleButton Content="Poulet" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Viande"/>
+                        <ToggleButton Content="Végé" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Viande"/>
                     </StackPanel>
                     
                 </StackPanel>
             </Border>
             <StackPanel Name="spPlats" Orientation="Vertical" Grid.Column="2">
                 <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
-                <Button Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
-                <Button Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
-                <Button Content="Nachos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
-                <Button Content="Quesadilla" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
-                <Button Content="Tacos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="Button_Click_Plat"/>
+                <ToggleButton Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
+                <ToggleButton Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
+                <ToggleButton Content="Nachos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
+                <ToggleButton Content="Quesadilla" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
+                <ToggleButton Content="Tacos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
                 <Border BorderThickness="0 2 0 0" BorderBrush="Black" Margin="0 20 0 0" Padding="0 20 0 0">
                     <Button Content="Ajouter" FontWeight="Bold" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" VerticalAlignment="Bottom"/>
                 </Border>

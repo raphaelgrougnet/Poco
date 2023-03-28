@@ -51,7 +51,7 @@ namespace Poco.Views
 
         
 
-        private void Button_Click_Plat(object sender, RoutedEventArgs e)
+        private void Button_Checked_Plat(object sender, RoutedEventArgs e)
         {
             
             Button btn = sender as Button;
@@ -62,7 +62,7 @@ namespace Poco.Views
 
         }
 
-        private void Button_Click_Viande(object sender, RoutedEventArgs e)
+        private void Button_Checked_Viande(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             _platCourant.AjouterGarniture(new Viande(btn.Content.ToString()));
@@ -70,7 +70,7 @@ namespace Poco.Views
             spGarniture.IsEnabled = true;
         }
 
-        private void Button_Click_Garniture(object sender, RoutedEventArgs e)
+        private void Button_Checked_Garniture(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             _platCourant.AjouterGarniture(new Legume(btn.Content.ToString()));
