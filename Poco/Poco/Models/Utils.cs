@@ -50,6 +50,17 @@ namespace Poco.Models
             Trace.WriteLine($"{DateTime.Now.Hour}:{DateTime.Now.Minute}> {pMsg}");
         }
 
+        /// <summary>
+        /// Fonction Générale pour parse un string en enum
+        /// </summary>
+        /// <typeparam name="T">Param générique</typeparam>
+        /// <param name="value">un string</param>
+        /// <returns></returns>
+        public static T ParseEnum<T>(string valeur)
+        {
+            return (T)Enum.Parse(typeof(T), valeur, true);
+        }
+
         static public List<Facture> ChargerListeFacture(String pCheminFichier)
         {
             if (File.Exists(pCheminFichier))

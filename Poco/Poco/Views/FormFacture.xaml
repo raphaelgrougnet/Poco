@@ -178,7 +178,7 @@
             </Border>
             <StackPanel Name="spPlats" Orientation="Vertical" Grid.Column="2">
                 <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
-                <ToggleButton Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
+                <ToggleButton Name="tbtnBurrito" Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
                 <ToggleButton Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
                 <ToggleButton Content="Nachos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
                 <ToggleButton Content="Quesadilla" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Plat"/>
