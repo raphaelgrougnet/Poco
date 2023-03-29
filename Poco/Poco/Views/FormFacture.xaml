@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
-        Title="FormFacture" Height="1080" Width="1920">
+        Title="FormFacture" Height="1080" Width="1920"
+        Background="#FFF4F9DD">
         
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
@@ -20,10 +21,13 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Label Name="lblNoFacture" Content="{Binding}" FontSize="30" Grid.Row="0" Background="Gray"/>
-            <ScrollViewer Grid.Row="1">
+            <Border Grid.Row="0" Background="#FFE4EBC3" CornerRadius="10 10 0 0" BorderBrush="#FFC5B718" BorderThickness="2 2 2 0">
+                <Label Name="lblNoFacture" Content="{Binding}" FontSize="25" />
+
+            </Border>
+            <ScrollViewer Grid.Row="1" Foreground="Black" VerticalScrollBarVisibility="Auto">
                 <!--Ici il faut binder la facture car elle contient une liste de plat-->
-                <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture">
+                <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture" Background="#FFDBE89D" BorderBrush="#FFC5B718" BorderThickness="2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="2" BorderBrush="black" DataContext="{Binding}">
@@ -64,9 +68,18 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btnPayer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Content="PAYER" FontSize="45" BorderBrush="Black" BorderThickness="2" Click="btnPayer_Click"/>
-                <Button x:Name="btnAccueil" Grid.Column="0" Grid.Row="1" Content="ACCUEIL" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
-                <Button x:Name="btnRetirer" Grid.Column="1" Grid.Row="1" Content="RETIRER" FontSize="45" BorderBrush="Black" BorderThickness="2"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="#FFC5B718" BorderThickness="2" Background="#7E934F" CornerRadius="10" Margin="3" MouseDown="btnPayer_Click">
+                    <Label Content="PAYER" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Column="0"  Grid.Row="1" BorderBrush="#FFC5B718" BorderThickness="2" Background="#E4D321" CornerRadius="10" Margin="3" MouseDown="btnPayer_Click">
+                    <Label Content="ACCUEIL" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="1" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" Margin="3" MouseDown="btnPayer_Click">
+                    <Label Content="RETIRER" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <!--<Button x:Name="btnPayer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Content="PAYER" FontSize="45" BorderBrush="Black" BorderThickness="2" Click="btnPayer_Click"/>-->
+                <!--<Button x:Name="btnAccueil" Grid.Column="0" Grid.Row="1" Content="ACCUEIL" FontSize="45" BorderBrush="Black" BorderThickness="2"/>-->
+                <!--<Button x:Name="btnRetirer" Grid.Column="1" Grid.Row="1" Content="RETIRER" FontSize="45" BorderBrush="Black" BorderThickness="2"/>-->
             </Grid>
         </Grid>
         <!--<DockPanel LastChildFill="True" Grid.Column="0">
@@ -179,18 +192,36 @@
                     
                 </StackPanel>
             </Border>
-            <StackPanel Name="spPlats" Orientation="Vertical" Grid.Column="2">
-                <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
-                <Button Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>
-                <Button Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>
-                <Button Content="Nachos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>
-                <Button Content="Quesadilla" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>
-                <Button Content="Tacos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>
-               
+            <StackPanel Grid.Column="2">
+                <StackPanel Name="spPlats" Orientation="Vertical" >
+                    <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
+                    <Border DataContext="Burrito" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                        <Label Content="Burrito" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border DataContext="Fajitas" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                        <Label Content="Fajitas" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border DataContext="Nachos" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                        <Label Content="Nachos" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border DataContext="Quesadilla" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                        <Label Content="Quesadilla" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border DataContext="Tacos" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                        <Label Content="Tacos" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <!--<Button Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>-->
+                    <!--<Button Content="Fajitas" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>-->
+                    <!--<Button Content="Nachos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>-->
+                    <!--k<Button Content="Quesadilla" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>-->
+                    <!--<Button Content="Tacos" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>-->
+
+                </StackPanel>
+                <Border BorderThickness="0 2 0 0" BorderBrush="Black" Margin="0 20 0 0" Padding="0 20 0 0">
+                    <Button x:Name="btnAjouter" Content="Ajouter" FontWeight="Bold" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" VerticalAlignment="Bottom" Click="btnAjouter_Click" />
+                </Border>
             </StackPanel>
-            <Border BorderThickness="0 2 0 0" BorderBrush="Black" Margin="0 20 0 0" Padding="0 20 0 0">
-                <Button x:Name="btnAjouter" Content="Ajouter" FontWeight="Bold" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" VerticalAlignment="Bottom" Click="btnAjouter_Click" />
-            </Border>
+            
         </Grid>
     </Grid>
 </Window>

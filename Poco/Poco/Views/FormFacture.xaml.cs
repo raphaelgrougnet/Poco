@@ -69,12 +69,12 @@ namespace Poco.Views
         }
 
         
-
+        
         private void ButtonClick_Plat(object sender, RoutedEventArgs e)
         {
             
-            Button btn = sender as Button;
-            TypePlat typeP = Utils.ParseEnum<TypePlat>(btn.Content.ToString());
+            Border btn = sender as Border;
+            TypePlat typeP = Utils.ParseEnum<TypePlat>(btn.DataContext.ToString());
 
             _platCourant = new Plat(typeP);
             spViandes.IsEnabled = true;
