@@ -42,6 +42,7 @@ namespace Poco.Views
             InitialiserVente();
 
 
+
         }
 
         private void InitialiserVente()
