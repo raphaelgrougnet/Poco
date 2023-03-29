@@ -21,12 +21,12 @@ namespace Poco
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FormPrincipal : Window
     {
         public GestionEmploye _gestionEmploye;
-        public System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
+        public static System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
 
-        public MainWindow()
+        public FormPrincipal()
         {
             InitializeComponent();
             List<string[]> lstStringEmployes = new List<string[]>();

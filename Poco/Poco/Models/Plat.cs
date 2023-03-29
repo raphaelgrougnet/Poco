@@ -38,6 +38,7 @@ namespace Poco.Models
         private string _nom;
         private List<Garniture> _listeGarniture;
         private decimal _prix;
+        private Viande _viandeP;
         #endregion
 
         #region PROPRIÉTÉS
@@ -64,6 +65,12 @@ namespace Poco.Models
             get { return _prix; }
             set { _prix = value; }
         }
+
+        public Viande ViandeP
+        {
+            get { return _viandeP; }
+            set { _viandeP = value; }
+        }
         #endregion
 
         #region CONSTRUCTEURS
@@ -89,7 +96,32 @@ namespace Poco.Models
         {
             if (pGarniture is Garniture)
             {
+                if (pGarniture is Viande)
+                {
+                    ViandeP = ((Viande)pGarniture);
+                    return true;
+                }
                 ListeGarniture.Add(pGarniture);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RetirerGarniture(Garniture pGarniture)
+        {
+            Garniture g = null;
+            if (pGarniture is Garniture)
+            {
+                foreach (Legume garniture in ListeGarniture)
+                {
+                    if (garniture.Nom == pGarniture.Nom)
+                    {
+                        g = garniture;
+                        
+                        
+                    }
+                }
+                ListeGarniture.Remove(g);
                 return true;
             }
             return false;

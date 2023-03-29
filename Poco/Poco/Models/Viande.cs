@@ -53,7 +53,10 @@ namespace Poco.Models
 
         #region MÉTHODES
 
-       
+        public override string ToString()
+        {
+            return Nom;
+        }
 
         #endregion
 

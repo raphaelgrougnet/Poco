@@ -37,8 +37,6 @@ namespace Poco.Views
 
             _gestionFacture = new GestionFacture(Utils.ChargerListeFacture(GestionEmploye.PATH_FILES + "Factures.csv"));
 
-            _factureCourante = _gestionFacture.CreerFacture();
-
             InitialiserVente();
 
 
@@ -54,13 +52,27 @@ namespace Poco.Views
             lstFacture.Items.Refresh();
         }
 
+        private void DeselectionnerToogleButton()
+        {
+            btnAvocat.IsChecked = false;
+            btnJalapeno.IsChecked = false;
+            btnMais.IsChecked = false;
+            btnOignon.IsChecked = false;
+            btnOignonF.IsChecked = false;
+            btnOlive.IsChecked = false;
+            btnPoivron.IsChecked = false;
+            btnRiz.IsChecked = false;
+            btnSalade.IsChecked = false;
+            btnTomate.IsChecked = false;
+            
+        }
 
         
 
-        private void Button_Checked_Plat(object sender, RoutedEventArgs e)
+        private void ButtonClick_Plat(object sender, RoutedEventArgs e)
         {
             
-            ToggleButton btn = sender as ToggleButton;
+            Button btn = sender as Button;
             TypePlat typeP = Utils.ParseEnum<TypePlat>(btn.Content.ToString());
 
             _platCourant = new Plat(typeP);
@@ -69,23 +81,55 @@ namespace Poco.Views
 
         }
 
-        private void Button_Checked_Viande(object sender, RoutedEventArgs e)
+        private void ButtonClick_Viande(object sender, RoutedEventArgs e)
         {
-            ToggleButton btn = sender as ToggleButton;
-            _platCourant.AjouterGarniture(new Viande(btn.Content.ToString()));
+            Button btn = sender as Button;
+            
+            Viande v = new Viande(btn.Content.ToString());
+                
+            _platCourant.AjouterGarniture(v);
             spViandes.IsEnabled = false;
             spGarniture.IsEnabled = true;
+            btnAjouter.IsEnabled = true;
+                
+                
+            
+                    
+            
         }
 
         private void Button_Checked_Garniture(object sender, RoutedEventArgs e)
         {
             ToggleButton btn = sender as ToggleButton;
             _platCourant.AjouterGarniture(new Legume(btn.Content.ToString()));
+            
+
+        }
+
+        private void Button_Unchecked_Garniture(object sender, RoutedEventArgs e)
+        {
+            ToggleButton btn = sender as ToggleButton;
+            _platCourant.RetirerGarniture(new Legume(btn.Content.ToString()));
         }
 
         private void btnPayer_Click(object sender, RoutedEventArgs e)
         {
             InitialiserVente();
         }
+
+
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            _factureCourante.ListePlats.Add(_platCourant);
+            lstFacture.Items.Refresh();
+            spGarniture.IsEnabled = false;
+            spViandes.IsEnabled = false;
+            spPlats.IsEnabled = true;
+            btnAjouter.IsEnabled = false;
+            _platCourant = null;
+            DeselectionnerToogleButton();
+        }
+
+        
     }
 }

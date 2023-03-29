@@ -222,7 +222,7 @@ namespace Poco.Views
                     DateTime dateSelec = new DateTime(0);
                     if (dateDOB.SelectedDate is not null)
                     {
-                        dateSelec = dateDOB.SelectedDate.Value;
+                        dateSelec = DateTime.Parse(dateDOB.SelectedDate.Value.ToString("dd-MM-yyyy"), FormPrincipal.cultureinfo);
                     }
 
 
