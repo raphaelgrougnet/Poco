@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="#f0f2e7">
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>

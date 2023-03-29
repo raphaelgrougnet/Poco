@@ -51,6 +51,9 @@ namespace Poco.Views
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
+            btnAjouter.IsEnabled = false;
+            btnRetirer.IsEnabled = false;
+            btnPayer.IsEnabled = false;
         }
 
         private void DeselectionnerToogleButton()
@@ -85,9 +88,9 @@ namespace Poco.Views
 
         private void ButtonClick_Viande(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
+            Border btn = sender as Border;
             
-            Viande v = new Viande(btn.Content.ToString());
+            Viande v = new Viande(btn.DataContext.ToString());
                 
             _platCourant.AjouterGarniture(v);
             spViandes.IsEnabled = false;
@@ -110,13 +113,7 @@ namespace Poco.Views
 
         private void Button_Unchecked_Garniture(object sender, RoutedEventArgs e)
         {
-            if(_platCourant != null)
-            {
-                ToggleButton btn = sender as ToggleButton;
-                _platCourant.RetirerGarniture(new Legume(btn.Content.ToString()));
-                
-                btn.IsChecked = false;
-            }
+            
         }
 
         private void btnPayer_Click(object sender, RoutedEventArgs e)
@@ -135,6 +132,10 @@ namespace Poco.Views
             btnAjouter.IsEnabled = false;
             _platCourant = null;
             DeselectionnerToogleButton();
+            if (_factureCourante.ListePlats.Count == 0)
+                btnPayer.IsEnabled = false;
+            else
+                btnPayer.IsEnabled = true;
         }
 
        
