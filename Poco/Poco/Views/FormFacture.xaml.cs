@@ -79,6 +79,7 @@ namespace Poco.Views
             _platCourant = new Plat(typeP);
             spViandes.IsEnabled = true;
             spPlats.IsEnabled = false;
+            
 
         }
 
@@ -109,8 +110,13 @@ namespace Poco.Views
 
         private void Button_Unchecked_Garniture(object sender, RoutedEventArgs e)
         {
-            ToggleButton btn = sender as ToggleButton;
-            _platCourant.RetirerGarniture(new Legume(btn.Content.ToString()));
+            if(_platCourant != null)
+            {
+                ToggleButton btn = sender as ToggleButton;
+                _platCourant.RetirerGarniture(new Legume(btn.Content.ToString()));
+                
+                btn.IsChecked = false;
+            }
         }
 
         private void btnPayer_Click(object sender, RoutedEventArgs e)
@@ -131,6 +137,6 @@ namespace Poco.Views
             DeselectionnerToogleButton();
         }
 
-        
+       
     }
 }
