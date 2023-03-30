@@ -52,7 +52,6 @@ namespace Poco.Models
                 f = new Facture(ListeFactures[ListeFactures.Count - 1].NoFacture + 1);
             }
             
-            ListeFactures.Add(f);
             return f;
         }
 

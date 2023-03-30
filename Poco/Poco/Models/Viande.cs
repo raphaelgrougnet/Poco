@@ -19,7 +19,7 @@ namespace Poco.Models
         }
 
         #region CONSTANTES
-        private Dictionary<string, decimal> DictViandePrix = new Dictionary<string, decimal>()
+        public static Dictionary<string, decimal> DictViandePrix = new Dictionary<string, decimal>()
         {
             {"Boeuf", 1.99m},
             {"Dinde", 2.99m},

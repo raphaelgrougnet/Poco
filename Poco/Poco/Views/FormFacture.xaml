@@ -12,7 +12,7 @@
         
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid>
@@ -27,7 +27,7 @@
             </Border>
             <ScrollViewer Grid.Row="1" Foreground="Black" VerticalScrollBarVisibility="Auto">
                 <!--Ici il faut binder la facture car elle contient une liste de plat-->
-                <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture" Background="#FFDBE89D" BorderBrush="#FFC5B718" BorderThickness="2">
+                <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture" Background="#FFDBE89D" BorderBrush="#FFC5B718" BorderThickness="2" SelectionChanged="lstFacture_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate >
                             <Border DataContext="{Binding}" Margin="0 0 0 20" Padding="0 0 0 5">
@@ -77,10 +77,10 @@
                 <Border Name="btnPayer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="#FFC5B718" BorderThickness="2" Background="#7E934F" CornerRadius="10" Margin="3" MouseDown="btnPayer_Click">
                     <Label Content="PAYER" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <Border Grid.Column="0"  Grid.Row="1" BorderBrush="#FFC5B718" BorderThickness="2" Background="#E4D321" CornerRadius="10" Margin="3" MouseDown="btnPayer_Click">
+                <Border Grid.Column="0"  Grid.Row="1" BorderBrush="#FFC5B718" BorderThickness="2" Background="#E4D321" CornerRadius="10" Margin="3" MouseDown="btnAccueil_Click">
                     <Label Content="ACCUEIL" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <Border Name="btnRetirer"  Grid.Column="1" Grid.Row="1" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" Margin="3" MouseDown="btnPayer_Click">
+                <Border Name="btnRetirer"  Grid.Column="1" Grid.Row="1" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" Margin="3" MouseDown="btnRetirer_Click">
                     <Label Content="RETIRER" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <!--<Button x:Name="btnPayer" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Content="PAYER" FontSize="45" BorderBrush="Black" BorderThickness="2" Click="btnPayer_Click"/>-->
@@ -157,24 +157,48 @@
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Garniture"/>
                     <StackPanel Name="spGarniture">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ToggleButton x:Name="btnAvocat" Content="Avocat" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
-                            <ToggleButton x:Name="btnJalapeno" Content="Jalapeno" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
+                            <Border DataContext="Avocat" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Avocat" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            <Border DataContext="Jalapeno" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Jalapeno" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ToggleButton Name="btnMais" Content="Mais" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
-                            <ToggleButton Name="btnOignon" Content="Oignon" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
+                            <Border DataContext="Mais" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Mais" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            <Border DataContext="Oignon" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Oignon" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ToggleButton x:Name="btnOignonF" Content="Oignon F" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
-                            <ToggleButton Name="btnOlive" Content="Olive" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
+
+                            <Border DataContext="Oignon F" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Oignon F" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            <Border DataContext="Olive" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Olive" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ToggleButton Name="btnPoivron" Content="Poivron" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
-                            <ToggleButton Name="btnRiz" Content="Riz" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
+
+                            <Border DataContext="Poivron" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Poivron" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            <Border DataContext="Riz" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Riz" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ToggleButton x:Name="btnSalade" Content="Salade" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
-                            <ToggleButton x:Name="btnTomate" Content="Tomate" FontSize="40" Width="210" Height="100" Margin="5,5,5,5" Checked="Button_Checked_Garniture" Unchecked="Button_Unchecked_Garniture"/>
+
+                            <Border DataContext="Salade" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Salade" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            <Border DataContext="Tomate" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FF9DC939" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Garniture">
+                                <Label Content="Tomate" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
                         </StackPanel>
                     </StackPanel>
                     
@@ -188,22 +212,22 @@
                 <StackPanel Orientation="Vertical" >
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Viandes"/>
                     <StackPanel Name="spViandes">
-                        <Border DataContext="Boeuf" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="250" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
+                        <Border DataContext="Boeuf" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
                             <Label Content="Boeuf" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                         </Border>
-                        <Border DataContext="Dinde" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="250" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
+                        <Border DataContext="Dinde" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
                             <Label Content="Dinde" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                         </Border>
-                        <Border DataContext="Poisson" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="250" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
+                        <Border DataContext="Poisson" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
                             <Label Content="Poisson" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                         </Border>
-                        <Border DataContext="Porc" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="250" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
+                        <Border DataContext="Porc" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
                             <Label Content="Porc" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                         </Border>
-                        <Border DataContext="Poulet" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="250" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
+                        <Border DataContext="Poulet" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
                             <Label Content="Poulet" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                         </Border>
-                        <Border DataContext="Vege" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="250" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
+                        <Border DataContext="Vege" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFE59898" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Viande">
                             <Label Content="Vege" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                         </Border>
                         <!--<Button Content="Boeuf" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Viande"/>
@@ -219,19 +243,19 @@
             <StackPanel Grid.Column="2">
                 <StackPanel Name="spPlats" Orientation="Vertical" >
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Plats"/>
-                    <Border DataContext="Burrito" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                    <Border DataContext="Burrito" Width="225" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
                         <Label Content="Burrito" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
-                    <Border DataContext="Fajitas" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                    <Border DataContext="Fajitas" Width="225" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
                         <Label Content="Fajitas" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
-                    <Border DataContext="Nachos" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                    <Border DataContext="Nachos" Width="225" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
                         <Label Content="Nachos" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
-                    <Border DataContext="Quesadilla" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                    <Border DataContext="Quesadilla" Width="225" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
                         <Label Content="Quesadilla" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
-                    <Border DataContext="Tacos" Width="250" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
+                    <Border DataContext="Tacos" Width="225" Height="100" Margin="5,5,5,5" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FDC903" CornerRadius="10" MouseDown="ButtonClick_Plat">
                         <Label Content="Tacos" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
                     <!--<Button Content="Burrito" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" Click="ButtonClick_Plat"/>-->
@@ -244,7 +268,7 @@
                 
                 <Border BorderThickness="0 2 0 0" BorderBrush="Black" Margin="0 20 0 0" Padding="0 20 0 0">
                     <Border x:Name="btnAjouter" Width="250" Height="100" BorderThickness="2" BorderBrush="#FFC5B718" Background="#FF85C885" MouseDown="btnAjouter_Click" CornerRadius="10">
-                        <Label Content="Ajouter" FontWeight="Bold" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Content="Valider" FontWeight="Bold" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
                     <!--<Button x:Name="btnAjouter" Content="Ajouter" FontWeight="Bold" FontSize="40" Width="250" Height="100" Margin="5,5,5,5" VerticalAlignment="Bottom" Click="btnAjouter_Click" />-->
                 </Border>

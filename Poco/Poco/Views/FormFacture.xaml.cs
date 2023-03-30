@@ -29,13 +29,13 @@ namespace Poco.Views
         private GestionFacture _gestionFacture;
 
         
+        
 
-
-        public FormFacture()
+        public FormFacture(GestionFacture gf)
         {
             InitializeComponent();
 
-            _gestionFacture = new GestionFacture(Utils.ChargerListeFacture("Factures.csv"));
+            _gestionFacture = gf;
 
             InitialiserVente();
 
@@ -47,6 +47,7 @@ namespace Poco.Views
         {
             spGarniture.IsEnabled = false;
             spViandes.IsEnabled = false;
+            spPlats.IsEnabled = true;
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
@@ -56,23 +57,40 @@ namespace Poco.Views
             btnPayer.IsEnabled = false;
         }
 
-        private void DeselectionnerToogleButton()
+        private void InitialiserPlat()
         {
-            btnAvocat.IsChecked = false;
-            btnJalapeno.IsChecked = false;
-            btnMais.IsChecked = false;
-            btnOignon.IsChecked = false;
-            btnOignonF.IsChecked = false;
-            btnOlive.IsChecked = false;
-            btnPoivron.IsChecked = false;
-            btnRiz.IsChecked = false;
-            btnSalade.IsChecked = false;
-            btnTomate.IsChecked = false;
-            
+            spGarniture.IsEnabled = false;
+            spViandes.IsEnabled = false;
+            btnAjouter.IsEnabled = false;
+            btnRetirer.IsEnabled = false;
+            spPlats.IsEnabled = true;
         }
 
-        
-        
+        private void btnRetirer_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstFacture.SelectedItem != null)
+            {
+                Plat plat = lstFacture.SelectedItem as Plat;
+                _factureCourante.ListePlats.Remove(plat);
+                lstFacture.Items.Refresh();
+                btnRetirer.IsEnabled = false;
+                InitialiserPlat();
+                if (_factureCourante.ListePlats.Count == 0)
+                {
+                    btnPayer.IsEnabled = false;
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un plat à retirer");
+            }
+
+        }
+
+
+
         private void ButtonClick_Plat(object sender, RoutedEventArgs e)
         {
             
@@ -82,7 +100,9 @@ namespace Poco.Views
             _platCourant = new Plat(typeP);
             spViandes.IsEnabled = true;
             spPlats.IsEnabled = false;
-            
+
+            _factureCourante.ListePlats.Add(_platCourant);
+            lstFacture.Items.Refresh();
 
         }
 
@@ -93,6 +113,8 @@ namespace Poco.Views
             Viande v = new Viande(btn.DataContext.ToString());
                 
             _platCourant.AjouterGarniture(v);
+            
+            lstFacture.Items.Refresh();
             spViandes.IsEnabled = false;
             spGarniture.IsEnabled = true;
             btnAjouter.IsEnabled = true;
@@ -103,41 +125,77 @@ namespace Poco.Views
             
         }
 
-        private void Button_Checked_Garniture(object sender, RoutedEventArgs e)
+        private void ButtonClick_Garniture(object sender, RoutedEventArgs e)
         {
-            ToggleButton btn = sender as ToggleButton;
-            _platCourant.AjouterGarniture(new Legume(btn.Content.ToString()));
+            Border btn = sender as Border;
+            Legume l = new Legume(btn.DataContext.ToString());
+
+            foreach (Garniture garniture in _platCourant.ListeGarniture)
+            {
+                
+                if (garniture.Nom == l.Nom)
+                {
+                    _platCourant.RetirerGarniture(garniture);
+                    lstFacture.Items.Refresh();
+                    return;
+                }
+                
+            }
             
+            _platCourant.AjouterGarniture(l);
+            lstFacture.Items.Refresh();
+
+
+
+
+
 
         }
 
-        private void Button_Unchecked_Garniture(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void btnPayer_Click(object sender, RoutedEventArgs e)
         {
-            InitialiserVente();
+            if (_platCourant == null && _factureCourante.ListePlats.Count > 0)
+            {
+                _gestionFacture.ListeFactures.Add(_factureCourante);
+                MessageBox.Show("Facture payée | Total : " + _factureCourante.PrixTotal.ToString("C2"));
+                //_gestionFacture.SauvegarderFactures("Factures.csv");
+                InitialiserVente();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez terminer votre commande");
+            }
+
         }
 
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            _factureCourante.ListePlats.Add(_platCourant);
             lstFacture.Items.Refresh();
             spGarniture.IsEnabled = false;
             spViandes.IsEnabled = false;
             spPlats.IsEnabled = true;
             btnAjouter.IsEnabled = false;
             _platCourant = null;
-            DeselectionnerToogleButton();
+            //DeselectionnerToogleButton();
             if (_factureCourante.ListePlats.Count == 0)
                 btnPayer.IsEnabled = false;
             else
                 btnPayer.IsEnabled = true;
         }
 
-       
+        private void btnAccueil_Click(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+
+        private void lstFacture_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstFacture.SelectedItem != null)
+            {
+                btnRetirer.IsEnabled = true;
+            }
+        }
     }
 }

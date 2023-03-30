@@ -101,9 +101,10 @@ namespace Poco.Models
                     foreach (string[] ligne in ListLignes)
                     {
                         uint noFacture = uint.Parse(ligne[0]);
-                        decimal stt = decimal.Parse(ligne[1]);
-                        decimal tt = decimal.Parse(ligne[2]);
-                        ListFactures.Add(new Facture(noFacture, DateTime.Today, stt, tt ));
+                        DateTime date = DateTime.Parse(ligne[1], FormPrincipal.cultureinfo);
+                        decimal stt = decimal.Parse(ligne[2]);
+                        decimal tt = decimal.Parse(ligne[3]);
+                        ListFactures.Add(new Facture(noFacture, date, stt, tt ));
                     }
 
                     return ListFactures;

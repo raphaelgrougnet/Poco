@@ -99,6 +99,7 @@ namespace Poco.Models
                 if (pGarniture is Viande)
                 {
                     ViandeP = ((Viande)pGarniture);
+                    Prix += Viande.DictViandePrix[ViandeP.Nom];
                     return true;
                 }
                 ListeGarniture.Add(pGarniture);

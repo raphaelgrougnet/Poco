@@ -24,16 +24,18 @@ namespace Poco
     public partial class FormPrincipal : Window
     {
         public GestionEmploye _gestionEmploye;
+        public GestionFacture _gestionFacture;
         public static System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
 
         public FormPrincipal()
         {
             InitializeComponent();
             List<Employe> lstEmployes = Utils.ChargerListeEmployes("Employes.csv");
+            List<Facture> lstFactures = Utils.ChargerListeFacture("Factures.csv");
             //string path = GestionEmploye.PATH_FILES + "Employes.csv";
             //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
             _gestionEmploye = new GestionEmploye();
-
+            _gestionFacture = new GestionFacture(lstFactures);
 
             //foreach (string[] lstEmploye in lstStringEmployes)
             //{
@@ -89,9 +91,8 @@ namespace Poco
             lstEmployesPresents.Items.Refresh();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void EnregistrerDonnes()
         {
-            
             string donneesEmployes = "Code;Nom;Prenom;DOB\n";
             foreach (Employe employe in _gestionEmploye.ListeEmployes)
             {
@@ -100,6 +101,22 @@ namespace Poco
             donneesEmployes.TrimEnd();
             string path = "Employes.csv";
             Utils.EnregistrerDonneesCrush(path, donneesEmployes);
+            path = "Factures.csv";
+            string donneesFactures = "NoFacture;SousTotalFacture;TotalFacture\n";
+            foreach (Facture facture in _gestionFacture.ListeFactures)
+            {
+                if (facture.ListePlats.Count > 0)
+                {
+                    donneesFactures += String.Format($"{facture.NoFacture};{facture.Date};{facture.SousTotal};{facture.PrixTotal}\n");
+
+                }
+            }
+            donneesFactures.TrimEnd();
+            Utils.EnregistrerDonneesCrush(path, donneesFactures);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
             if (MessageBoxResult.Yes ==  MessageBox.Show("Voulez-vous quitter l'application ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
             {
@@ -116,6 +133,7 @@ namespace Poco
                     else
                         e.Cancel = true;
                 }
+                EnregistrerDonnes();
                 MessageBox.Show("Enregistrement terminé", "Fermeture de l'application", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
@@ -154,7 +172,7 @@ namespace Poco
                     txtCode3.Text = "";
                     txtCode4.Text = "";
 
-                    FormFacture frf = new FormFacture();
+                    FormFacture frf = new FormFacture(_gestionFacture);
                     frf.ShowDialog();
 
                 }
