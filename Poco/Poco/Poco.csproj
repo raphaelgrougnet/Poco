@@ -18,10 +18,10 @@
 
   <ItemGroup>
     <Content Include="Files\Employes.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="Files\Factures.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="Files\Images\poco-resized.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

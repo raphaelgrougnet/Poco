@@ -115,7 +115,7 @@ namespace Poco.Models
             StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
             fluxEcriture.Write("NoFacture;SousTotal;Total\n");
             fluxEcriture.Close();
-            return null;
+            return new List<Facture>();
 
         }
 
@@ -174,7 +174,7 @@ namespace Poco.Models
             StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
             fluxEcriture.Write("Code;Nom;Prenom;DOB\n");
             fluxEcriture.Close();
-            return null;
+            return new List<Employe>();
 
 
 
