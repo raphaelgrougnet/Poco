@@ -30,8 +30,8 @@ namespace Poco
         public FormPrincipal()
         {
             InitializeComponent();
-            List<Employe> lstEmployes = Utils.ChargerListeEmployes("Employes.csv");
-            List<Facture> lstFactures = Utils.ChargerListeFacture("Factures.csv");
+            List<Employe> lstEmployes = Utils.ChargerListeEmployes("Files/Employes.csv");
+            List<Facture> lstFactures = Utils.ChargerListeFacture("Files/Factures.csv");
             //string path = GestionEmploye.PATH_FILES + "Employes.csv";
             //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
             _gestionEmploye = new GestionEmploye();
@@ -99,17 +99,17 @@ namespace Poco
                 donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance.ToString("dd-MM-yyyy")}\n");
             }
             donneesEmployes.TrimEnd();
-            string path = "Employes.csv";
+            string path = "Files/Employes.csv";
             Utils.EnregistrerDonnees(path, donneesEmployes, false);
-            path = "Factures.csv";
+            path = "Files/Factures.csv";
             string donneesFactures = "NoFacture;SousTotalFacture;TotalFacture\n";
+            
             foreach (Facture facture in _gestionFacture.ListeFactures)
             {
-                if (facture.ListePlats.Count > 0)
-                {
-                    donneesFactures += String.Format($"{facture.NoFacture};{facture.Date.ToString("dd-MM-yyyy")};{facture.SousTotal};{facture.PrixTotal}\n");
+                
+                 donneesFactures += String.Format($"{facture.NoFacture};{facture.Date.ToString("dd-MM-yyyy")};{facture.SousTotal};{facture.PrixTotal}\n");
 
-                }
+                
             }
             donneesFactures.TrimEnd();
             Utils.EnregistrerDonnees(path, donneesFactures, false);

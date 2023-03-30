@@ -54,6 +54,7 @@ namespace Poco.Views
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
+            lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
             btnAjouter.IsEnabled = false;
             btnRetirer.IsEnabled = false;
@@ -83,6 +84,7 @@ namespace Poco.Views
                     btnPayer.IsEnabled = false;
                 }
 
+                _factureCourante.PrixTotal = _factureCourante.CalculerPrixTotal();
 
             }
             else
@@ -92,6 +94,23 @@ namespace Poco.Views
 
         }
 
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            lstFacture.Items.Refresh();
+            spGarniture.IsEnabled = false;
+            spViandes.IsEnabled = false;
+            spPlats.IsEnabled = true;
+            btnAjouter.IsEnabled = false;
+            _platCourant = null;
+            //DeselectionnerToogleButton();
+            if (_factureCourante.ListePlats.Count == 0)
+                btnPayer.IsEnabled = false;
+            else
+                btnPayer.IsEnabled = true;
+
+            _factureCourante.PrixTotal = _factureCourante.CalculerPrixTotal();
+
+        }
 
 
         private void ButtonClick_Plat(object sender, RoutedEventArgs e)
@@ -105,6 +124,8 @@ namespace Poco.Views
             spPlats.IsEnabled = false;
 
             _factureCourante.ListePlats.Add(_platCourant);
+
+
             lstFacture.Items.Refresh();
 
         }
@@ -116,7 +137,8 @@ namespace Poco.Views
             Viande v = new Viande(btn.DataContext.ToString());
                 
             _platCourant.AjouterGarniture(v);
-            
+            _factureCourante.SousTotal = _factureCourante.CalculerSousTotal();
+            _factureCourante.PrixTotal = _factureCourante.CalculerPrixTotal();
             lstFacture.Items.Refresh();
             spViandes.IsEnabled = false;
             spGarniture.IsEnabled = true;
@@ -161,8 +183,11 @@ namespace Poco.Views
             if (_platCourant == null && _factureCourante.ListePlats.Count > 0)
             {
                 _gestionFacture.ListeFactures.Add(_factureCourante);
-                MessageBox.Show("Facture payée | Total : " + _factureCourante.PrixTotal.ToString("C2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
+                MessageBox.Show("Facture payée | Total : " + "$" + _factureCourante.PrixTotal.ToString("n2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
                 //_gestionFacture.SauvegarderFactures("Factures.csv");
+                _factureCourante.SousTotal = _factureCourante.CalculerSousTotal();
+                _factureCourante.PrixTotal = _factureCourante.CalculerPrixTotal();
+                
                 InitialiserVente();
             }
             else
@@ -173,20 +198,7 @@ namespace Poco.Views
         }
 
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
-        {
-            lstFacture.Items.Refresh();
-            spGarniture.IsEnabled = false;
-            spViandes.IsEnabled = false;
-            spPlats.IsEnabled = true;
-            btnAjouter.IsEnabled = false;
-            _platCourant = null;
-            //DeselectionnerToogleButton();
-            if (_factureCourante.ListePlats.Count == 0)
-                btnPayer.IsEnabled = false;
-            else
-                btnPayer.IsEnabled = true;
-        }
+        
 
         private void btnAccueil_Click(object sender, MouseButtonEventArgs e)
         {
