@@ -28,14 +28,17 @@ namespace Poco.Views
 
         private GestionFacture _gestionFacture;
 
-        
-        
+        private GestionEmploye _gestionEmploye;
 
-        public FormFacture(GestionFacture gf)
+
+
+
+        public FormFacture(GestionFacture gf, GestionEmploye ge)
         {
             InitializeComponent();
 
             _gestionFacture = gf;
+            _gestionEmploye = ge;
 
             InitialiserVente();
 
@@ -158,7 +161,7 @@ namespace Poco.Views
             if (_platCourant == null && _factureCourante.ListePlats.Count > 0)
             {
                 _gestionFacture.ListeFactures.Add(_factureCourante);
-                MessageBox.Show("Facture payée | Total : " + _factureCourante.PrixTotal.ToString("C2"));
+                MessageBox.Show("Facture payée | Total : " + _factureCourante.PrixTotal.ToString("C2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
                 //_gestionFacture.SauvegarderFactures("Factures.csv");
                 InitialiserVente();
             }

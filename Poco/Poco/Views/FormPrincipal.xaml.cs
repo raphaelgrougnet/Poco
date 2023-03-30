@@ -172,7 +172,8 @@ namespace Poco
                     txtCode3.Text = "";
                     txtCode4.Text = "";
 
-                    FormFacture frf = new FormFacture(_gestionFacture);
+                    FormFacture frf = new FormFacture(_gestionFacture, _gestionEmploye);
+                    _gestionEmploye.EmployeActif = _gestionEmploye.DictEmployesCodes[pCode];
                     frf.ShowDialog();
 
                 }
