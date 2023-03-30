@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Files\Employes.csv" />
     <None Remove="Files\Factures.csv" />
     <None Remove="Files\Images\poco-resized.png" />
     <None Remove="Files\Images\poco.png" />
@@ -17,12 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Files\Employes.csv">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Factures.csv">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
     <Content Include="Files\Images\poco-resized.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
