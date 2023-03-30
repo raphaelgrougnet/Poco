@@ -100,7 +100,7 @@ namespace Poco
             }
             donneesEmployes.TrimEnd();
             string path = "Employes.csv";
-            Utils.EnregistrerDonneesCrush(path, donneesEmployes);
+            Utils.EnregistrerDonnees(path, donneesEmployes, false);
             path = "Factures.csv";
             string donneesFactures = "NoFacture;SousTotalFacture;TotalFacture\n";
             foreach (Facture facture in _gestionFacture.ListeFactures)
@@ -112,7 +112,7 @@ namespace Poco
                 }
             }
             donneesFactures.TrimEnd();
-            Utils.EnregistrerDonneesCrush(path, donneesFactures);
+            Utils.EnregistrerDonnees(path, donneesFactures, false);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

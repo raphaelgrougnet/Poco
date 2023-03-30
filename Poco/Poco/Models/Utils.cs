@@ -180,23 +180,16 @@ namespace Poco.Models
 
         }
 
-        public static void EnregistrerDonneesAppend(String pCheminFichier, string pDonneesSerialises)
+        public static void EnregistrerDonnees(String pCheminFichier, string pDonneesSerialises, bool pAjouterALaSuite)
         {
 
-            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, true);
-            fluxEcriture.Write(pDonneesSerialises+'\n');
-            fluxEcriture.Close();
-
-        }
-
-        public static void EnregistrerDonneesCrush(String pCheminFichier, string pDonneesSerialises)
-        {
-
-            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
+            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, pAjouterALaSuite);
             fluxEcriture.Write(pDonneesSerialises);
             fluxEcriture.Close();
 
         }
+
+
 
         #endregion
 
