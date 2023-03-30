@@ -29,14 +29,20 @@
                 <!--Ici il faut binder la facture car elle contient une liste de plat-->
                 <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture" Background="#FFDBE89D" BorderBrush="#FFC5B718" BorderThickness="2">
                     <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="2" BorderBrush="black" DataContext="{Binding}">
+                        <DataTemplate >
+                            <Border DataContext="{Binding}" Margin="0 0 0 20" Padding="0 0 0 5">
                                 <StackPanel>
+
                                     <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Prix}" FontSize="30"  Margin="0 0 50 0"/>
+                                        
                                         <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Left" TextWrapping="Wrap" Foreground="Black"/>
                                         <TextBlock Text="{Binding ViandeP}" FontSize="30" TextAlignment="Left" TextWrapping="Wrap" Foreground="Black" Margin="10 0 0 0"/>
                                     </StackPanel>
-                                    <ItemsControl ItemsSource="{Binding ListeGarniture}" d:ItemsSource="{d:SampleData ItemCount=2}">
+
+                                    
+
+                                    <ItemsControl ItemsSource="{Binding ListeGarniture}" d:ItemsSource="{d:SampleData ItemCount=2}" HorizontalAlignment="Right">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"/>
