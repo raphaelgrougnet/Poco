@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -110,10 +111,14 @@ namespace Poco.Models
 
                
             }
+            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
+            fluxEcriture.Write("NoFacture;SousTotal;Total\n");
+            fluxEcriture.Close();
             return null;
+
         }
 
-        static public List<string[]> ChargerDonnees(String pCheminFichier)
+        static public List<Employe> ChargerListeEmployes(String pCheminFichier)
         {
             if (File.Exists(pCheminFichier))
             {
@@ -124,7 +129,7 @@ namespace Poco.Models
 
                 // Création d'un vecteur de chaînes de caractères contenant chaque ligne individuellement.
                 String[] vectLignes = fichierTexte.Split('\n');
-                
+
 
                 // Nombre de lignes non vides dans le fichier.
                 int nbLignes;
@@ -147,12 +152,31 @@ namespace Poco.Models
                     // On retourne le vecteur contenant les données créé.
                     ListLignes.RemoveAt(0);
 
-                    return ListLignes;
+                    List<Employe> ListEmployes = new List<Employe>();
+
+                    foreach (string[] ligne in ListLignes)
+                    {
+                        string code = ligne[0];
+                        string nom = ligne[1];
+                        string prenom = ligne[2];
+                        DateTime dob = DateTime.Parse(ligne[3], FormPrincipal.cultureinfo);
+
+                        ListEmployes.Add(new Employe(code, nom, prenom, dob));
+                    }
+
+                    return ListEmployes;
 
                 }
             }
-
+            
+            //Création du fichier
+            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
+            fluxEcriture.Write("Code;Nom;Prenom;DOB\n");
+            fluxEcriture.Close();
             return null;
+
+
+
         }
 
         public static void EnregistrerDonneesAppend(String pCheminFichier, string pDonneesSerialises)

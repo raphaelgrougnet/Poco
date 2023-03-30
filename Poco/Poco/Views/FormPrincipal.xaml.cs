@@ -29,37 +29,40 @@ namespace Poco
         public FormPrincipal()
         {
             InitializeComponent();
-            List<string[]> lstStringEmployes = new List<string[]>();
-            string path = GestionEmploye.PATH_FILES + "Employes.csv";
-            lstStringEmployes = Utils.ChargerDonnees(path);
+            List<Employe> lstEmployes = Utils.ChargerListeEmployes("Employes.csv");
+            //string path = GestionEmploye.PATH_FILES + "Employes.csv";
+            //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
             _gestionEmploye = new GestionEmploye();
 
 
-            foreach (string[] lstEmploye in lstStringEmployes)
-            {
-                
-                string code = lstEmploye[0];
-                string nom = lstEmploye[1];
-                string prenom = lstEmploye[2];
-                DateTime dob = DateTime.Parse(lstEmploye[3], cultureinfo);
+            //foreach (string[] lstEmploye in lstStringEmployes)
+            //{
 
-                string validation = _gestionEmploye.ValiderEmploye(code, nom, prenom, dob);
+            //    string code = lstEmploye[0];
+            //    string nom = lstEmploye[1];
+            //    string prenom = lstEmploye[2];
+            //    DateTime dob = DateTime.Parse(lstEmploye[3], cultureinfo);
+            foreach (Employe employe in lstEmployes)
+            {
+                string validation = _gestionEmploye.ValiderEmploye(employe.Code, employe.Nom, employe.Prenom, employe.DateNaissance);
 
                 if (validation == "")
                 {
-                    Employe e = new Employe(code, nom, prenom, dob);
-                    _gestionEmploye.AjouterEmploye(e);
-                    if (_gestionEmploye.DictEmployesCodes.ContainsKey(code) == false)
-                    {
-                        _gestionEmploye.DictEmployesCodes.Add(code, e);
-                    }
                     
-                }
-                
-                
-            }
+                    _gestionEmploye.AjouterEmploye(employe);
+                    if (_gestionEmploye.DictEmployesCodes.ContainsKey(employe.Code) == false)
+                    {
+                        _gestionEmploye.DictEmployesCodes.Add(employe.Code, employe);
+                    }
 
+                }
+            }
             
+
+
+            //}
+
+
             lstEmployesPresents.ItemsSource = _gestionEmploye.ListeEmployesPresent;
 
         }
@@ -95,7 +98,7 @@ namespace Poco
                 donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance}\n");
             }
             donneesEmployes.TrimEnd();
-            string path = GestionEmploye.PATH_FILES + "Employes.csv";
+            string path = "Employes.csv";
             Utils.EnregistrerDonneesCrush(path, donneesEmployes);
 
             if (MessageBoxResult.Yes ==  MessageBox.Show("Voulez-vous quitter l'application ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))

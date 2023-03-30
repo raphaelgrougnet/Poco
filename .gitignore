@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Poco/Poco/Files/Employes.csv
+/Poco/Poco/Files/Factures.csv
+

@@ -35,7 +35,7 @@ namespace Poco.Views
         {
             InitializeComponent();
 
-            _gestionFacture = new GestionFacture(Utils.ChargerListeFacture(GestionEmploye.PATH_FILES + "Factures.csv"));
+            _gestionFacture = new GestionFacture(Utils.ChargerListeFacture("Factures.csv"));
 
             InitialiserVente();
 
