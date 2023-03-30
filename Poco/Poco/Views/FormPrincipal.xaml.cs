@@ -96,7 +96,7 @@ namespace Poco
             string donneesEmployes = "Code;Nom;Prenom;DOB\n";
             foreach (Employe employe in _gestionEmploye.ListeEmployes)
             {
-                donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance}\n");
+                donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance.ToString("dd-MM-yyyy")}\n");
             }
             donneesEmployes.TrimEnd();
             string path = "Employes.csv";
@@ -107,7 +107,7 @@ namespace Poco
             {
                 if (facture.ListePlats.Count > 0)
                 {
-                    donneesFactures += String.Format($"{facture.NoFacture};{facture.Date};{facture.SousTotal};{facture.PrixTotal}\n");
+                    donneesFactures += String.Format($"{facture.NoFacture};{facture.Date.ToString("dd-MM-yyyy")};{facture.SousTotal};{facture.PrixTotal}\n");
 
                 }
             }
