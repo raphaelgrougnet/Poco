@@ -26,7 +26,7 @@
                 <Label Name="lblNoFacture" Content="{Binding}" FontSize="25" />
 
             </Border>
-            <ScrollViewer Grid.Row="1" Foreground="Black" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1"  Foreground="Black" VerticalScrollBarVisibility="Auto">
                 <!--Ici il faut binder la facture car elle contient une liste de plat-->
                 <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="lstFacture" Background="#FFDBE89D" BorderBrush="#FFC5B718" BorderThickness="2" SelectionChanged="lstFacture_SelectionChanged">
                     <ListBox.ItemTemplate>
@@ -66,7 +66,7 @@
                 </ListBox>
             </ScrollViewer>
 
-            <TextBlock Name="lblTotalFacture" FontSize="35" Foreground="Black" Text="{Binding PrixTotal, StringFormat={}{0:C2}}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Background="AliceBlue"/>
+            <TextBlock Name="lblTotalFacture" FontSize="35" Foreground="Black" Text="{Binding PrixTotal, StringFormat=Total : {0:C2}}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
