@@ -53,20 +53,19 @@ namespace Poco.Models
         {
             get
             {
-                SousTotal = CalculerSousTotal();
                 return _sousTotal;
             }
-            private set { _sousTotal = value; }
+            set { _sousTotal = value; }
         }
 
         public decimal PrixTotal
         {
             get 
             {
-                PrixTotal = CalculerPrixTotal();
-                return _prixTotal; 
+                return _prixTotal;
+                
             }
-            private set { _prixTotal = value; }
+            set { _prixTotal = value; }
         }
 
 
@@ -98,7 +97,7 @@ namespace Poco.Models
         /// Calcule le sous-total de la facture
         /// </summary>
         /// <returns>Sous total sans les taxes</returns>
-        private decimal CalculerSousTotal()
+        public decimal CalculerSousTotal()
         {
             decimal sousTotal = 0;
             foreach (Plat plat in ListePlats)
@@ -112,7 +111,7 @@ namespace Poco.Models
         /// Calcule le prix total de la facture
         /// </summary>
         /// <returns>Total avec les taxes</returns>
-        private decimal CalculerPrixTotal()
+        public decimal CalculerPrixTotal()
         {
             decimal prixTotal = SousTotal + (SousTotal * 0.15m);
             return prixTotal;

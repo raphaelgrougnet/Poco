@@ -54,6 +54,8 @@ namespace Poco.Views
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
+            lblTotalFacture.DataContext = null;
+            lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
             btnAjouter.IsEnabled = false;
             btnRetirer.IsEnabled = false;
@@ -67,6 +69,17 @@ namespace Poco.Views
             btnAjouter.IsEnabled = false;
             btnRetirer.IsEnabled = false;
             spPlats.IsEnabled = true;
+        }
+
+        private void MiseAJourPrix()
+        {
+            _factureCourante.SousTotal = _factureCourante.CalculerSousTotal();
+            _factureCourante.PrixTotal = _factureCourante.CalculerPrixTotal();
+            
+            lblTotalFacture.DataContext = null;
+            
+
+            lblTotalFacture.DataContext = _factureCourante;
         }
 
         private void btnRetirer_Click(object sender, RoutedEventArgs e)
@@ -83,7 +96,7 @@ namespace Poco.Views
                     btnPayer.IsEnabled = false;
                 }
 
-
+                MiseAJourPrix();
             }
             else
             {
@@ -92,6 +105,23 @@ namespace Poco.Views
 
         }
 
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            lstFacture.Items.Refresh();
+            spGarniture.IsEnabled = false;
+            spViandes.IsEnabled = false;
+            spPlats.IsEnabled = true;
+            btnAjouter.IsEnabled = false;
+            _platCourant = null;
+            //DeselectionnerToogleButton();
+            if (_factureCourante.ListePlats.Count == 0)
+                btnPayer.IsEnabled = false;
+            else
+                btnPayer.IsEnabled = true;
+
+            MiseAJourPrix();
+
+        }
 
 
         private void ButtonClick_Plat(object sender, RoutedEventArgs e)
@@ -105,8 +135,10 @@ namespace Poco.Views
             spPlats.IsEnabled = false;
 
             _factureCourante.ListePlats.Add(_platCourant);
-            lstFacture.Items.Refresh();
+            
 
+            lstFacture.Items.Refresh();
+            MiseAJourPrix();
         }
 
         private void ButtonClick_Viande(object sender, RoutedEventArgs e)
@@ -117,15 +149,16 @@ namespace Poco.Views
                 
             _platCourant.AjouterGarniture(v);
             
+            
             lstFacture.Items.Refresh();
             spViandes.IsEnabled = false;
             spGarniture.IsEnabled = true;
             btnAjouter.IsEnabled = true;
-                
-                
-            
-                    
-            
+            MiseAJourPrix();
+
+
+
+
         }
 
         private void ButtonClick_Garniture(object sender, RoutedEventArgs e)
@@ -150,7 +183,7 @@ namespace Poco.Views
 
 
 
-
+            MiseAJourPrix();
 
 
         }
@@ -161,8 +194,10 @@ namespace Poco.Views
             if (_platCourant == null && _factureCourante.ListePlats.Count > 0)
             {
                 _gestionFacture.ListeFactures.Add(_factureCourante);
-                MessageBox.Show("Facture payée | Total : " + _factureCourante.PrixTotal.ToString("C2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
+                MessageBox.Show("Facture payée | Total : " + "$" + _factureCourante.PrixTotal.ToString("n2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
                 //_gestionFacture.SauvegarderFactures("Factures.csv");
+                MiseAJourPrix();
+
                 InitialiserVente();
             }
             else
@@ -173,24 +208,14 @@ namespace Poco.Views
         }
 
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
-        {
-            lstFacture.Items.Refresh();
-            spGarniture.IsEnabled = false;
-            spViandes.IsEnabled = false;
-            spPlats.IsEnabled = true;
-            btnAjouter.IsEnabled = false;
-            _platCourant = null;
-            //DeselectionnerToogleButton();
-            if (_factureCourante.ListePlats.Count == 0)
-                btnPayer.IsEnabled = false;
-            else
-                btnPayer.IsEnabled = true;
-        }
+        
 
         private void btnAccueil_Click(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            if (_factureCourante.ListePlats.Count > 0)
+                MessageBox.Show("Veuillez terminer la facture en cours avant de quitter.", "Facture en cours", MessageBoxButton.OK);
+            else
+                Close();
         }
 
         private void lstFacture_SelectionChanged(object sender, SelectionChangedEventArgs e)
