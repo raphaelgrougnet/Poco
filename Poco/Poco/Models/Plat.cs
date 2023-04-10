@@ -40,6 +40,7 @@ namespace Poco.Models
         private decimal _prix;
         private Viande _viandeP;
         private ushort _quantite;
+        private List<Extra> _listeExtras;
         #endregion
 
         #region PROPRIÉTÉS
@@ -83,6 +84,13 @@ namespace Poco.Models
                 _quantite = value;
             }
         }
+
+        public List<Extra> ListeExtras
+        {
+            get { return _listeExtras; }
+            set { _listeExtras = value; }
+        }
+        
         #endregion
 
         #region CONSTRUCTEURS
@@ -92,8 +100,8 @@ namespace Poco.Models
             Nom = pTPlat.ToString();
             ListeGarniture = new List<Garniture>();
             Prix = DictPlatPrix[pTPlat];
+            ListeExtras = new List<Extra>();
 
-            
         }
 
         #endregion
@@ -168,12 +176,23 @@ namespace Poco.Models
           
         }
 
+        public void AjouterExtra(Extra pExtra)
+        {
+            ListeExtras.Add(pExtra);
+        }
+
+        public void RetirerExtra(Extra pExtra)
+        {
+            ListeExtras.Remove(pExtra);
+        }
+
         /// <summary>
         /// Override de la méthode ToString
         /// </summary>
         /// <returns>Nom du plat</returns>
         public override string ToString()
         {
+            
             return Nom;
         }
         #endregion

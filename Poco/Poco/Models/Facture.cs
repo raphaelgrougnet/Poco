@@ -25,6 +25,8 @@ namespace Poco.Models
         private decimal _prixTotal;
 
         
+        
+        
 
 
         #endregion
@@ -68,6 +70,7 @@ namespace Poco.Models
             set { _prixTotal = value; }
         }
 
+        
 
         #endregion
 
@@ -103,7 +106,17 @@ namespace Poco.Models
             foreach (Plat plat in ListePlats)
             {
                 sousTotal += plat.Prix;
+                if (plat.ListeExtras.Count > 0)
+                {
+                    foreach (Extra extra in plat.ListeExtras)
+                    {
+                        sousTotal += extra.Prix;
+                    }
+                }
+                
             }
+
+            
             return sousTotal;
         }
 

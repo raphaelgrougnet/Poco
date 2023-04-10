@@ -226,14 +226,14 @@ namespace Poco.Models
 
 
 
-        public static void EnregistrerDonnees(String pCheminFichier, string pDonneesSerialises, bool pAjouterALaSuite)
-        {
+        //public static void EnregistrerDonnees(String pCheminFichier, string pDonneesSerialises, bool pAjouterALaSuite)
+        //{
 
-            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, pAjouterALaSuite);
-            fluxEcriture.Write(pDonneesSerialises);
-            fluxEcriture.Close();
+        //    StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, pAjouterALaSuite);
+        //    fluxEcriture.Write(pDonneesSerialises);
+        //    fluxEcriture.Close();
 
-        }
+        //}
 
 
 
