@@ -187,10 +187,10 @@ namespace Poco.Models
             {
                 sw1.Write(JsonSerializer.Serialize(ge.ListeEmployes, typeof(List<Employe>)));
             }
-            using StreamWriter sw2 = new StreamWriter("Files/Factures.json");
-            {
-                sw2.Write(JsonSerializer.Serialize(gf.ListeFactures, typeof(List<Facture>)));
-            }
+            //using StreamWriter sw2 = new StreamWriter("Files/Factures.json");
+            //{
+            //    sw2.Write(JsonSerializer.Serialize(gf.ListeFactures, typeof(List<Facture>)));
+            //}
             //using StreamWriter sw3 = new StreamWriter("Files/Quantites.json");
             //{
             //    sw3.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<Garniture, int>)));
@@ -227,7 +227,7 @@ namespace Poco.Models
             }
             if (File.Exists("Files/Quantites.json"))
             {
-                using StreamReader sr3 = new StreamReader("Files/Factures.json");
+                using StreamReader sr3 = new StreamReader("Files/Quantites.json");
                 {
                     return JsonSerializer.Deserialize(sr3.ReadToEnd(), typeof(Dictionary<Garniture,int>)) as Dictionary<Garniture, int>;
                 }

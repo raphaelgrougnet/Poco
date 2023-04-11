@@ -246,7 +246,7 @@ namespace Poco.Views
                 {
                     if (_employeConnecter.MesPoincons.Count > 0)
                     {
-                        if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Hours <= DateTime.UtcNow.TimeOfDay.Hours)
+                        if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Hours >= DateTime.Now.Hour)
                         {
                             if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Minutes < DateTime.UtcNow.TimeOfDay.Minutes)
                             {
