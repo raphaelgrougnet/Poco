@@ -181,7 +181,7 @@ namespace Poco.Models
 
         //}
 
-        public static void EnregistrerDonnees(GestionEmploye ge, GestionFacture gf)
+        public static void EnregistrerDonnees(GestionEmploye ge, GestionFacture gf, Dictionary<Garniture, int> dicoQuant)
         {
             using StreamWriter sw1 = new StreamWriter("Files/Employes.json");
             {
@@ -191,13 +191,18 @@ namespace Poco.Models
             {
                 sw2.Write(JsonSerializer.Serialize(gf.ListeFactures, typeof(List<Facture>)));
             }
+            using StreamWriter sw3 = new StreamWriter("Files/Quantites.json");
+            {
+                sw3.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<Garniture, int>)));
+            }
 
 
 
         }
 
-        public static void ChargerDonnees(GestionEmploye ge, GestionFacture gf)
+        public static Dictionary<Garniture, int> ChargerDonnees(GestionEmploye ge, GestionFacture gf)
         {
+
             if (File.Exists("Files/Employes.json"))
             {
                 using StreamReader sr1 = new StreamReader("Files/Employes.json");
@@ -220,6 +225,34 @@ namespace Poco.Models
             {
                 gf.ListeFactures = new List<Facture>();
             }
+            if (File.Exists("Files/Quantites.json"))
+            {
+                using StreamReader sr3 = new StreamReader("Files/Factures.json");
+                {
+                    return JsonSerializer.Deserialize(sr3.ReadToEnd(), typeof(Dictionary<Garniture,int>)) as Dictionary<Garniture, int>;
+                }
+            }
+            
+            return new Dictionary<Garniture, int>() 
+            {
+                {new Legume("Avocat") , 0},
+                {new Legume("Jalapeno") , 0},
+                {new Legume("Mais") , 0},
+                {new Legume("Oignon") , 0},
+                {new Legume("Oigon F") , 0},
+                {new Legume("Olive") , 0},
+                {new Legume("Poivron") , 0},
+                {new Legume("Riz") , 0},
+                {new Legume("Salade") , 0},
+                {new Legume("Tomate") , 0},
+                {new Viande("Boeuf") , 0},
+                {new Viande("Dinde") , 0},
+                {new Viande("Poisson") , 0},
+                {new Viande("Porc") , 0},
+                {new Viande("Poulet") , 0},
+
+            };
+            
 
 
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
@@ -48,6 +49,11 @@ namespace Poco.Models
         {
             Prix = DictExtraPrix[pTypeExtra];
             Nom = pTypeExtra.ToString();
+        }
+
+        [JsonConstructor]
+        public Extra()
+        {
         }
 
         #endregion

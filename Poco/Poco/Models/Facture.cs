@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public class Facture
     {
 
@@ -91,6 +93,9 @@ namespace Poco.Models
             SousTotal = 0;
             PrixTotal = 0;
         }
+
+        [JsonConstructor]
+        public Facture() { }
 
         #endregion
 

@@ -27,6 +27,8 @@ namespace Poco
         public GestionFacture _gestionFacture;
         public static System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
 
+        public Dictionary<Garniture, int> DictGarnitureQuantite = new Dictionary<Garniture, int>();
+
         public FormPrincipal()
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace Poco
             
 
 
-            Utils.ChargerDonnees(_gestionEmploye, _gestionFacture);
+            DictGarnitureQuantite = Utils.ChargerDonnees(_gestionEmploye, _gestionFacture);
 
             //string path = GestionEmploye.PATH_FILES + "Employes.csv";
             //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
@@ -144,7 +146,7 @@ namespace Poco
                     else
                         e.Cancel = true;
                 }
-                Utils.EnregistrerDonnees(_gestionEmploye, _gestionFacture);
+                Utils.EnregistrerDonnees(_gestionEmploye, _gestionFacture, DictGarnitureQuantite);
                 MessageBox.Show("Enregistrement terminé", "Fermeture de l'application", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
