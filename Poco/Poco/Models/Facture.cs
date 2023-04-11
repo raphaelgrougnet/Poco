@@ -72,18 +72,18 @@ namespace Poco.Models
             set { _prixTotal = value; }
         }
 
-        
+
 
         #endregion
-
+        
         #region CONSTRUCTEURS
-        public Facture(uint noFacture, DateTime date, decimal sousTotal, decimal prixTotal)
+        public Facture(uint NoFacture, DateTime Date, decimal SousTotal, decimal PrixTotal)
         {
-            NoFacture = noFacture;
-            Date = date;
+            this.NoFacture = NoFacture;
+            this.Date = Date;
             ListePlats = new List<Plat>();
-            SousTotal = sousTotal;
-            PrixTotal = prixTotal;
+            this.SousTotal = SousTotal;
+            this.PrixTotal = PrixTotal;
         }
         public Facture(uint noFacture)
         {
@@ -94,7 +94,7 @@ namespace Poco.Models
             PrixTotal = 0;
         }
 
-        [JsonConstructor]
+   
         public Facture() { }
 
         #endregion

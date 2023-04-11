@@ -191,10 +191,10 @@ namespace Poco.Models
             {
                 sw2.Write(JsonSerializer.Serialize(gf.ListeFactures, typeof(List<Facture>)));
             }
-            using StreamWriter sw3 = new StreamWriter("Files/Quantites.json");
-            {
-                sw3.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<Garniture, int>)));
-            }
+            //using StreamWriter sw3 = new StreamWriter("Files/Quantites.json");
+            //{
+            //    sw3.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<Garniture, int>)));
+            //}
 
 
 

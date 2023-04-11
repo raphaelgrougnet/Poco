@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
@@ -44,11 +45,14 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public Viande(string pNom) : base(pNom)
+        
+        public Viande(string Nom) : base(Nom)
         {
             
-            Prix = DictViandePrix[pNom];
+            Prix = DictViandePrix[Nom];
         }
+
+        public Viande() { }
         #endregion
 
         #region MÉTHODES

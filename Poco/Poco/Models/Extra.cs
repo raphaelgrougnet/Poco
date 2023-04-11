@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public class Extra
     {
         public enum TypeExtra
@@ -44,14 +45,14 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-
-        public Extra(TypeExtra pTypeExtra)
+        
+        public Extra(TypeExtra TypeExtra)
         {
-            Prix = DictExtraPrix[pTypeExtra];
-            Nom = pTypeExtra.ToString();
+            Prix = DictExtraPrix[TypeExtra];
+            Nom = TypeExtra.ToString();
         }
 
-        [JsonConstructor]
+        
         public Extra()
         {
         }

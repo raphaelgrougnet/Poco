@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public enum TypePlat
     {
         Burrito,
@@ -78,9 +79,9 @@ namespace Poco.Models
         public ushort Quantite
         {
             get { return _quantite; }
-            set 
-            { 
-                if(value < 0)
+            set
+            {
+                if (value < 0)
                     throw new QuantitePlatPlusPetitQueZeroException(Nom);
                 _quantite = value;
             }
@@ -91,21 +92,24 @@ namespace Poco.Models
             get { return _listeExtras; }
             set { _listeExtras = value; }
         }
-        
+
         #endregion
 
         #region CONSTRUCTEURS
-        public Plat(TypePlat pTPlat)
+        
+        public Plat(TypePlat TPlat)
         {
-            TPlat = pTPlat;
-            Nom = pTPlat.ToString();
+            this.TPlat = TPlat;
+            Nom = TPlat.ToString();
             ListeGarniture = new List<Garniture>();
-            Prix = DictPlatPrix[pTPlat];
+            Prix = DictPlatPrix[TPlat];
             ListeExtras = new List<Extra>();
 
         }
+        
+        
 
-        [JsonConstructor]
+
         public Plat() { }
 
         #endregion
@@ -173,11 +177,11 @@ namespace Poco.Models
         /// <exception cref="QuantitePlatPlusPetitQueZeroException">Lancé si le résultat de la quantité du plat est plus petit que zéro</exception>
         public void RetirerQuantite(ushort valeur)
         {
-            if((Quantite -= valeur) >= 0)
+            if ((Quantite -= valeur) >= 0)
                 Quantite -= valeur;
             else
                 throw new QuantitePlatPlusPetitQueZeroException(Nom);
-          
+
         }
 
         public void AjouterExtra(Extra pExtra)

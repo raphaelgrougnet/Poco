@@ -41,12 +41,13 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public Garniture(string pNom)
-        {
-            Nom = pNom;
-        }
 
-        [JsonConstructor]
+        public Garniture(string Nom)
+        {
+            this.Nom = Nom;
+        }
+         
+        
         public Garniture() { }
         #endregion
 
