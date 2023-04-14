@@ -48,27 +48,28 @@ namespace Poco.Views
 
         private void InitialiserVente()
         {
-            spGarniture.IsEnabled = false;
-            spViandes.IsEnabled = false;
-            spPlats.IsEnabled = true;
+            InitialiserPlat();
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
             lblTotalFacture.DataContext = null;
             lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
-            btnAjouter.IsEnabled = false;
-            btnRetirer.IsEnabled = false;
-            btnPayer.IsEnabled = false;
+            
         }
 
         private void InitialiserPlat()
         {
             spGarniture.IsEnabled = false;
+            spExtras.IsEnabled = false;
             spViandes.IsEnabled = false;
+            spPlats.IsEnabled = true;
+
+            btnPayer.IsEnabled = false;
             btnAjouter.IsEnabled = false;
             btnRetirer.IsEnabled = false;
-            spPlats.IsEnabled = true;
+
+            lstFacture.SelectedItem = null;
         }
 
         private void MiseAJourPrix()
@@ -86,6 +87,14 @@ namespace Poco.Views
         {
             if (lstFacture.SelectedItem != null)
             {
+                if (_platCourant != null)
+                {
+                    MessageBox.Show("Veuillez finir le plat en cours.");
+                    lstFacture.SelectedItem = null;
+                    btnRetirer.IsEnabled = false;
+                    return;
+                }
+
                 Plat plat = lstFacture.SelectedItem as Plat;
                 _factureCourante.ListePlats.Remove(plat);
                 lstFacture.Items.Refresh();
@@ -100,7 +109,7 @@ namespace Poco.Views
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un plat à retirer");
+                MessageBox.Show("Veuillez sélectionner un plat à retirer.");
             }
 
         }
@@ -108,17 +117,14 @@ namespace Poco.Views
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
             lstFacture.Items.Refresh();
-            spGarniture.IsEnabled = false;
-            spViandes.IsEnabled = false;
-            spPlats.IsEnabled = true;
-            btnAjouter.IsEnabled = false;
+            InitialiserPlat();
             _platCourant = null;
             //DeselectionnerToogleButton();
             if (_factureCourante.ListePlats.Count == 0)
                 btnPayer.IsEnabled = false;
             else
                 btnPayer.IsEnabled = true;
-
+            
             MiseAJourPrix();
 
         }
@@ -154,6 +160,16 @@ namespace Poco.Views
             spViandes.IsEnabled = false;
             spGarniture.IsEnabled = true;
             btnAjouter.IsEnabled = true;
+            spExtras.IsEnabled = true;
+            if (v.Nom == "Vege")
+            {
+                btnExtraViande.IsEnabled = false;
+            }
+            else
+            {
+                btnExtraViande.IsEnabled = true;
+            }
+
             MiseAJourPrix();
 
 
@@ -224,6 +240,33 @@ namespace Poco.Views
             {
                 btnRetirer.IsEnabled = true;
             }
+        }
+
+        private void ButtonClick_Extras(object sender, MouseButtonEventArgs e)
+        {
+            Border btn = sender as Border;
+            Extra extra = new Extra(Enum.Parse<Extra.TypeExtra>(btn.DataContext.ToString()));
+
+            foreach (Extra ex in _platCourant.ListeExtras)
+            {
+
+                if (ex.Nom == extra.Nom)
+                {
+                    _platCourant.RetirerExtra(ex);
+                    lstFacture.Items.Refresh();
+                    MiseAJourPrix();
+
+                    return;
+                }
+
+            }
+
+            _platCourant.AjouterExtra(extra);
+            lstFacture.Items.Refresh();
+
+
+
+            MiseAJourPrix();
         }
     }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public abstract class Garniture : IQuantite
     {
 
@@ -18,7 +20,7 @@ namespace Poco.Models
         private ushort _quantite;
 
         #endregion
-        
+
         #region PROPRIÉTÉS
         public string Nom
         {
@@ -39,10 +41,14 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public Garniture(string pNom)
+
+        public Garniture(string Nom)
         {
-            Nom = pNom;
+            this.Nom = Nom;
         }
+         
+        
+        public Garniture() { }
         #endregion
 
         #region MÉTHODES

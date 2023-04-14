@@ -27,15 +27,27 @@ namespace Poco
         public GestionFacture _gestionFacture;
         public static System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
 
+        public Dictionary<Garniture, int> DictGarnitureQuantite = new Dictionary<Garniture, int>();
+
         public FormPrincipal()
         {
             InitializeComponent();
-            List<Employe> lstEmployes = Utils.ChargerListeEmployes("Files/Employes.csv");
-            List<Facture> lstFactures = Utils.ChargerListeFacture("Files/Factures.csv");
+            //List<Employe> lstEmployes = Utils.ChargerListeEmployes("Files/Employes.csv");
+            //List<Facture> lstFactures = Utils.ChargerListeFacture("Files/Factures.csv");
+
+            _gestionEmploye = new GestionEmploye();
+            _gestionFacture = new GestionFacture(new List<Facture>());
+
+            
+
+
+            DictGarnitureQuantite = Utils.ChargerDonnees(_gestionEmploye, _gestionFacture);
+
             //string path = GestionEmploye.PATH_FILES + "Employes.csv";
             //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
-            _gestionEmploye = new GestionEmploye();
-            _gestionFacture = new GestionFacture(lstFactures);
+
+
+
 
             //foreach (string[] lstEmploye in lstStringEmployes)
             //{
@@ -44,14 +56,15 @@ namespace Poco
             //    string nom = lstEmploye[1];
             //    string prenom = lstEmploye[2];
             //    DateTime dob = DateTime.Parse(lstEmploye[3], cultureinfo);
-            foreach (Employe employe in lstEmployes)
+
+            foreach (Employe employe in _gestionEmploye.ListeEmployes)
             {
                 string validation = _gestionEmploye.ValiderEmploye(employe.Code, employe.Nom, employe.Prenom, employe.DateNaissance);
 
                 if (validation == "")
                 {
+
                     
-                    _gestionEmploye.AjouterEmploye(employe);
                     if (_gestionEmploye.DictEmployesCodes.ContainsKey(employe.Code) == false)
                     {
                         _gestionEmploye.DictEmployesCodes.Add(employe.Code, employe);
@@ -59,7 +72,7 @@ namespace Poco
 
                 }
             }
-            
+
 
 
             //}
@@ -91,29 +104,29 @@ namespace Poco
             lstEmployesPresents.Items.Refresh();
         }
 
-        private void EnregistrerDonnes()
-        {
-            string donneesEmployes = "Code;Nom;Prenom;DOB\n";
-            foreach (Employe employe in _gestionEmploye.ListeEmployes)
-            {
-                donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance.ToString("dd-MM-yyyy")}\n");
-            }
-            donneesEmployes.TrimEnd();
-            string path = "Files/Employes.csv";
-            Utils.EnregistrerDonnees(path, donneesEmployes, false);
-            path = "Files/Factures.csv";
-            string donneesFactures = "NoFacture;SousTotalFacture;TotalFacture\n";
+        //private void EnregistrerDonnes()
+        //{
+        //    string donneesEmployes = "Code;Nom;Prenom;DOB\n";
+        //    foreach (Employe employe in _gestionEmploye.ListeEmployes)
+        //    {
+        //        donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance.ToString("dd-MM-yyyy")}\n");
+        //    }
+        //    donneesEmployes.TrimEnd();
+        //    string path = "Files/Employes.csv";
+        //    Utils.EnregistrerDonnees(path, donneesEmployes, false);
+        //    path = "Files/Factures.csv";
+        //    string donneesFactures = "NoFacture;SousTotalFacture;TotalFacture\n";
             
-            foreach (Facture facture in _gestionFacture.ListeFactures)
-            {
+        //    foreach (Facture facture in _gestionFacture.ListeFactures)
+        //    {
                 
-                 donneesFactures += String.Format($"{facture.NoFacture};{facture.Date.ToString("dd-MM-yyyy")};{facture.SousTotal};{facture.PrixTotal}\n");
+        //         donneesFactures += String.Format($"{facture.NoFacture};{facture.Date.ToString("dd-MM-yyyy")};{facture.SousTotal};{facture.PrixTotal}\n");
 
                 
-            }
-            donneesFactures.TrimEnd();
-            Utils.EnregistrerDonnees(path, donneesFactures, false);
-        }
+        //    }
+        //    donneesFactures.TrimEnd();
+        //    Utils.EnregistrerDonnees(path, donneesFactures, false);
+        //}
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -133,7 +146,7 @@ namespace Poco
                     else
                         e.Cancel = true;
                 }
-                EnregistrerDonnes();
+                Utils.EnregistrerDonnees(_gestionEmploye, _gestionFacture, DictGarnitureQuantite);
                 MessageBox.Show("Enregistrement terminé", "Fermeture de l'application", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public enum TypePlat
     {
         Burrito,
@@ -40,6 +42,7 @@ namespace Poco.Models
         private decimal _prix;
         private Viande _viandeP;
         private ushort _quantite;
+        private List<Extra> _listeExtras;
         #endregion
 
         #region PROPRIÉTÉS
@@ -76,25 +79,38 @@ namespace Poco.Models
         public ushort Quantite
         {
             get { return _quantite; }
-            set 
-            { 
-                if(value < 0)
+            set
+            {
+                if (value < 0)
                     throw new QuantitePlatPlusPetitQueZeroException(Nom);
                 _quantite = value;
             }
         }
+
+        public List<Extra> ListeExtras
+        {
+            get { return _listeExtras; }
+            set { _listeExtras = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTEURS
-        public Plat(TypePlat pTPlat)
+        
+        public Plat(TypePlat TPlat)
         {
-            TPlat = pTPlat;
-            Nom = pTPlat.ToString();
+            this.TPlat = TPlat;
+            Nom = TPlat.ToString();
             ListeGarniture = new List<Garniture>();
-            Prix = DictPlatPrix[pTPlat];
+            Prix = DictPlatPrix[TPlat];
+            ListeExtras = new List<Extra>();
 
-            
         }
+        
+        
+
+
+        public Plat() { }
 
         #endregion
 
@@ -161,11 +177,21 @@ namespace Poco.Models
         /// <exception cref="QuantitePlatPlusPetitQueZeroException">Lancé si le résultat de la quantité du plat est plus petit que zéro</exception>
         public void RetirerQuantite(ushort valeur)
         {
-            if((Quantite -= valeur) >= 0)
+            if ((Quantite -= valeur) >= 0)
                 Quantite -= valeur;
             else
                 throw new QuantitePlatPlusPetitQueZeroException(Nom);
-          
+
+        }
+
+        public void AjouterExtra(Extra pExtra)
+        {
+            ListeExtras.Add(pExtra);
+        }
+
+        public void RetirerExtra(Extra pExtra)
+        {
+            ListeExtras.Remove(pExtra);
         }
 
         /// <summary>
@@ -174,6 +200,7 @@ namespace Poco.Models
         /// <returns>Nom du plat</returns>
         public override string ToString()
         {
+            
             return Nom;
         }
         #endregion

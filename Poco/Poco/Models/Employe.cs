@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public class Employe
     {
 

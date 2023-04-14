@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public class Facture
     {
 
@@ -24,6 +26,8 @@ namespace Poco.Models
 
         private decimal _prixTotal;
 
+        
+        
         
 
 
@@ -69,16 +73,17 @@ namespace Poco.Models
         }
 
 
-        #endregion
 
+        #endregion
+        
         #region CONSTRUCTEURS
-        public Facture(uint noFacture, DateTime date, decimal sousTotal, decimal prixTotal)
+        public Facture(uint NoFacture, DateTime Date, decimal SousTotal, decimal PrixTotal)
         {
-            NoFacture = noFacture;
-            Date = date;
+            this.NoFacture = NoFacture;
+            this.Date = Date;
             ListePlats = new List<Plat>();
-            SousTotal = sousTotal;
-            PrixTotal = prixTotal;
+            this.SousTotal = SousTotal;
+            this.PrixTotal = PrixTotal;
         }
         public Facture(uint noFacture)
         {
@@ -88,6 +93,9 @@ namespace Poco.Models
             SousTotal = 0;
             PrixTotal = 0;
         }
+
+   
+        public Facture() { }
 
         #endregion
 
@@ -103,7 +111,17 @@ namespace Poco.Models
             foreach (Plat plat in ListePlats)
             {
                 sousTotal += plat.Prix;
+                if (plat.ListeExtras.Count > 0)
+                {
+                    foreach (Extra extra in plat.ListeExtras)
+                    {
+                        sousTotal += extra.Prix;
+                    }
+                }
+                
             }
+
+            
             return sousTotal;
         }
 

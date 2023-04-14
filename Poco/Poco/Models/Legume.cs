@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    [Serializable]
     public class Legume : Garniture
     {
 
@@ -22,7 +24,8 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
-        public Legume(string pNom) : base(pNom) {}
+        public Legume(string Nom) : base(Nom) {}
+
         #endregion
 
         #region MÉTHODES

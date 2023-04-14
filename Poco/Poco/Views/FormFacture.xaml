@@ -23,7 +23,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Background="#FFE4EBC3" CornerRadius="10 10 0 0" BorderBrush="#FFC5B718" BorderThickness="2 2 2 0">
-                <Label Name="lblNoFacture" Content="{Binding}" FontSize="25" />
+                <Label Name="lblNoFacture" FontSize="25" Content="{Binding}"/>
 
             </Border>
             <ScrollViewer Grid.Row="1"  Foreground="Black" VerticalScrollBarVisibility="Auto">
@@ -59,6 +59,27 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
+
+
+                                    <ItemsControl ItemsSource="{Binding ListeExtras}" d:ItemsSource="{d:SampleData ItemCount=2}" HorizontalAlignment="Right">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Prix, StringFormat={}{0:C2}}" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" Margin="0 0 2 0"/>
+
+                                                        <TextBlock Text="{Binding Nom, StringFormat= : {0}}" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" Margin="0 0 2 0"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -146,9 +167,22 @@
                             </Border>
                         </StackPanel>
                     </StackPanel>
-                    
-                    
-                    
+
+                    <Label Content="Extras" FontSize="50" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness=" 0 2 0 0" Margin="0 20 0 0 "/>
+
+                    <StackPanel x:Name="spExtras">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Border DataContext="Fromage" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFC96D39" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Extras">
+                                <Label Content="Fromage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                            <Border DataContext="Viande" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFC96D39" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Extras">
+                                <Label Name="btnExtraViande" Content="Viande" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                
+
+
 
 
                 </StackPanel>
