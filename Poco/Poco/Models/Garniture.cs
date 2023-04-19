@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    
+
     [Serializable]
     public abstract class Garniture : IQuantite
     {
 
         #region CONSTANTES
-
+        
         #endregion
 
         #region ATTRIBUTS
