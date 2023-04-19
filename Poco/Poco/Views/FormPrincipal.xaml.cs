@@ -92,10 +92,7 @@ namespace Poco
 
         }
 
-        private void btnAide_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+       
 
 
         private void btnPoincon_Click(object sender, RoutedEventArgs e)
@@ -275,6 +272,12 @@ namespace Poco
                     }
                 }
             }
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FormInventaire form = new FormInventaire(DictGarnitureQuantite);
+            form.ShowDialog();
         }
     }
 }
