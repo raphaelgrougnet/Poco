@@ -181,26 +181,22 @@ namespace Poco.Models
 
         //}
 
-        public static void EnregistrerDonnees(GestionEmploye ge, GestionFacture gf, Dictionary<Garniture, int> dicoQuant)
+        public static void EnregistrerDonnees(GestionEmploye ge, GestionFacture gf, Dictionary<TypeLegume, int> dicoQuant)
         {
             using StreamWriter sw1 = new StreamWriter("Files/Employes.json");
             {
                 sw1.Write(JsonSerializer.Serialize(ge.ListeEmployes, typeof(List<Employe>)));
             }
-            //using StreamWriter sw2 = new StreamWriter("Files/Factures.json");
-            //{
-            //    sw2.Write(JsonSerializer.Serialize(gf.ListeFactures, typeof(List<Facture>)));
-            //}
-            //using StreamWriter sw3 = new StreamWriter("Files/Quantites.json");
-            //{
-            //    sw3.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<Garniture, int>)));
-            //}
+            using StreamWriter sw2 = new StreamWriter("Files/Quantites.json");
+            {
+                sw2.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<TypeLegume, int>)));
+            }
 
 
 
         }
 
-        public static Dictionary<Garniture, int> ChargerDonnees(GestionEmploye ge, GestionFacture gf)
+        public static Dictionary<TypeLegume, int> ChargerDonnees(GestionEmploye ge, GestionFacture gf)
         {
 
             if (File.Exists("Files/Employes.json"))
@@ -229,28 +225,22 @@ namespace Poco.Models
             {
                 using StreamReader sr3 = new StreamReader("Files/Quantites.json");
                 {
-                    return JsonSerializer.Deserialize(sr3.ReadToEnd(), typeof(Dictionary<Garniture,int>)) as Dictionary<Garniture, int>;
+                    return JsonSerializer.Deserialize(sr3.ReadToEnd(), typeof(Dictionary<TypeLegume, int>)) as Dictionary<TypeLegume, int>;
                 }
             }
             
-            return new Dictionary<Garniture, int>() 
+            return new Dictionary<TypeLegume, int>() 
             {
-                {new Legume("Avocat") , 0},
-                {new Legume("Jalapeno") , 0},
-                {new Legume("Mais") , 0},
-                {new Legume("Oignon") , 0},
-                {new Legume("Oigon F") , 0},
-                {new Legume("Olive") , 0},
-                {new Legume("Poivron") , 0},
-                {new Legume("Riz") , 0},
-                {new Legume("Salade") , 0},
-                {new Legume("Tomate") , 0},
-                {new Viande("Boeuf") , 0},
-                {new Viande("Dinde") , 0},
-                {new Viande("Poisson") , 0},
-                {new Viande("Porc") , 0},
-                {new Viande("Poulet") , 0},
-
+                {TypeLegume.Avocat , 0},
+                {TypeLegume.Jalapeno , 0},
+                {TypeLegume.Mais , 0},
+                {TypeLegume.Oignon , 0},
+                {TypeLegume.OignonF , 0},
+                {TypeLegume.Olive , 0},
+                {TypeLegume.Poivron , 0},
+                {TypeLegume.Riz , 0},
+                {TypeLegume.Salade , 0},
+                {TypeLegume.Tomate , 0}
             };
             
 
