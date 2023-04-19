@@ -21,9 +21,9 @@ namespace Poco.Views
     /// </summary>
     public partial class FormInventaire : Window
     {
-        private Dictionary<Garniture, int> _inventaire;
+        private Dictionary<TypeLegume, int> _inventaire;
 
-        public FormInventaire(Dictionary<Garniture, int> pInventaire)
+        public FormInventaire(Dictionary<TypeLegume, int> pInventaire)
         {
             InitializeComponent();
             _inventaire = pInventaire;
@@ -47,9 +47,9 @@ namespace Poco.Views
         {
             lstGarniture.Items.Clear();
 
-            foreach (KeyValuePair<Garniture, int> garniture in _inventaire)
+            foreach (KeyValuePair<TypeLegume, int> garniture in _inventaire)
             {
-                lstGarniture.Items.Add(garniture.Key.Nom + " - " + garniture.Value);
+                lstGarniture.Items.Add(garniture.Key.ToString() + " - " + garniture.Value);
             }
         }
 
@@ -135,9 +135,9 @@ namespace Poco.Views
             string nomGarniture = lstGarniture.SelectedItem.ToString().Split('-')[0].Trim();
 
 
-            foreach(KeyValuePair<Garniture, int> garniture in _inventaire)
+            foreach(KeyValuePair<TypeLegume, int> garniture in _inventaire)
             {
-                if (garniture.Key.Nom == nomGarniture)
+                if (garniture.Key.ToString() == nomGarniture)
                 {
                     _inventaire[garniture.Key] += quantite;
                 }
