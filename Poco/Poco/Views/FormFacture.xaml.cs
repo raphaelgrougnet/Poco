@@ -42,6 +42,8 @@ namespace Poco.Views
 
             InitialiserVente();
 
+            
+
 
 
         }
@@ -55,7 +57,19 @@ namespace Poco.Views
             lblTotalFacture.DataContext = null;
             lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
-            
+
+            foreach ((TypeLegume legume, int qte) in FormPrincipal.DictGarnitureQuantite)
+            {
+
+                string nomElem = legume.ToString();
+                Border bordure = this.FindName(nomElem) as Border;
+                if (qte <= 0)
+                {
+                    bordure.IsEnabled = false;
+                }
+
+            }
+
         }
 
         private void InitialiserPlat()
