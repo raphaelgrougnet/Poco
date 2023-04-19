@@ -57,16 +57,20 @@ namespace Poco.Views
         {
             int quantite;
 
-            if (txtQuantite.Text == "")
-                quantite = 0;
+            if (int.TryParse(txtQuantite.Text, out quantite))
+                quantite = int.Parse(txtQuantite.Text);
             else
-             quantite = int.Parse(txtQuantite.Text);
+                quantite = 0;
+                    
+
+
 
             if (lstGarniture.SelectedItem != null)
             {
                 if (quantite == 0)
                 {
                     btnAjouter.IsHitTestVisible = false;
+
                 }
                 else
                 {
@@ -122,6 +126,30 @@ namespace Poco.Views
         private void btnFermer_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
+        }
+
+        private void btnAjouter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            int quantite = int.Parse(txtQuantite.Text);
+
+            string nomGarniture = lstGarniture.SelectedItem.ToString().Split('-')[0].Trim();
+
+
+            foreach(KeyValuePair<Garniture, int> garniture in _inventaire)
+            {
+                if (garniture.Key.Nom == nomGarniture)
+                {
+                    _inventaire[garniture.Key] += quantite;
+                }
+            }
+            
+            AfficherListeGarniture();
+
+            txtQuantite.Text = "0";
+
+            lstGarniture.SelectedItem = null;
+
+            GestionBtnAjouter();
         }
     }
 }

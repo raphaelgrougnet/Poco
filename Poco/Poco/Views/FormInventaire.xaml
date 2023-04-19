@@ -29,7 +29,7 @@
             <Border Name="btnFermer" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#E4D321"  BorderThickness="2" CornerRadius="10" MouseDown="btnFermer_MouseDown">
                 <Label Content="Fermer" FontSize="24"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </Border>
-            <Border Name="btnAjouter" Width="165" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FDC903" BorderThickness="2" CornerRadius="10">
+            <Border Name="btnAjouter" Width="165" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FDC903" BorderThickness="2" CornerRadius="10 " MouseDown="btnAjouter_MouseDown">
                 <Label Content="Ajouter la quantité" FontSize="18"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </Border>
             <Border Name="brdQuantite" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FEE16F"  BorderThickness="2" CornerRadius="10">
