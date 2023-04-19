@@ -27,7 +27,7 @@ namespace Poco
         public GestionFacture _gestionFacture;
         public static System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("fr-FR");
 
-        public Dictionary<Garniture, int> DictGarnitureQuantite = new Dictionary<Garniture, int>();
+        public static Dictionary<TypeLegume, int> DictGarnitureQuantite = new Dictionary<TypeLegume, int>();
 
         public FormPrincipal()
         {
@@ -42,6 +42,8 @@ namespace Poco
 
 
             DictGarnitureQuantite = Utils.ChargerDonnees(_gestionEmploye, _gestionFacture);
+
+            
 
             //string path = GestionEmploye.PATH_FILES + "Employes.csv";
             //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
