@@ -106,7 +106,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ScrollViewer Name="scrlPoincon" Margin="0,0,0,55" VerticalScrollBarVisibility="Hidden" Background="#FFC5B718">
+                <ScrollViewer Name="scrlPoincon" Margin="0,0,0,55" VerticalScrollBarVisibility="Visible" Background="#FFC5B718">
                     <StackPanel Orientation="Horizontal">
                         <ItemsControl Name="lstEntree" Width="225" Height="325" Padding="10" Background="#f0f2e7" VerticalAlignment="Center" BorderThickness="2">
                             <ItemsControl.ItemTemplate>

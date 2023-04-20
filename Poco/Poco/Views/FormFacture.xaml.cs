@@ -84,6 +84,10 @@ namespace Poco.Views
                 {
                     bordure.IsEnabled = false;
                 }
+                else
+                {
+                    bordure.IsEnabled = true;
+                }
 
             }
         }
