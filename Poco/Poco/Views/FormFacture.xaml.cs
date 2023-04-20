@@ -58,17 +58,7 @@ namespace Poco.Views
             lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
 
-            foreach ((TypeLegume legume, int qte) in FormPrincipal.DictGarnitureQuantite)
-            {
-
-                string nomElem = legume.ToString();
-                Border bordure = this.FindName(nomElem) as Border;
-                if (qte <= 0)
-                {
-                    bordure.IsEnabled = false;
-                }
-
-            }
+            
 
         }
 
@@ -84,6 +74,18 @@ namespace Poco.Views
             btnRetirer.IsEnabled = false;
 
             lstFacture.SelectedItem = null;
+
+            foreach ((TypeLegume legume, int qte) in FormPrincipal.DictGarnitureQuantite)
+            {
+
+                string nomElem = legume.ToString();
+                Border bordure = this.FindName(nomElem) as Border;
+                if (qte <= 0)
+                {
+                    bordure.IsEnabled = false;
+                }
+
+            }
         }
 
         private void MiseAJourPrix()
@@ -110,6 +112,11 @@ namespace Poco.Views
                 }
 
                 Plat plat = lstFacture.SelectedItem as Plat;
+                foreach (Garniture garniture in plat.ListeGarniture)
+                {
+                    FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)]++;
+                    
+                }
                 _factureCourante.ListePlats.Remove(plat);
                 lstFacture.Items.Refresh();
                 btnRetirer.IsEnabled = false;
@@ -130,17 +137,45 @@ namespace Poco.Views
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            lstFacture.Items.Refresh();
-            InitialiserPlat();
-            _platCourant = null;
-            //DeselectionnerToogleButton();
-            if (_factureCourante.ListePlats.Count == 0)
-                btnPayer.IsEnabled = false;
-            else
-                btnPayer.IsEnabled = true;
-            
-            MiseAJourPrix();
+            if (ValiderQteGarnitureAjout(_platCourant))
+            {
+                lstFacture.Items.Refresh();
+                InitialiserPlat();
+                _platCourant = null;
+                //DeselectionnerToogleButton();
+                if (_factureCourante.ListePlats.Count == 0)
+                    btnPayer.IsEnabled = false;
+                else
+                    btnPayer.IsEnabled = true;
 
+                MiseAJourPrix();
+            }
+            
+        }
+
+        private bool ValiderQteGarnitureAjout(Plat pPlat)
+        {
+            string legumesManquants = "";
+            foreach (Garniture garniture in pPlat.ListeGarniture)
+            {
+                if (FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)] <= 0)
+                {
+                    legumesManquants += " " + garniture.Nom;
+                }
+            }
+            if (legumesManquants != "")
+            {
+                MessageBox.Show($"Impossible de compléter la commande car il n'y a plus de{legumesManquants}.\nVeuillez vérifier le stock ou modifier le plat {pPlat.Nom} {pPlat.ViandeP.Nom}.", "Erreur de quantitée", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+
+            }
+            
+            foreach (Garniture garniture in pPlat.ListeGarniture)
+            {
+                FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)]--;
+            }
+            
+            return true;
         }
 
 
@@ -227,7 +262,6 @@ namespace Poco.Views
                 MessageBox.Show("Facture payée | Total : " + "$" + _factureCourante.PrixTotal.ToString("n2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
                 //_gestionFacture.SauvegarderFactures("Factures.csv");
                 MiseAJourPrix();
-
                 InitialiserVente();
             }
             else
@@ -237,7 +271,7 @@ namespace Poco.Views
 
         }
 
-
+        
         
 
         private void btnAccueil_Click(object sender, MouseButtonEventArgs e)
