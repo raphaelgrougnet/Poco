@@ -50,15 +50,16 @@ namespace Poco.Views
 
         private void InitialiserVente()
         {
-            InitialiserPlat();
+            
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
             lblTotalFacture.DataContext = null;
             lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
+            InitialiserPlat();
 
-            
+
 
         }
 
@@ -68,8 +69,11 @@ namespace Poco.Views
             spExtras.IsEnabled = false;
             spViandes.IsEnabled = false;
             spPlats.IsEnabled = true;
+            if (_factureCourante.ListePlats.Count > 0)
+                btnPayer.IsEnabled = true;
+            else
+                btnPayer.IsEnabled = false;
 
-            btnPayer.IsEnabled = false;
             btnAjouter.IsEnabled = false;
             btnRetirer.IsEnabled = false;
 
