@@ -246,18 +246,51 @@ namespace Poco.Views
                 {
                     if (_employeConnecter.MesPoincons.Count > 0)
                     {
-                        if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Hours >= DateTime.Now.Hour)
+                        Poincon dernierPoincon = _employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1];
+                        if (dernierPoincon.Date.Year <= DateTime.Now.Year)
                         {
-                            if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Minutes < DateTime.UtcNow.TimeOfDay.Minutes)
+                            if (dernierPoincon.Date.Month <= DateTime.Now.Month)
                             {
-                                
-                                _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
-                                _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
-                                AfficherListePoincon();
+                                if (dernierPoincon.Date.Day <= DateTime.Now.Day)
+                                {
+                                    if (dernierPoincon.Heure.Hours <= DateTime.Now.Hour)
+                                    {
+                                        if (dernierPoincon.Heure.Minutes < DateTime.Now.Minute)
+                                        {
+                                            _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
+                                            _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
+                                            AfficherListePoincon();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Vous devez attendre au moins 1 minute pour poinçonner.", "Poiçon", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
+                                        _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
+                                        AfficherListePoincon();
+                                    }
+
+                                }
+                                else
+                                {
+                                    _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
+                                    _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
+                                    AfficherListePoincon();
+                                }
 
                             }
                             else
-                                MessageBox.Show("Vous devez attendre au moins 1 minute pour poinçonner.", "Poiçon", MessageBoxButton.OK, MessageBoxImage.Information);
+                            {
+                                _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Entree));
+                                _gestionEmploye.ListeEmployesPresent.Add(_employeConnecter);
+                                AfficherListePoincon();
+                            }
+
                         }
                         else
                         {
@@ -266,6 +299,7 @@ namespace Poco.Views
                             AfficherListePoincon();
                         }
                         
+
                     }
                     else
                     {
@@ -289,18 +323,51 @@ namespace Poco.Views
                 {
                     if (_employeConnecter.MesPoincons.Count > 0)
                     {
-                        if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Hours >= DateTime.Now.Hour)
+                        Poincon dernierPoincon = _employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1];
+                        if (dernierPoincon.Date.Year <= DateTime.Now.Year)
                         {
-                            if (_employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1].Heure.Minutes < DateTime.UtcNow.TimeOfDay.Minutes)
+                            if (dernierPoincon.Date.Month <= DateTime.Now.Month)
                             {
+                                if (dernierPoincon.Date.Day <= DateTime.Now.Day)
+                                {
+                                    if (dernierPoincon.Heure.Hours <= DateTime.Now.Hour)
+                                    {
+                                        if (dernierPoincon.Heure.Minutes < DateTime.Now.Minute)
+                                        {
+                                            _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                                            _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
+                                            AfficherListePoincon();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Vous devez attendre au moins 1 minute pour poinçonner.", "Poiçon", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                                _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
-                                _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
-                                AfficherListePoincon();
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                                        _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
+                                        AfficherListePoincon();
+                                    }
+
+                                }
+                                else
+                                {
+                                    _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                                    _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
+                                    AfficherListePoincon();
+                                }
 
                             }
                             else
-                                MessageBox.Show("Vous devez attendre au moins 1 minute pour poinçonner.", "Poiçon", MessageBoxButton.OK, MessageBoxImage.Information);
+                            {
+                                _employeConnecter.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                                _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
+                                AfficherListePoincon();
+                            }
+
                         }
                         else
                         {
@@ -308,6 +375,7 @@ namespace Poco.Views
                             _gestionEmploye.ListeEmployesPresent.Remove(_employeConnecter);
                             AfficherListePoincon();
                         }
+
 
                     }
                     else
