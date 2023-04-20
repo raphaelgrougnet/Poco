@@ -87,7 +87,7 @@
                 </ListBox>
             </ScrollViewer>
 
-            <TextBlock Name="lblTotalFacture" FontSize="35" Foreground="Black" Text="{Binding PrixTotal, StringFormat=Total : {0:C2}}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock Name="lblTotalFacture" FontSize="35" Foreground="Black" Text="{Binding PrixTotal, StringFormat=Total + tx : {0:C2}}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -119,7 +119,7 @@
                 <ColumnDefinition Width="0.9*"/>
             </Grid.ColumnDefinitions>
             <Border BorderThickness="0,0,2,0" BorderBrush="Black" Grid.Column="0">
-                <StackPanel Orientation="Vertical" >
+                <StackPanel Orientation="Vertical" Margin="10 0 0 0">
                     <Label FontSize="50" HorizontalContentAlignment="Center" Content="Garniture"/>
                     <StackPanel Name="spGarniture">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
