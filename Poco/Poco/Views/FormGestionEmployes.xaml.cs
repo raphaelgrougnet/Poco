@@ -257,11 +257,25 @@ namespace Poco.Views
             {
                 if (lstEmployes.SelectedItem is not null)
                 {
-                    if (MessageBox.Show($"Voulez-vous vraiment supprimer l'employé {(Employe)lstEmployes.SelectedItem} ?", "Suppression d'un employé", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (!_gestionEmploye.ListeEmployesPresent.Contains(lstEmployes.SelectedItem))
                     {
-                        _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
-                        InitialiserChamps();
+                        if (MessageBox.Show($"Voulez-vous vraiment supprimer l'employé {(Employe)lstEmployes.SelectedItem} ?",
+                            "Suppression d'un employé",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
+                            InitialiserChamps();
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show($"Impossible de supprimer l'employé {lstEmployes.SelectedItem as Employe}.\nVeuillez poincionner l'employé avant de le supprimer.",
+                            "Suppression d'un employé",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                    
 
 
                 }
