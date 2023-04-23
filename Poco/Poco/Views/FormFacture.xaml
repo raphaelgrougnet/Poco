@@ -175,8 +175,8 @@
                             <Border DataContext="Fromage" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFC96D39" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Extras">
                                 <Label Content="Fromage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                             </Border>
-                            <Border DataContext="Viande" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFC96D39" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Extras">
-                                <Label Name="btnExtraViande" Content="Viande" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                            <Border Name="btnExtraViande" DataContext="Viande" BorderBrush="#FFC5B718" BorderThickness="2" Background="#FFC96D39" Width="225" Height="100" Margin="5,5,5,5" CornerRadius="10" MouseDown="ButtonClick_Extras">
+                                <Label  Content="Viande" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
                             </Border>
                         </StackPanel>
                     </StackPanel>
