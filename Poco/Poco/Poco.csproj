@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Files\Images\poco-resized.png">
+    <Resource Include="Files\Images\poco-resized.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Images\poco.png">
+    </Resource>
+    <Resource Include="Files\Images\poco.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="Poco-icon.ico" />
   </ItemGroup>
 
