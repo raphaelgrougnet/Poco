@@ -263,13 +263,13 @@ namespace Poco.Views
                     if (_employeConnecter.MesPoincons.Count > 0)
                     {
                         Poincon dernierPoincon = _employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1];
-                        if (dernierPoincon.Date.Year <= DateTime.Now.Year)
+                        if (dernierPoincon.Date.Year >= DateTime.Now.Year)
                         {
-                            if (dernierPoincon.Date.Month <= DateTime.Now.Month)
+                            if (dernierPoincon.Date.Month >= DateTime.Now.Month)
                             {
-                                if (dernierPoincon.Date.Day <= DateTime.Now.Day)
+                                if (dernierPoincon.Date.Day >= DateTime.Now.Day)
                                 {
-                                    if (dernierPoincon.Heure.Hours <= DateTime.Now.Hour)
+                                    if (dernierPoincon.Heure.Hours >= DateTime.Now.Hour)
                                     {
                                         if (dernierPoincon.Heure.Minutes < DateTime.Now.Minute)
                                         {
@@ -341,13 +341,13 @@ namespace Poco.Views
                     if (_employeConnecter.MesPoincons.Count > 0)
                     {
                         Poincon dernierPoincon = _employeConnecter.MesPoincons[_employeConnecter.MesPoincons.Count - 1];
-                        if (dernierPoincon.Date.Year <= DateTime.Now.Year)
+                        if (dernierPoincon.Date.Year >= DateTime.Now.Year)
                         {
-                            if (dernierPoincon.Date.Month <= DateTime.Now.Month)
+                            if (dernierPoincon.Date.Month >= DateTime.Now.Month)
                             {
-                                if (dernierPoincon.Date.Day <= DateTime.Now.Day)
+                                if (dernierPoincon.Date.Day >= DateTime.Now.Day)
                                 {
-                                    if (dernierPoincon.Heure.Hours <= DateTime.Now.Hour)
+                                    if (dernierPoincon.Heure.Hours >= DateTime.Now.Hour)
                                     {
                                         if (dernierPoincon.Heure.Minutes < DateTime.Now.Minute)
                                         {
