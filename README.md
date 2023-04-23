@@ -12,6 +12,10 @@ L'interface conviviale et intuitive facilite la formation des employés et le tr
 
 > **Note:** D'autres fonctionnalités seront proposées dans l'avenir comme une production de rapports de vente.
 
+## Téléchargement
+
+[![lkn](https://img.shields.io/github/v/release/raphaelgrougnet/Poco?include_prereleases&label=T%C3%A9l%C3%A9charger%20poco&style=for-the-badge)](https://github.com/raphaelgrougnet/Poco/releases/tag/v1.0.1-alpha)
+
 
 ## Visuels
 
