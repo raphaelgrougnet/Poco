@@ -115,41 +115,77 @@ namespace Poco.Views
 
         private void lstGarniture_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GestionBtnAjouter();
+            try
+            {
+                GestionBtnAjouter();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de la selection d'une garniture, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void txtQuantite_TextChanged(object sender, TextChangedEventArgs e)
         {
-            GestionBtnAjouter();
+            try
+            {
+                GestionBtnAjouter();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors du changement de la quantitée, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnFermer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors du retour à l'accueil, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnAjouter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            int quantite = int.Parse(txtQuantite.Text);
-
-            string nomGarniture = lstGarniture.SelectedItem.ToString().Split('-')[0].Trim();
-
-
-            foreach(KeyValuePair<TypeLegume, int> garniture in _inventaire)
+            try
             {
-                if (garniture.Key.ToString() == nomGarniture)
+                int quantite = int.Parse(txtQuantite.Text);
+
+                string nomGarniture = lstGarniture.SelectedItem.ToString().Split('-')[0].Trim();
+
+
+                foreach (KeyValuePair<TypeLegume, int> garniture in _inventaire)
                 {
-                    _inventaire[garniture.Key] += quantite;
+                    if (garniture.Key.ToString() == nomGarniture)
+                    {
+                        _inventaire[garniture.Key] += quantite;
+                    }
                 }
+
+                AfficherListeGarniture();
+
+                txtQuantite.Text = "0";
+
+                lstGarniture.SelectedItem = null;
+
+                GestionBtnAjouter();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ajout d'une quantitée, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
-            AfficherListeGarniture();
-
-            txtQuantite.Text = "0";
-
-            lstGarniture.SelectedItem = null;
-
-            GestionBtnAjouter();
         }
     }
 }

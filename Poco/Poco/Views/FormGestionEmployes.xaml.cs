@@ -118,11 +118,11 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de la sélection de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de la selection d'un employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
 
-            
+
+
         }
 
         /// <summary>
@@ -164,9 +164,9 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de l'entrée du code\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de la saisie d'un code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
 
         }
 
@@ -207,9 +207,9 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de l'entrée du code\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de l'effacement du code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
 
         
@@ -246,9 +246,10 @@ namespace Poco.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'ajout de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ajout d'un employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
 
         private void btnSupprimer_MouseDown(object sender, MouseButtonEventArgs e)
@@ -283,10 +284,10 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de la suppression de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de la suppression d'un employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-            
+
+
         }
 
         private void btnFermer_MouseDown(object sender, MouseButtonEventArgs e)
@@ -298,9 +299,9 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de la fermeture de la fenêtre\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors du retour a l'accueil, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
     }
 }

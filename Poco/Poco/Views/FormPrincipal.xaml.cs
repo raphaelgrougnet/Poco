@@ -86,9 +86,18 @@ namespace Poco
 
         private void btnAjtEmploye_Click(object sender, RoutedEventArgs e)
         {
-            FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
-            frm.ShowDialog();
-            lstEmployesPresents.Items.Refresh();
+            try
+            {
+                FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
+                frm.ShowDialog();
+                lstEmployesPresents.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Ajout Employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
 
         }
 
@@ -97,10 +106,18 @@ namespace Poco
 
         private void btnPoincon_Click(object sender, RoutedEventArgs e)
         {
-            
-            FormPoincon frp = new FormPoincon(_gestionEmploye);
-            frp.ShowDialog();
-            lstEmployesPresents.Items.Refresh();
+            try
+            {
+                FormPoincon frp = new FormPoincon(_gestionEmploye);
+                frp.ShowDialog();
+                lstEmployesPresents.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Poincon, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         //private void EnregistrerDonnes()
@@ -129,29 +146,37 @@ namespace Poco
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
-            if (MessageBoxResult.Yes ==  MessageBox.Show("Voulez-vous quitter l'application ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            try
             {
-                if (_gestionEmploye.ListeEmployesPresent.Count > 0)
+                if (MessageBoxResult.Yes == MessageBox.Show("Voulez-vous quitter l'application ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
                 {
-                    if (MessageBoxResult.Yes == MessageBox.Show("Vous devez poinçonner les employés encore présents.\nVoulez-vous les poinçonner ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                    if (_gestionEmploye.ListeEmployesPresent.Count > 0)
                     {
-                        foreach (Employe emp in _gestionEmploye.ListeEmployesPresent)
+                        if (MessageBoxResult.Yes == MessageBox.Show("Vous devez poinçonner les employés encore présents.\nVoulez-vous les poinçonner ?", "Fermeture de l'application", MessageBoxButton.YesNo, MessageBoxImage.Question))
                         {
-                            emp.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
+                            foreach (Employe emp in _gestionEmploye.ListeEmployesPresent)
+                            {
+                                emp.MesPoincons.Add(new Poincon(eTypePoincon.Sortie));
 
+                            }
                         }
+                        else
+                            e.Cancel = true;
                     }
-                    else
-                        e.Cancel = true;
+                    Utils.EnregistrerDonnees(_gestionEmploye, _gestionFacture, DictGarnitureQuantite);
+                    MessageBox.Show("Enregistrement terminé", "Fermeture de l'application", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                Utils.EnregistrerDonnees(_gestionEmploye, _gestionFacture, DictGarnitureQuantite);
-                MessageBox.Show("Enregistrement terminé", "Fermeture de l'application", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                    e.Cancel = true;
             }
-            else
-                e.Cancel = true;
-            
-            
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de la fermeture de l'application, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+
         }
 
 
@@ -210,74 +235,98 @@ namespace Poco
         /// <param name="e"></param>
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {
-            if (txtCode1.Text == "")
+            try
             {
-                txtCode1.Text = (sender as Button).Content.ToString();
-            }
-            else
-            {
-                if (txtCode2.Text == "")
+                if (txtCode1.Text == "")
                 {
-                    txtCode2.Text = (sender as Button).Content.ToString();
+                    txtCode1.Text = (sender as Button).Content.ToString();
                 }
                 else
                 {
-                    if (txtCode3.Text == "")
+                    if (txtCode2.Text == "")
                     {
-                        txtCode3.Text = (sender as Button).Content.ToString();
+                        txtCode2.Text = (sender as Button).Content.ToString();
                     }
                     else
                     {
-                        if (txtCode4.Text == "")
+                        if (txtCode3.Text == "")
                         {
-                            txtCode4.Text = (sender as Button).Content.ToString();
-                            string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
-                            ValiderCode(code);
+                            txtCode3.Text = (sender as Button).Content.ToString();
                         }
+                        else
+                        {
+                            if (txtCode4.Text == "")
+                            {
+                                txtCode4.Text = (sender as Button).Content.ToString();
+                                string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
+                                ValiderCode(code);
+                            }
 
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de la saisie d'un code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
 
         }
 
         private void Keypad_Clear(object sender, RoutedEventArgs e)
         {
-            if (txtCode4.Text != "")
+            try
             {
-                txtCode4.Text = "";
-            }
-            else
-            {
-                if (txtCode3.Text != "")
+                if (txtCode4.Text != "")
                 {
-                    txtCode3.Text = "";
+                    txtCode4.Text = "";
                 }
                 else
                 {
-                    if (txtCode2.Text != "")
+                    if (txtCode3.Text != "")
                     {
-                        txtCode2.Text = "";
+                        txtCode3.Text = "";
                     }
                     else
                     {
-                        if (txtCode1.Text != "")
+                        if (txtCode2.Text != "")
                         {
-                            txtCode1.Text = "";
+                            txtCode2.Text = "";
                         }
                         else
                         {
-
+                            if (txtCode1.Text != "")
+                            {
+                                txtCode1.Text = "";
+                            }
+                            
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'effacement du code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            FormInventaire form = new FormInventaire(DictGarnitureQuantite);
-            form.ShowDialog();
+            try
+            {
+                FormInventaire form = new FormInventaire(DictGarnitureQuantite);
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Inventaire, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }
