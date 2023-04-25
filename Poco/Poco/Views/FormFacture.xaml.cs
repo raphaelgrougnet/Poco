@@ -41,16 +41,10 @@ namespace Poco.Views
             _gestionEmploye = ge;
 
             InitialiserVente();
-
-            
-
-
-
         }
 
         private void InitialiserVente()
         {
-            
             _factureCourante = _gestionFacture.CreerFacture();
             lstFacture.ItemsSource = _factureCourante.ListePlats;
             lblNoFacture.DataContext = _factureCourante;
@@ -58,9 +52,6 @@ namespace Poco.Views
             lblTotalFacture.DataContext = _factureCourante;
             lstFacture.Items.Refresh();
             InitialiserPlat();
-
-
-
         }
 
         private void InitialiserPlat()
@@ -107,6 +98,30 @@ namespace Poco.Views
             lblTotalFacture.DataContext = _factureCourante;
         }
 
+        private bool ValiderQteGarnitureAjout(Plat pPlat)
+        {
+            string legumesManquants = "";
+            foreach (Garniture garniture in pPlat.ListeGarniture)
+            {
+                if (FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)] <= 0)
+                {
+                    legumesManquants += " " + garniture.Nom;
+                }
+            }
+            if (legumesManquants != "")
+            {
+                MessageBox.Show($"Impossible de compléter la commande car il n'y a plus de{legumesManquants}.\nVeuillez vérifier le stock ou modifier le plat {pPlat.Nom} {pPlat.ViandeP.Nom}.", "Erreur de quantitée", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+
+            }
+
+            foreach (Garniture garniture in pPlat.ListeGarniture)
+            {
+                FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)]--;
+            }
+
+            return true;
+        }
         private void btnRetirer_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -178,32 +193,6 @@ namespace Poco.Views
 
 
         }
-
-        private bool ValiderQteGarnitureAjout(Plat pPlat)
-        {
-            string legumesManquants = "";
-            foreach (Garniture garniture in pPlat.ListeGarniture)
-            {
-                if (FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)] <= 0)
-                {
-                    legumesManquants += " " + garniture.Nom;
-                }
-            }
-            if (legumesManquants != "")
-            {
-                MessageBox.Show($"Impossible de compléter la commande car il n'y a plus de{legumesManquants}.\nVeuillez vérifier le stock ou modifier le plat {pPlat.Nom} {pPlat.ViandeP.Nom}.", "Erreur de quantitée", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-
-            }
-            
-            foreach (Garniture garniture in pPlat.ListeGarniture)
-            {
-                FormPrincipal.DictGarnitureQuantite[Enum.Parse<TypeLegume>(garniture.Nom)]--;
-            }
-            
-            return true;
-        }
-
 
         private void ButtonClick_Plat(object sender, RoutedEventArgs e)
         {
@@ -305,7 +294,6 @@ namespace Poco.Views
 
         }
 
-
         private void btnPayer_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -331,9 +319,6 @@ namespace Poco.Views
             
 
         }
-
-        
-        
 
         private void btnAccueil_Click(object sender, MouseButtonEventArgs e)
         {

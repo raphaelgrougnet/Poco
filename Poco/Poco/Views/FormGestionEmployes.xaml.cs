@@ -107,7 +107,7 @@ namespace Poco.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnEmploye_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -125,11 +125,6 @@ namespace Poco.Views
 
         }
 
-        /// <summary>
-        /// Click de la souris sur un boutton du keypad
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {
             try

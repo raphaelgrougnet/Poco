@@ -126,7 +126,7 @@
                         <ListBox x:Name="lstEmployes" BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderThickness="2" BorderBrush="#FFC5B718" Background="#FF889B59" Padding="50,20,50,20" MinWidth="500" MaxWidth="500" MouseDown="Border_MouseDown" DataContext="{Binding}">
+                                    <Border BorderThickness="2" BorderBrush="#FFC5B718" Background="#FF889B59" Padding="50,20,50,20" MinWidth="500" MaxWidth="500" MouseDown="btnEmploye_MouseDown" DataContext="{Binding}">
                                         <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black"/>
                                     </Border>
                                 </DataTemplate>

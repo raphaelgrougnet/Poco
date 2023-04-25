@@ -29,7 +29,7 @@
                 <TextBlock Text="Ajout Empl." FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
             </Border>
 
-            <Border CornerRadius="10" Background="#FDC903" Margin="5,10,5,0" Height="150"  BorderThickness="2" BorderBrush="#FFC5B718" MouseDown="Border_MouseDown">
+            <Border CornerRadius="10" Background="#FDC903" Margin="5,10,5,0" Height="150"  BorderThickness="2" BorderBrush="#FFC5B718" MouseDown="btnInventaire_MouseDown">
                 <TextBlock Text="Inventaire" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
             </Border>
         </StackPanel>

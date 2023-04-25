@@ -32,32 +32,11 @@ namespace Poco
         public FormPrincipal()
         {
             InitializeComponent();
-            //List<Employe> lstEmployes = Utils.ChargerListeEmployes("Files/Employes.csv");
-            //List<Facture> lstFactures = Utils.ChargerListeFacture("Files/Factures.csv");
 
             _gestionEmploye = new GestionEmploye();
             _gestionFacture = new GestionFacture(new List<Facture>());
 
-            
-
-
             DictGarnitureQuantite = Utils.ChargerDonnees(_gestionEmploye, _gestionFacture);
-
-            
-
-            //string path = GestionEmploye.PATH_FILES + "Employes.csv";
-            //lstStringEmployes = Utils.ChargerDonnees("Employes.csv");
-
-
-
-
-            //foreach (string[] lstEmploye in lstStringEmployes)
-            //{
-
-            //    string code = lstEmploye[0];
-            //    string nom = lstEmploye[1];
-            //    string prenom = lstEmploye[2];
-            //    DateTime dob = DateTime.Parse(lstEmploye[3], cultureinfo);
 
             foreach (Employe employe in _gestionEmploye.ListeEmployes)
             {
@@ -75,34 +54,9 @@ namespace Poco
                 }
             }
 
-
-
-            //}
-
-
             lstEmployesPresents.ItemsSource = _gestionEmploye.ListeEmployesPresent;
 
         }
-
-        private void btnAjtEmploye_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
-                frm.ShowDialog();
-                lstEmployesPresents.Items.Refresh();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Ajout Employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
-
-        }
-
-       
-
 
         private void btnPoincon_Click(object sender, RoutedEventArgs e)
         {
@@ -119,8 +73,117 @@ namespace Poco
             }
 
         }
+        private void btnAjtEmploye_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FormGestionEmployes frm = new FormGestionEmployes(_gestionEmploye);
+                frm.ShowDialog();
+                lstEmployesPresents.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
 
-        
+                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Ajout Employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+        }
+        private void btnInventaire_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                FormInventaire form = new FormInventaire(DictGarnitureQuantite);
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Inventaire, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+        private void Keypad_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string contenuBtn = (sender as Button).Content.ToString();
+                if (txtCode1.Text == "")
+                {
+                    txtCode1.Text = contenuBtn;
+                }
+                else
+                {
+                    if (txtCode2.Text == "")
+                    {
+                        txtCode2.Text = contenuBtn;
+                    }
+                    else
+                    {
+                        if (txtCode3.Text == "")
+                        {
+                            txtCode3.Text = contenuBtn;
+                        }
+                        else
+                        {
+                            if (txtCode4.Text == "")
+                            {
+                                txtCode4.Text = contenuBtn;
+                                string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
+                                ValiderCode(code);
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de la saisie d'un code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+        }
+        private void Keypad_Clear(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (txtCode4.Text != "")
+                {
+                    txtCode4.Text = "";
+                }
+                else
+                {
+                    if (txtCode3.Text != "")
+                    {
+                        txtCode3.Text = "";
+                    }
+                    else
+                    {
+                        if (txtCode2.Text != "")
+                        {
+                            txtCode2.Text = "";
+                        }
+                        else
+                        {
+                            if (txtCode1.Text != "")
+                            {
+                                txtCode1.Text = "";
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Une erreur s'est produite lors de l'effacement du code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -156,8 +219,7 @@ namespace Poco
 
 
         }
-
-
+        
         private void ValiderCode(string pCode)
         {
             if (_gestionEmploye.DictEmployesCodes.ContainsKey(pCode))
@@ -205,107 +267,5 @@ namespace Poco
             }
         }
         
-
-        /// <summary>
-        /// Click de la souris sur un boutton du keypad
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Keypad_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string contenuBtn = (sender as Button).Content.ToString();
-                if (txtCode1.Text == "")
-                {
-                    txtCode1.Text = contenuBtn;
-                }
-                else
-                {
-                    if (txtCode2.Text == "")
-                    {
-                        txtCode2.Text = contenuBtn;
-                    }
-                    else
-                    {
-                        if (txtCode3.Text == "")
-                        {
-                            txtCode3.Text = contenuBtn;
-                        }
-                        else
-                        {
-                            if (txtCode4.Text == "")
-                            {
-                                txtCode4.Text = contenuBtn;
-                                string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
-                                ValiderCode(code);
-                            }
-
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Une erreur s'est produite lors de la saisie d'un code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
-
-        }
-
-        private void Keypad_Clear(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (txtCode4.Text != "")
-                {
-                    txtCode4.Text = "";
-                }
-                else
-                {
-                    if (txtCode3.Text != "")
-                    {
-                        txtCode3.Text = "";
-                    }
-                    else
-                    {
-                        if (txtCode2.Text != "")
-                        {
-                            txtCode2.Text = "";
-                        }
-                        else
-                        {
-                            if (txtCode1.Text != "")
-                            {
-                                txtCode1.Text = "";
-                            }
-                            
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Une erreur s'est produite lors de l'effacement du code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                FormInventaire form = new FormInventaire(DictGarnitureQuantite);
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Une erreur s'est produite lors de l'ouverture de l'interface Inventaire, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
-        }
     }
 }
