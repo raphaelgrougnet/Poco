@@ -101,12 +101,6 @@ namespace Poco.Views
             btnC.IsEnabled = false;
         }
 
-        
-        /// <summary>
-        /// Click de la souris sur un employé
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnEmploye_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
@@ -206,7 +200,6 @@ namespace Poco.Views
             }
 
         }
-
         
         private void btnAjouter_MouseDown(object sender, MouseButtonEventArgs e)
         {
