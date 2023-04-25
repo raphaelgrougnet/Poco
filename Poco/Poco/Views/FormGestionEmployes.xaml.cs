@@ -220,7 +220,7 @@ namespace Poco.Views
                 if (lstEmployes.SelectedIndex == -1)
                 {
                     DateTime dateSelec = new DateTime(0);
-                    if (dateDOB.SelectedDate is not null)
+                    if (dateDOB.SelectedDate.HasValue)
                     {
                         dateSelec = DateTime.Parse(dateDOB.SelectedDate.Value.ToString("dd-MM-yyyy"), FormPrincipal.cultureinfo);
                     }
@@ -303,5 +303,7 @@ namespace Poco.Views
             }
 
         }
+
+        
     }
 }
