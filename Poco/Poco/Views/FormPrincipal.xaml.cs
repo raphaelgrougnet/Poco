@@ -120,29 +120,7 @@ namespace Poco
 
         }
 
-        //private void EnregistrerDonnes()
-        //{
-        //    string donneesEmployes = "Code;Nom;Prenom;DOB\n";
-        //    foreach (Employe employe in _gestionEmploye.ListeEmployes)
-        //    {
-        //        donneesEmployes += String.Format($"{employe.Code};{employe.Nom};{employe.Prenom};{employe.DateNaissance.ToString("dd-MM-yyyy")}\n");
-        //    }
-        //    donneesEmployes.TrimEnd();
-        //    string path = "Files/Employes.csv";
-        //    Utils.EnregistrerDonnees(path, donneesEmployes, false);
-        //    path = "Files/Factures.csv";
-        //    string donneesFactures = "NoFacture;SousTotalFacture;TotalFacture\n";
-            
-        //    foreach (Facture facture in _gestionFacture.ListeFactures)
-        //    {
-                
-        //         donneesFactures += String.Format($"{facture.NoFacture};{facture.Date.ToString("dd-MM-yyyy")};{facture.SousTotal};{facture.PrixTotal}\n");
-
-                
-        //    }
-        //    donneesFactures.TrimEnd();
-        //    Utils.EnregistrerDonnees(path, donneesFactures, false);
-        //}
+        
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -237,27 +215,28 @@ namespace Poco
         {
             try
             {
+                string contenuBtn = (sender as Button).Content.ToString();
                 if (txtCode1.Text == "")
                 {
-                    txtCode1.Text = (sender as Button).Content.ToString();
+                    txtCode1.Text = contenuBtn;
                 }
                 else
                 {
                     if (txtCode2.Text == "")
                     {
-                        txtCode2.Text = (sender as Button).Content.ToString();
+                        txtCode2.Text = contenuBtn;
                     }
                     else
                     {
                         if (txtCode3.Text == "")
                         {
-                            txtCode3.Text = (sender as Button).Content.ToString();
+                            txtCode3.Text = contenuBtn;
                         }
                         else
                         {
                             if (txtCode4.Text == "")
                             {
-                                txtCode4.Text = (sender as Button).Content.ToString();
+                                txtCode4.Text = contenuBtn;
                                 string code = txtCode1.Text + txtCode2.Text + txtCode3.Text + txtCode4.Text;
                                 ValiderCode(code);
                             }

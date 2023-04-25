@@ -32,8 +32,6 @@ namespace Poco.Views
 
             _gestionEmploye = pGestionEmploye;
             _employeConnecter = null;
-            
-
             btnSortie.IsEnabled = false;
             btnEntree.IsEnabled = false;
             GererBtnIsEnable();
@@ -157,27 +155,28 @@ namespace Poco.Views
         {
             try
             {
+                string contenuBtn = (sender as Button).Content.ToString();
                 if (txtCode1.Text == "")
                 {
-                    txtCode1.Text = (sender as Button).Content.ToString();
+                    txtCode1.Text = contenuBtn;
                 }
                 else
                 {
                     if (txtCode2.Text == "")
                     {
-                        txtCode2.Text = (sender as Button).Content.ToString();
+                        txtCode2.Text = contenuBtn;
                     }
                     else
                     {
                         if (txtCode3.Text == "")
                         {
-                            txtCode3.Text = (sender as Button).Content.ToString();
+                            txtCode3.Text = contenuBtn;
                         }
                         else
                         {
                             if (txtCode4.Text == "")
                             {
-                                txtCode4.Text = (sender as Button).Content.ToString();
+                                txtCode4.Text = contenuBtn;
                                 _employeConnecter = ConnexionEmploye();
                                 lblNomEmploye.Content = _employeConnecter;
                                 AfficherListePoincon();
