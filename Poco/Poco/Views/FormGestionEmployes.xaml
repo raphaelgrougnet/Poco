@@ -46,7 +46,7 @@
                         <Style TargetType="DatePickerTextBox">
                             <Setter Property="IsReadOnly" Value="True" />
                             <Setter Property="Focusable" Value="False" />
-                            <Setter Property="Cursor" Value="Arrow" />
+                            <Setter Property="Cursor" Value="No" />
                         </Style>
                     </DatePicker.Resources>
                 </DatePicker>
