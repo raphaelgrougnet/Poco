@@ -33,7 +33,7 @@
                 <Label Content="Ajouter la quantité" FontSize="18"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </Border>
             <Border Name="brdQuantite" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FEE16F"  BorderThickness="2" CornerRadius="10">
-                <TextBox Name="txtQuantite" VerticalContentAlignment="Center" Background="#FEE16F" HorizontalContentAlignment="Center" Text="45" Width="100" Height="45" FontSize="30" BorderThickness="0" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="txtQuantite_TextChanged"/>
+                <TextBox Name="txtQuantite" VerticalContentAlignment="Center" Background="#FEE16F" HorizontalContentAlignment="Center" Width="100" Height="45" FontSize="30" BorderThickness="0" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="txtQuantite_TextChanged"/>
             </Border>
         </StackPanel>
     </Grid>
