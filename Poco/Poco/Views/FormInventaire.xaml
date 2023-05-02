@@ -5,36 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Poco.Views"
         mc:Ignorable="d"
-        Title="FormInventaire" Height="450" Width="800" Background="#f0f2e7">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Label Content="Inventaire" HorizontalAlignment="Center" FontSize="40" Margin="0,25,0,10" Grid.Row="0" Foreground="#FF404A28"/>
-        <Border BorderBrush="Azure" Grid.Row="1" HorizontalAlignment="Center" Width="500" Height="240">
-            <ListBox Name="lstGarniture" SelectionChanged="lstGarniture_SelectionChanged" Background="#FFDBE89D">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="FontSize" Value="24"/>
-                        <Setter Property="Foreground" Value="#FF404A28"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
+        Title="FormInventaire" Height="500" Width="800" Background="#f0f2e7"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Inventaire" HorizontalAlignment="Center" FontSize="40" Margin="0,25,0,10" Grid.Row="0" Foreground="#FF404A28"/>
+            <Border BorderBrush="Azure" Grid.Row="1" HorizontalAlignment="Center" Width="500" Height="240">
+                <ListBox Name="lstGarniture" SelectionChanged="lstGarniture_SelectionChanged" Background="#FFDBE89D">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontSize" Value="24"/>
+                            <Setter Property="Foreground" Value="#FF404A28"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
 
-            </ListBox>
-        </Border>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" >
-            <Border Name="btnFermer" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#E4D321"  BorderThickness="2" CornerRadius="10" MouseDown="btnFermer_MouseDown">
-                <Label Content="Fermer" FontSize="24"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </ListBox>
             </Border>
-            <Border Name="btnAjouter" Width="165" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FDC903" BorderThickness="2" CornerRadius="10 " MouseDown="btnAjouter_MouseDown">
-                <Label Content="Ajouter la quantité" FontSize="18"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            </Border>
-            <Border Name="brdQuantite" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FEE16F"  BorderThickness="2" CornerRadius="10">
-                <TextBox Name="txtQuantite" VerticalContentAlignment="Center" Background="#FEE16F" HorizontalContentAlignment="Center" Width="100" Height="45" FontSize="30" BorderThickness="0" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="txtQuantite_TextChanged"/>
-            </Border>
-        </StackPanel>
-    </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" >
+                <Border Name="btnFermer" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#E4D321"  BorderThickness="2" CornerRadius="10" MouseDown="btnFermer_MouseDown">
+                    <Label Content="Fermer" FontSize="24"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </Border>
+                <Border Name="btnAjouter" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FDC903" BorderThickness="2" CornerRadius="10 " MouseDown="btnAjouter_MouseDown">
+                    <Label Content="Ajouter la quantité" FontSize="18"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </Border>
+                <Border Name="brdQuantite" Width="115" Height="45" Margin="5,5,5,5" BorderBrush="#FFC5B718" Background="#FEE16F"  BorderThickness="2" CornerRadius="10">
+                    <TextBox Name="txtQuantite" VerticalContentAlignment="Center" Background="#FEE16F" HorizontalContentAlignment="Center" Text="45" Width="100" Height="45" FontSize="30" BorderThickness="0" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="txtQuantite_TextChanged"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+    
 </Window>

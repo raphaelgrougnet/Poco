@@ -63,62 +63,62 @@ namespace Poco.Models
             return (T)Enum.Parse(typeof(T), valeur, true);
         }
 
-        //static public List<Facture> ChargerListeFacture(String pCheminFichier)
-        //{
-        //    if (File.Exists(pCheminFichier))
-        //    {
-        //        StreamReader fluxLecture = new StreamReader(pCheminFichier);
-        //        String fichierTexte = fluxLecture.ReadToEnd();
-        //        fluxLecture.Close();
-        //        fichierTexte = fichierTexte.Replace("\r", "");
+        static public List<Facture> ChargerListeFacture(string pCheminFichier)
+        {
+            if (File.Exists(pCheminFichier))
+            {
+                StreamReader fluxLecture = new StreamReader(pCheminFichier);
+                string fichierTexte = fluxLecture.ReadToEnd();
+                fluxLecture.Close();
+                fichierTexte = fichierTexte.Replace("\r", "");
 
-        //        // Création d'un vecteur de chaînes de caractères contenant chaque ligne individuellement.
-        //        String[] vectLignes = fichierTexte.Split('\n');
+                // Création d'un vecteur de chaînes de caractères contenant chaque ligne individuellement.
+                string[] vectLignes = fichierTexte.Split('\n');
 
 
-        //        // Nombre de lignes non vides dans le fichier.
-        //        int nbLignes;
+                // Nombre de lignes non vides dans le fichier.
+                int nbLignes;
 
-        //        if (vectLignes[vectLignes.Length - 1] == "")
-        //            nbLignes = vectLignes.Length - 1; // On ne considère pas la dernière ligne si elle est vide.
-        //        else
-        //            nbLignes = vectLignes.Length;
+                if (vectLignes[vectLignes.Length - 1] == "")
+                    nbLignes = vectLignes.Length - 1; // On ne considère pas la dernière ligne si elle est vide.
+                else
+                    nbLignes = vectLignes.Length;
 
-        //        if (nbLignes > 0)
-        //        {
-        //            // Création du vecteur contenant les données du fichier; la taille est déterminée par le nombre de lignes (non vides) du fichier.
-        //            List<string[]> ListLignes = new List<string[]>();
+                if (nbLignes > 0)
+                {
+                    // Création du vecteur contenant les données du fichier; la taille est déterminée par le nombre de lignes (non vides) du fichier.
+                    List<string[]> ListLignes = new List<string[]>();
 
-        //            for (int i = 0; i < nbLignes; i++)
-        //            {
-        //                ListLignes.Add(vectLignes[i].Split(";"));
-        //            }
+                    for (int i = 0; i < nbLignes; i++)
+                    {
+                        ListLignes.Add(vectLignes[i].Split(";"));
+                    }
 
-        //            // On retourne le vecteur contenant les données créé.
-        //            ListLignes.RemoveAt(0);
+                    // On retourne le vecteur contenant les données créé.
+                    ListLignes.RemoveAt(0);
 
-        //            List<Facture> ListFactures = new List<Facture>();
+                    List<Facture> ListFactures = new List<Facture>();
 
-        //            foreach (string[] ligne in ListLignes)
-        //            {
-        //                uint noFacture = uint.Parse(ligne[0]);
-        //                DateTime date = DateTime.Parse(ligne[1], FormPrincipal.cultureinfo);
-        //                decimal stt = decimal.Parse(ligne[2]);
-        //                decimal tt = decimal.Parse(ligne[3]);
-        //                ListFactures.Add(new Facture(noFacture, date, stt, tt ));
-        //            }
+                    foreach (string[] ligne in ListLignes)
+                    {
+                        uint noFacture = uint.Parse(ligne[0]);
+                        DateTime date = DateTime.Parse(ligne[1], FormPrincipal.cultureinfo);
+                        decimal stt = decimal.Parse(ligne[2]);
+                        decimal tt = decimal.Parse(ligne[3]);
+                        ListFactures.Add(new Facture(noFacture, date, stt, tt));
+                    }
 
-        //            return ListFactures;
-        //        }
+                    return ListFactures;
+                }
 
-               
-        //    }
-        //    StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
-        //    fluxEcriture.Write("NoFacture;SousTotal;Total\n");
-        //    fluxEcriture.Close();
-        //    return new List<Facture>();
 
-        //}
+            }
+            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
+            fluxEcriture.Write("NoFacture;SousTotal;Total\n");
+            fluxEcriture.Close();
+            return new List<Facture>();
+
+        }
 
         //static public List<Employe> ChargerListeEmployes(String pCheminFichier)
         //{
@@ -170,7 +170,7 @@ namespace Poco.Models
 
         //        }
         //    }
-            
+
         //    //Création du fichier
         //    StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, false);
         //    fluxEcriture.Write("Code;Nom;Prenom;DOB\n");
@@ -181,26 +181,27 @@ namespace Poco.Models
 
         //}
 
-        public static void EnregistrerDonnees(GestionEmploye ge, GestionFacture gf, Dictionary<Garniture, int> dicoQuant)
+        public static void EnregistrerDonnees(GestionEmploye ge, GestionFacture gf, Dictionary<TypeLegume, int> dicoQuant)
         {
             using StreamWriter sw1 = new StreamWriter("Files/Employes.json");
             {
                 sw1.Write(JsonSerializer.Serialize(ge.ListeEmployes, typeof(List<Employe>)));
             }
-            //using StreamWriter sw2 = new StreamWriter("Files/Factures.json");
-            //{
-            //    sw2.Write(JsonSerializer.Serialize(gf.ListeFactures, typeof(List<Facture>)));
-            //}
-            //using StreamWriter sw3 = new StreamWriter("Files/Quantites.json");
-            //{
-            //    sw3.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<Garniture, int>)));
-            //}
-
+            using StreamWriter sw2 = new StreamWriter("Files/Quantites.json");
+            {
+                sw2.Write(JsonSerializer.Serialize(dicoQuant, typeof(Dictionary<TypeLegume, int>)));
+            }
+            string fichierTexte = "NoFacture;Date;SousTotal;Total\n";
+            foreach (Facture f in gf.ListeFactures)
+            {
+                fichierTexte += f.NoFacture + ";" + f.Date.ToString("dd/MM/yyyy") + ";" + f.SousTotal + ";" + f.PrixTotal + "\n";
+            }
+            EnregistrerDonnees("Files/Factures.csv", fichierTexte, false);
 
 
         }
 
-        public static Dictionary<Garniture, int> ChargerDonnees(GestionEmploye ge, GestionFacture gf)
+        public static Dictionary<TypeLegume, int> ChargerDonnees(GestionEmploye ge, GestionFacture gf)
         {
 
             if (File.Exists("Files/Employes.json"))
@@ -214,12 +215,9 @@ namespace Poco.Models
             {
                 ge.ListeEmployes = new List<Employe>();
             }
-            if (File.Exists("Files/Factures.json"))
+            if (File.Exists("Files/Factures.csv"))
             {
-                using StreamReader sr2 = new StreamReader("Files/Factures.json");
-                {
-                    gf.ListeFactures = JsonSerializer.Deserialize(sr2.ReadToEnd(), typeof(List<Facture>)) as List<Facture>;
-                }
+                gf.ListeFactures = ChargerListeFacture("Files/Factures.csv");
             }
             else
             {
@@ -229,28 +227,22 @@ namespace Poco.Models
             {
                 using StreamReader sr3 = new StreamReader("Files/Quantites.json");
                 {
-                    return JsonSerializer.Deserialize(sr3.ReadToEnd(), typeof(Dictionary<Garniture,int>)) as Dictionary<Garniture, int>;
+                    return JsonSerializer.Deserialize(sr3.ReadToEnd(), typeof(Dictionary<TypeLegume, int>)) as Dictionary<TypeLegume, int>;
                 }
             }
             
-            return new Dictionary<Garniture, int>() 
+            return new Dictionary<TypeLegume, int>() 
             {
-                {new Legume("Avocat") , 0},
-                {new Legume("Jalapeno") , 0},
-                {new Legume("Mais") , 0},
-                {new Legume("Oignon") , 0},
-                {new Legume("Oigon F") , 0},
-                {new Legume("Olive") , 0},
-                {new Legume("Poivron") , 0},
-                {new Legume("Riz") , 0},
-                {new Legume("Salade") , 0},
-                {new Legume("Tomate") , 0},
-                {new Viande("Boeuf") , 0},
-                {new Viande("Dinde") , 0},
-                {new Viande("Poisson") , 0},
-                {new Viande("Porc") , 0},
-                {new Viande("Poulet") , 0},
-
+                {TypeLegume.Avocat , 0},
+                {TypeLegume.Jalapeno , 0},
+                {TypeLegume.Mais , 0},
+                {TypeLegume.Oignon , 0},
+                {TypeLegume.OignonF , 0},
+                {TypeLegume.Olive , 0},
+                {TypeLegume.Poivron , 0},
+                {TypeLegume.Riz , 0},
+                {TypeLegume.Salade , 0},
+                {TypeLegume.Tomate , 0}
             };
             
 
@@ -259,14 +251,14 @@ namespace Poco.Models
 
 
 
-        //public static void EnregistrerDonnees(String pCheminFichier, string pDonneesSerialises, bool pAjouterALaSuite)
-        //{
+        public static void EnregistrerDonnees(string pCheminFichier, string pDonneesSerialises, bool pAjouterALaSuite)
+        {
 
-        //    StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, pAjouterALaSuite);
-        //    fluxEcriture.Write(pDonneesSerialises);
-        //    fluxEcriture.Close();
+            StreamWriter fluxEcriture = new StreamWriter(pCheminFichier, pAjouterALaSuite);
+            fluxEcriture.Write(pDonneesSerialises);
+            fluxEcriture.Close();
 
-        //}
+        }
 
 
 

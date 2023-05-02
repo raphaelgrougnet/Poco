@@ -101,13 +101,7 @@ namespace Poco.Views
             btnC.IsEnabled = false;
         }
 
-        
-        /// <summary>
-        /// Click de la souris sur un employé
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnEmploye_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -118,18 +112,13 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de la sélection de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de la selection d'un employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
 
-            
+
+
         }
 
-        /// <summary>
-        /// Click de la souris sur un boutton du keypad
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -164,9 +153,9 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de l'entrée du code\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de la saisie d'un code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
 
         }
 
@@ -207,11 +196,10 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de l'entrée du code\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de l'effacement du code, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-        }
 
+        }
         
         private void btnAjouter_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -220,7 +208,7 @@ namespace Poco.Views
                 if (lstEmployes.SelectedIndex == -1)
                 {
                     DateTime dateSelec = new DateTime(0);
-                    if (dateDOB.SelectedDate is not null)
+                    if (dateDOB.SelectedDate.HasValue)
                     {
                         dateSelec = DateTime.Parse(dateDOB.SelectedDate.Value.ToString("dd-MM-yyyy"), FormPrincipal.cultureinfo);
                     }
@@ -246,9 +234,10 @@ namespace Poco.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'ajout de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MessageBox.Show("Une erreur s'est produite lors de l'ajout d'un employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
 
         private void btnSupprimer_MouseDown(object sender, MouseButtonEventArgs e)
@@ -257,11 +246,25 @@ namespace Poco.Views
             {
                 if (lstEmployes.SelectedItem is not null)
                 {
-                    if (MessageBox.Show($"Voulez-vous vraiment supprimer l'employé {(Employe)lstEmployes.SelectedItem} ?", "Suppression d'un employé", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (!_gestionEmploye.ListeEmployesPresent.Contains(lstEmployes.SelectedItem))
                     {
-                        _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
-                        InitialiserChamps();
+                        if (MessageBox.Show($"Voulez-vous vraiment supprimer l'employé {(Employe)lstEmployes.SelectedItem} ?",
+                            "Suppression d'un employé",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            _gestionEmploye.SupprimerEmploye((Employe)lstEmployes.SelectedItem);
+                            InitialiserChamps();
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show($"Impossible de supprimer l'employé {lstEmployes.SelectedItem as Employe}.\nVeuillez poincionner l'employé avant de le supprimer.",
+                            "Suppression d'un employé",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                    
 
 
                 }
@@ -269,10 +272,10 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de la suppression de l'employé\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors de la suppression d'un employé, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-            
+
+
         }
 
         private void btnFermer_MouseDown(object sender, MouseButtonEventArgs e)
@@ -284,9 +287,11 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erreur lors de la fermeture de la fenêtre\n" + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors du retour a l'accueil, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
+
+        
     }
 }

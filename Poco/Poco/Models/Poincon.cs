@@ -33,6 +33,8 @@ namespace Poco.Models
         /// </summary>
         private TimeSpan _heure;
 
+        private DateTime _date;
+
         #endregion
 
         #region PROPRIÉTÉS
@@ -68,7 +70,17 @@ namespace Poco.Models
             }
         }
 
-
+        public DateTime Date
+        {
+            get { return _date; }
+            set
+            {
+                if (value != new DateTime())
+                    _date = value;
+                else
+                    throw new DateNonValideException("La date ne peut pas être à zéro"); 
+            }
+        }
         #endregion
 
         #region CONSTRUCTEURS
@@ -80,6 +92,7 @@ namespace Poco.Models
         {
             TypePoincon = typePoincon;
             Heure = DateTime.Now.TimeOfDay;
+            Date = DateTime.Now;
         }
         #endregion
 
@@ -108,6 +121,18 @@ namespace Poco.Models
         /// </summary>
         /// <param name="message">Un message d'erreur</param>
         public HeureNonValideException(string message) : base("L'heure ne pas être zéro") { }
+    }
+
+    /// <summary>
+    /// Exception Personnalisée DateNonValideException
+    /// </summary>
+    public class DateNonValideException : Exception
+    {
+        /// <summary>
+        /// Exception lancé si la date est zéro
+        /// </summary>
+        /// <param name="message">Un message d'erreur</param>
+        public DateNonValideException(string message) : base("La date ne peut pas être à zéro") { }
     }
 
     /// <summary>

@@ -7,6 +7,20 @@ using System.Threading.Tasks;
 
 namespace Poco.Models
 {
+    public enum TypeLegume
+    {
+        Avocat,
+        Jalapeno,
+        Mais,
+        Oignon,
+        OignonF,
+        Olive,
+        Poivron,
+        Riz,
+        Salade,
+        Tomate
+    }
+
     [Serializable]
     public class Legume : Garniture
     {
@@ -24,6 +38,7 @@ namespace Poco.Models
         #endregion
 
         #region CONSTRUCTEURS
+        [JsonConstructor]
         public Legume(string Nom) : base(Nom) {}
 
         #endregion
