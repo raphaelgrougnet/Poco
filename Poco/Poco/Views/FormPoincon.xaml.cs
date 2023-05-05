@@ -207,6 +207,7 @@ namespace Poco.Views
                     btnEntree.IsEnabled = false;
                     ClearListe();
                     _employeConnecter = null;
+                    lblNomEmploye.Content = "Saisir un code d'employé";
                     GererBtnIsEnable();
                 }
                 else

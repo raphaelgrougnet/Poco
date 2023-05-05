@@ -105,30 +105,33 @@
                     </Border>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ScrollViewer Name="scrlPoincon" Margin="0,0,0,55"  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" CanContentScroll="True" IsEnabled="True" Background="#FFC5B718">
-                    <StackPanel Orientation="Horizontal">
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFC5B718">
+                <!--<ScrollViewer Name="scrlPoincon" Margin="0,0,0,0"  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" CanContentScroll="True" IsEnabled="True" Background="#FFC5B718">-->
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Width="225" Height="325">
+                        <ItemsControl Name="lstEntree" Padding="10" Margin="0 0 2 0" Background="#f0f2e7" >
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Center" Foreground="#FF404A28"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
 
-                        <ItemsControl Name="lstEntree" Width="225" Height="325"  Padding="10" Background="#f0f2e7" VerticalAlignment="Center" BorderThickness="2">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Center" Foreground="#FF404A28"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
-                        <ItemsControl x:Name="lstSortie" Width="225" Height="325"  Padding="10" Background="#f0f2e7" BorderThickness="2">
+                            </ItemsControl>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Width="225" Height="325">
+                        <ItemsControl x:Name="lstSortie"  Padding="10" Margin="2 0 0 0"  Background="#f0f2e7" >
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}" FontSize="30" TextAlignment="Center"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                    </StackPanel>
-                </ScrollViewer>
+                    </ScrollViewer>
+                </StackPanel>
+                <!--</ScrollViewer>-->
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="40">
-                <Label  Name="lblNomEmploye" Content="" FontSize="40" Foreground="#FF404A28"/>
+                <Label  Name="lblNomEmploye" Content="Saisir un code d'employé" FontSize="40" Foreground="#FF404A28"/>
             </StackPanel>
 
         </Grid>

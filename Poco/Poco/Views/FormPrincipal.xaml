@@ -43,7 +43,7 @@
         <Border Grid.Column="1" BorderBrush="#FFC5B718" BorderThickness="3" CornerRadius="15" Background="#FFE4EBC3" Margin="15" >
             <DockPanel LastChildFill="True">
                 <Label Content="Employés aujourd'hui" FontSize="40" HorizontalContentAlignment="Center" DockPanel.Dock="Top" Padding="15"/>
-                <ScrollViewer x:Name="scrlEmployes" VerticalScrollBarVisibility="Hidden"  Margin="0,0,0,10">
+                <ScrollViewer x:Name="scrlEmployes" VerticalScrollBarVisibility="Auto"  Margin="0,0,0,10">
                     <ItemsControl x:Name="lstEmployesPresents" BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
