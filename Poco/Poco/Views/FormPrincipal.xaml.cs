@@ -104,6 +104,10 @@ namespace Poco
             }
 
         }
+        private void btnAide_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -184,8 +188,6 @@ namespace Poco
             }
 
         }
-
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
@@ -220,7 +222,6 @@ namespace Poco
 
 
         }
-        
         private void ValiderCode(string pCode)
         {
             if (_gestionEmploye.DictEmployesCodes.ContainsKey(pCode))

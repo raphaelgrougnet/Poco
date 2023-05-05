@@ -76,7 +76,7 @@
             </Border>
 
 
-            <Grid Grid.Column="2" Margin="0,20,0,60">
+            <Grid Grid.Column="2" Margin="0,20,0,30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -140,6 +140,11 @@
                 </Border>
 
             </Grid>
+
+            <Border CornerRadius="10" Background="#FFFF9849" Margin="5,10,5,0" Height="70" Width="300"  BorderThickness="2" BorderBrush="#FFC5B718" MouseDown="btnAide_MouseDown">
+                <TextBlock Text="Aide" FontSize="40" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"/>
+            </Border>
+
         </StackPanel>
 
         
