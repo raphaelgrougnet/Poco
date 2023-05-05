@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
+
 namespace Poco.Views
 {
     /// <summary>
@@ -31,8 +33,12 @@ namespace Poco.Views
         }
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+"); 
-            e.Handled = regex.IsMatch(e.Text);
+            
+            string pattern = "^[0-9]$"; 
+            bool isMatch = Regex.IsMatch(e.Text, pattern);
+
+            
+            e.Handled = !isMatch;
         }
 
         private void InitialiserForm()
@@ -163,22 +169,46 @@ namespace Poco.Views
 
                 string nomGarniture = lstGarniture.SelectedItem.ToString().Split('-')[0].Trim();
 
-
-                foreach (KeyValuePair<TypeLegume, int> garniture in _inventaire)
+                if(quantite.ToString().Length < 4)
                 {
-                    if (garniture.Key.ToString() == nomGarniture)
+                    foreach (KeyValuePair<TypeLegume, int> garniture in _inventaire)
                     {
-                        _inventaire[garniture.Key] += quantite;
+                        if (garniture.Key.ToString() == nomGarniture)
+                        {
+                            int quantiteActuelle = _inventaire[garniture.Key];
+
+                            _inventaire[garniture.Key] += quantite;
+
+                            if (_inventaire[garniture.Key] > 9999)
+                            {
+                                MessageBox.Show("La quantité d'un garniture ne peux pas dépassé 9999", "Ajout Inventaire", 
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                                _inventaire[garniture.Key] = quantiteActuelle;
+                            }
+                        }
                     }
+
+                    AfficherListeGarniture();
+
+                    txtQuantite.Text = "0";
+
+                    lstGarniture.SelectedItem = null;
+
+                    GestionBtnAjouter();
                 }
+                else
+                {
+                    MessageBox.Show($"La quantité ({quantite}) ne doit pas dépasser 4 caractères", "Ajout Quantité", 
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
 
-                AfficherListeGarniture();
+                    AfficherListeGarniture();
 
-                txtQuantite.Text = "0";
+                    txtQuantite.Text = "0";
 
-                lstGarniture.SelectedItem = null;
-
-                GestionBtnAjouter();
+                    GestionBtnAjouter();
+                }
+                
             }
             catch (Exception ex)
             {
