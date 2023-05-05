@@ -143,7 +143,7 @@ namespace Poco.Views
             catch (Exception ex)
             {
 
-                MessageBox.Show("Une erreur s'est produite lors du changement de la quantitée, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produite lors du changement de la quantité, veuillez reporter cette erreur à l'administrateur de l'application : " + ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Poco.Views
 
                 string nomGarniture = lstGarniture.SelectedItem.ToString().Split('-')[0].Trim();
 
-                if(quantite.ToString().Length < 4)
+                if(quantite.ToString().Length <= 4)
                 {
                     foreach (KeyValuePair<TypeLegume, int> garniture in _inventaire)
                     {
@@ -181,7 +181,7 @@ namespace Poco.Views
 
                             if (_inventaire[garniture.Key] > 9999)
                             {
-                                MessageBox.Show("La quantité d'un garniture ne peux pas dépassé 9999", "Ajout Inventaire", 
+                                MessageBox.Show($"La quantité de {nomGarniture} ne peux pas dépasser 9999", "Ajout Inventaire", 
                                     MessageBoxButton.OK, MessageBoxImage.Warning);
 
                                 _inventaire[garniture.Key] = quantiteActuelle;
@@ -199,7 +199,7 @@ namespace Poco.Views
                 }
                 else
                 {
-                    MessageBox.Show($"La quantité ({quantite}) ne doit pas dépasser 4 caractères", "Ajout Quantité", 
+                    MessageBox.Show($"La quantité à ajouter ne doit pas dépasser 4 chiffres", "Ajout Quantité", 
                         MessageBoxButton.OK, MessageBoxImage.Warning);
 
                     AfficherListeGarniture();
