@@ -106,7 +106,8 @@ namespace Poco
         }
         private void btnAide_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            FormAide formAide = new FormAide();
+            formAide.ShowDialog();
         }
         private void Keypad_Click(object sender, RoutedEventArgs e)
         {

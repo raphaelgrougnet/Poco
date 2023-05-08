@@ -13,6 +13,7 @@
     <None Remove="Files\Images\poco-resized.png" />
     <None Remove="Files\Images\poco.png" />
     <None Remove="Files\Images\poco.svg" />
+    <None Remove="Files\Videos\video.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,9 @@
     <Resource Include="Files\Images\poco.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Files\Videos\video.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Poco-icon.ico" />
   </ItemGroup>
 
