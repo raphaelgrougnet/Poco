@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poco", "Poco\Poco.csproj", "{D02A3FD4-3638-4572-87A5-33656E8B7D32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocoTests", "PocoTests\PocoTests.csproj", "{2B4031EF-C0B6-426B-9791-B9B55D7C148C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{D02A3FD4-3638-4572-87A5-33656E8B7D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D02A3FD4-3638-4572-87A5-33656E8B7D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D02A3FD4-3638-4572-87A5-33656E8B7D32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B4031EF-C0B6-426B-9791-B9B55D7C148C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B4031EF-C0B6-426B-9791-B9B55D7C148C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B4031EF-C0B6-426B-9791-B9B55D7C148C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B4031EF-C0B6-426B-9791-B9B55D7C148C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
