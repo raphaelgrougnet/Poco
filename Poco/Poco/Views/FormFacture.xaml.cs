@@ -130,7 +130,7 @@ namespace Poco.Views
                 {
                     if (_platCourant != null)
                     {
-                        MessageBox.Show("Veuillez finir le plat en cours.");
+                        MessageBox.Show("Veuillez finir le plat en cours.", "Suppresion d'un plat", MessageBoxButton.OK, MessageBoxImage.Information);
                         lstFacture.SelectedItem = null;
                         btnRetirer.IsEnabled = false;
                         return;
@@ -155,7 +155,7 @@ namespace Poco.Views
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez sélectionner un plat à retirer.");
+                    MessageBox.Show("Veuillez sélectionner un plat à retirer.", "Suppresion d'un plat", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             catch (Exception ex)
@@ -301,14 +301,14 @@ namespace Poco.Views
                 if (_platCourant == null && _factureCourante.ListePlats.Count > 0)
                 {
                     _gestionFacture.ListeFactures.Add(_factureCourante);
-                    MessageBox.Show("Facture payée | Total : " + "$" + _factureCourante.PrixTotal.ToString("n2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom);
+                    MessageBox.Show("Facture payée | Total : " + "$" + _factureCourante.PrixTotal.ToString("n2") + "\nEmployé : " + _gestionEmploye.EmployeActif.Prenom + " " + _gestionEmploye.EmployeActif.Nom+".", "Paiment de la commande", MessageBoxButton.OK, MessageBoxImage.Information);
                     //_gestionFacture.SauvegarderFactures("Factures.csv");
                     MiseAJourPrix();
                     InitialiserVente();
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez terminer votre commande");
+                    MessageBox.Show("Veuillez terminer votre commande.", "Paiment de la commande", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
