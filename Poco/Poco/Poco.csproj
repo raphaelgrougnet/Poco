@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Files\Images\poco-resized.png">
+    <Content Include="Files\Images\poco-resized.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Files\Images\poco.png">
+    </Content>
+    <Content Include="Files\Images\poco.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="Files\Videos\video.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
