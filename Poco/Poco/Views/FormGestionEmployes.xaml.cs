@@ -259,7 +259,7 @@ namespace Poco.Views
                     }
                     else
                     {
-                        MessageBox.Show($"Impossible de supprimer l'employé {lstEmployes.SelectedItem as Employe}.\nVeuillez poincionner l'employé avant de le supprimer.",
+                        MessageBox.Show($"Impossible de supprimer l'employé {lstEmployes.SelectedItem as Employe}.\nVeuillez poinçonner l'employé avant de le supprimer.",
                             "Suppression d'un employé",
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);
