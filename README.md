@@ -14,7 +14,7 @@ L'interface conviviale et intuitive facilite la formation des employés et le tr
 
 ## Téléchargement
 
-[![lkn](https://img.shields.io/github/v/release/raphaelgrougnet/Poco?include_prereleases&label=T%C3%A9l%C3%A9charger%20poco&style=for-the-badge)](https://github.com/raphaelgrougnet/Poco/releases/download/v1.0.1-alpha/Poco.v1.0.1.zip)
+[![lkn](https://img.shields.io/github/v/release/raphaelgrougnet/poco?label=T%C3%A9l%C3%A9charger%20poco&style=for-the-badge)](https://github.com/raphaelgrougnet/Poco/releases/download/v1.0.2-beta/Poco.v1.0.2.zip)
 
 
 ## Visuels
